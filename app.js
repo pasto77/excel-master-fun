@@ -12,7 +12,32 @@ document.addEventListener('DOMContentLoaded', () => {
         7: { t: "Le secret du '$'", c: "Comment figer la cellule B1 dans une formule ?", quiz: true, answer: "$B$1", r: "Gagné ! Vous avez verrouillé la cellule. +50 XP" },
         8: { t: "La fonction SI", c: "Si A1 > 10, affiche 'OK', sinon 'NON' ?", quiz: true, answer: '=SI(A1>10;"OK";"NON")', r: "Logique parfaite ! +60 XP" },
         9: { t: "Tri & Filtres", c: "Le tri permet de classer de A à Z.", a: "Classer", r: "C'est bien plus clair ainsi ! +20 XP" },
-        10: { t: "Graphiques", c: "Un dessin vaut mille chiffres.", a: "Tracer", r: "Superbe courbe ! Niveau 1 terminé. +100 XP" }
+        10: { t: "Graphiques", c: "Un dessin vaut mille chiffres.", a: "Tracer", r: "Superbe courbe ! Niveau 1 terminé. +100 XP" }11: { 
+            t: "Le puissant RECHERCHEV", 
+            c: "Cherche la valeur de A1 dans la table de D1 à E10 et ramène la 2ème colonne. (Vrai = 0)", 
+            quiz: true, 
+            answer: "=RECHERCHEV(A1;D1:E10;2;0)", 
+            r: "Magique ! Vous savez maintenant lier des tableaux. +80 XP" 
+        },
+        12: { 
+            t: "Tableaux Croisés Dynamiques", 
+            c: "Le TCD sert à synthétiser des milliers de lignes en un clin d'œil.", 
+            a: "Générer le rapport", 
+            r: "Analyse terminée. Vous avez une vision claire de vos données ! +30 XP" 
+        },
+        13: { 
+            t: "Nettoyage : Les Doublons", 
+            c: "Une base de données propre est une base sans répétitions inutiles.", 
+            a: "Supprimer les doublons", 
+            r: "Base de données nettoyée. 15 lignes supprimées. +20 XP" 
+        },
+        14: { 
+            t: "Listes déroulantes", 
+            c: "Comment s'appelle l'outil pour créer un menu de choix dans une cellule ?", 
+            quiz: true, 
+            answer: "Validation des données", 
+            r: "Exact ! Cela évite les erreurs de saisie des utilisateurs. +50 XP" 
+        }
     };
 
     for (let i = 1; i <= 50; i++) {
