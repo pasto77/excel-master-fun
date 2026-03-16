@@ -23,7 +23,41 @@ document.addEventListener('DOMContentLoaded', () => {
         18: { t: "Protection", c: "Comment s'appelle l'onglet pour verrouiller une feuille ?", quiz: true, answer: "Révision", r: "Exactement, c'est là que se trouve la sécurité. +40 XP" },
         19: { t: "Somme SI", c: "Additionner les cellules de A1:A10 si elles sont > 100 ?", quiz: true, answer: '=SOMME.SI(A1:A10;">100")', r: "Expertise confirmée ! +70 XP" },
         20: { t: "EXAMEN FINAL : Niveau 2", c: "Quelle fonction permet de compter le nombre de cellules non vides ?", quiz: true, answer: "=NBVAL", r: "INCROYABLE ! Vous avez terminé le Niveau 2 ! +200 XP" }
-    };
+    };,21: { 
+            t: "Extraire à GAUCHE", 
+            c: "Prendre les 3 premiers caractères de la cellule A1 ?", 
+            quiz: true, 
+            answer: "=GAUCHE(A1;3)", 
+            r: "Parfait pour extraire des préfixes ou des codes ! +40 XP" 
+        },
+        22: { 
+            t: "Extraire à DROITE", 
+            c: "Prendre les 2 derniers caractères de A1 ?", 
+            quiz: true, 
+            answer: "=DROITE(A1;2)", 
+            r: "Utile pour isoler des extensions ou des fins de séries. +40 XP" 
+        },
+        23: { 
+            t: "Fusionner : CONCAT", 
+            c: "Comment coller le texte de A1 et B1 ensemble ?", 
+            quiz: true, 
+            answer: "=CONCAT(A1;B1)", 
+            r: "Vous savez maintenant fusionner des noms et prénoms ! +50 XP" 
+        },
+        24: { 
+            t: "Nettoyer les espaces", 
+            c: "Quelle fonction supprime les espaces inutiles au début et à la fin ?", 
+            quiz: true, 
+            answer: "=SUPPRESPACE(A1)", 
+            r: "Indispensable pour corriger les erreurs de saisie ! +50 XP" 
+        },
+        25: { 
+            t: "Majuscules & Minuscules", 
+            c: "Mettre tout le texte de A1 en majuscules ?", 
+            quiz: true, 
+            answer: "=MAJUSCULE(A1)", 
+            r: "Votre base de données commence à avoir fière allure ! +30 XP" 
+        }
     
     for (let i = 1; i <= 50; i++) {
         const li = document.createElement('li');
