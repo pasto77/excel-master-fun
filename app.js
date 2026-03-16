@@ -13,34 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
         8: { t: "La fonction SI", c: "Si A1 > 10, affiche 'OK', sinon 'NON' ?", quiz: true, answer: '=SI(A1>10;"OK";"NON")', r: "Logique parfaite ! +60 XP" },
         9: { t: "Tri & Filtres", c: "Le tri permet de classer de A à Z.", a: "Classer", r: "C'est bien plus clair ainsi ! +20 XP" },
         10: { t: "Graphiques", c: "Un dessin vaut mille chiffres.", a: "Tracer", r: "Superbe courbe ! Niveau 1 terminé. +100 XP" },
-        11: { 
-            t: "Le puissant RECHERCHEV", 
-            c: "Cherche la valeur de A1 dans la table de D1 à E10 et ramène la 2ème colonne. (Vrai = 0)", 
-            quiz: true, 
-            answer: "=RECHERCHEV(A1;D1:E10;2;0)", 
-            r: "Magique ! Vous savez maintenant lier des tableaux. +80 XP" 
-        },
-        12: { 
-            t: "Tableaux Croisés Dynamiques", 
-            c: "Le TCD sert à synthétiser des milliers de lignes en un clin d'œil.", 
-            a: "Générer le rapport", 
-            r: "Analyse terminée. Vous avez une vision claire de vos données ! +30 XP" 
-        },
-        13: { 
-            t: "Nettoyage : Les Doublons", 
-            c: "Une base de données propre est une base sans répétitions inutiles.", 
-            a: "Supprimer les doublons", 
-            r: "Base de données nettoyée. 15 lignes supprimées. +20 XP" 
-        },
-        14: { 
-            t: "Listes déroulantes", 
-            c: "Comment s'appelle l'outil pour créer un menu de choix dans une cellule ?", 
-            quiz: true, 
-            answer: "Validation des données", 
-            r: "Exact ! Cela évite les erreurs de saisie des utilisateurs. +50 XP" 
-        }
+        11: { t: "Le puissant RECHERCHEV", c: "Cherche A1 dans D1:E10, ramène col 2. (Vrai = 0)", quiz: true, answer: "=RECHERCHEV(A1;D1:E10;2;0)", r: "Magique ! +80 XP" },
+        12: { t: "Tableaux Croisés Dynamiques", c: "Le TCD sert à synthétiser des milliers de lignes.", a: "Générer", r: "Analyse terminée ! +30 XP" },
+        13: { t: "Nettoyage : Les Doublons", c: "Supprimer les répétitions inutiles.", a: "Nettoyer", r: "Base de données propre ! +20 XP" },
+        14: { t: "Listes déroulantes", c: "Outil pour créer un menu de choix dans une cellule ?", quiz: true, answer: "Validation des données", r: "Exact ! +50 XP" },
+        15: { t: "Calcul de dates", c: "Formule pour calculer l'écart en jours entre A1 et B1 ?", quiz: true, answer: "=B1-A1", r: "Bravo ! Simple et efficace. +40 XP" },
+        16: { t: "Figer les Volets", c: "Garder les titres visibles en faisant défiler.", a: "Figer", r: "Navigation optimisée ! +20 XP" },
+        17: { t: "Mise en forme Conditionnelle", c: "Colorer les cellules selon leur valeur automatiquement.", a: "Colorer", r: "Visuel parfait ! +30 XP" },
+        18: { t: "Protection", c: "Comment s'appelle l'onglet pour verrouiller une feuille ?", quiz: true, answer: "Révision", r: "Exactement, c'est là que se trouve la sécurité. +40 XP" },
+        19: { t: "Somme SI", c: "Additionner les cellules de A1:A10 si elles sont > 100 ?", quiz: true, answer: '=SOMME.SI(A1:A10;">100")', r: "Expertise confirmée ! +70 XP" },
+        20: { t: "EXAMEN FINAL : Niveau 2", c: "Quelle fonction permet de compter le nombre de cellules non vides ?", quiz: true, answer: "=NBVAL", r: "INCROYABLE ! Vous avez terminé le Niveau 2 ! +200 XP" }
     };
-
+    
     for (let i = 1; i <= 50; i++) {
         const li = document.createElement('li');
         li.textContent = `Chapitre ${i}: ${content[i] ? content[i].t : 'À venir'}`;
