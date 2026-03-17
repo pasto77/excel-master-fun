@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         27: { t: "Remplacer du texte", c: "Changer un mot par un autre dans A1 ?", quiz: true, answer: "=SUBSTITUE(A1)", r: "Correction automatique validée ! +60 XP" },
         28: { t: "Nombre de caractères", c: "Compter la longueur du texte en A1 ?", quiz: true, answer: "=NBCAR(A1)", r: "Mesure effectuée ! +40 XP" },
         29: { t: "Convertir en nombre", c: "Transformer du texte '12' en vrai chiffre ?", quiz: true, answer: "=VALEUR(A1)", r: "Calculs désormais possibles ! +50 XP" },
-        30: { t: "EXAMEN : Niveau 3", c: "Quelle fonction permet de mettre seulement la 1ère lettre en Majuscule ?", quiz: true, answer: "=NOMPROPRE(A1)", r: "GÉNIAL ! Niveau 3 validé. Vous êtes un expert en données ! +200 XP" }
+        30: { t: "EXAMEN : Niveau 3", c: "Quelle fonction permet de mettre seulement la 1ère lettre en Majuscule ?", quiz: true, answer: "=NOMPROPRE(A1)", r: "GÉNIAL ! Niveau 3 validé. Expert en données ! +200 XP" }
     };
 
     for (let i = 1; i <= 50; i++) {
