@@ -3,35 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excel Master Fun - Ntsanli Michel</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Excel Master Fun | Par Ntsanli Michel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffd700; /* Gold */
+            --bg-dark: #1a1a2e;
+            --card-bg: #16213e;
+            --text: #e9ecef;
+            --accent: #4ecca3;
+            --danger: #ff4b5c;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- SIDEBAR --- */
+        #sidebar {
+            width: 320px;
+            background: var(--card-bg);
+            border-right: 1px solid rgba(255,215,0,0.2);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 10px 0 20px rgba(0,0,0,0.3);
+        }
+
+        .brand {
+            padding: 25px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,215,0,0.1);
+        }
+
+        .brand h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #chapters-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        #chapters-list li {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        #chapters-list li:hover {
+            background: rgba(255,215,0,0.1);
+            padding-left: 30px;
+        }
+
+        #chapters-list li.completed {
+            border-left: 5px solid var(--primary);
+            background: rgba(78, 204, 163, 0.1);
+        }
+
+        /* --- MAIN CONTENT --- */
+        #main {
+            flex-grow: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .progress-container {
+            position: absolute;
+            top: 20px;
+            width: 80%;
+            background: rgba(255,255,255,0.1);
+            height: 10px;
+            border-radius: 5px;
+        }
+
+        #progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0%;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .coach-box {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-style: italic;
+            border-left: 4px solid var(--primary);
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            background: #0f172a;
+            border: 2px solid rgba(255,215,0,0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: var(--primary);
+            color: var(--bg-dark);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: #ffea00;
+        }
+
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+        }
+
+        .lang-switch button {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 5px 10px;
+            margin-left: 5px;
+        }
+
+        /* Certificate Styling */
+        .certificate {
+            border: 10px double var(--primary);
+            padding: 40px;
+            background: #fff;
+            color: #1a1a2e;
+        }
+
+        @media print {
+            body * { visibility: hidden; }
+            .certificate, .certificate * { visibility: visible; }
+            .certificate { position: absolute; left: 0; top: 0; width: 100%; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div>
-            <h1>Excel Master Fun</h1>
-            <div style="margin-top:5px;">
-                <button onclick="changeLanguage('fr')" style="font-size:12px; padding:5px; background:#164d2f;">FR</button>
-                <button onclick="changeLanguage('en')" style="font-size:12px; padding:5px; background:#164d2f;">EN</button>
-            </div>
-        </div>
-        <div id="progress-container">
-            <div id="progress-bar"></div>
-            <span id="progress-text">0%</span>
-        </div>
-    </header>
 
-    <div id="app">
-        <nav>
-            <ul id="chapters-list">
-                </ul>
-        </nav>
-        <main id="lesson-content">
-            <h2>Chargement...</h2>
-            <p>Si rien ne s'affiche, vérifiez que app.js est bien dans le même dossier.</p>
-        </main>
+    <div id="sidebar">
+        <div class="brand">
+            <h1>Excel Master</h1>
+            <small>By Ntsanli Michel</small>
+        </div>
+        <ul id="chapters-list"></ul>
     </div>
 
-    <script src="app.js"></script>
+    <div id="main">
+        <div class="lang-switch">
+            <button onclick="changeLanguage('fr')">FR</button>
+            <button onclick="changeLanguage('en')">EN</button>
+        </div>
+
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+            <p id="progress-text" style="text-align: right; font-size: 12px; margin-top: 5px;">0%</p>
+        </div>
+
+        <div id="lesson-content" class="card">
+            <h2 id="welcome-title">Bienvenue, Maître !</h2>
+            <p id="welcome-desc">Sélectionnez un chapitre pour commencer votre ascension vers l'excellence.</p>
+        </div>
+    </div>
+
+    <script>
+        // --- LE MOTEUR JS OPTIMISÉ ---
+        const list = document.getElementById('chapters-list');
+        const display = document.getElementById('lesson-content');
+        
+        let currentLang = localStorage.getItem('excelLang') || 'fr';
+        let savedData = localStorage.getItem('excelMasterProgress');
+        let completedChapters = savedData ? new Set(JSON.parse(savedData)) : new Set();
+
+        const translations = {
+            fr: {
+                welcome: "Bienvenue, Maître !",
+                desc: "Sélectionnez un chapitre à gauche pour commencer votre ascension.",
+                valBtn: "Valider",
+                checkBtn: "Vérifier la formule",
+                certTitle: "CERTIFICAT DE MAÎTRISE",
+                certDesc: "Ce document atteste que vous avez complété avec succès les 50 paliers de la formation EXCEL MASTER FUN.",
+                certAuth: "Expert Formateur : Ntsanli Michel",
+                print: "Imprimer mon diplôme",
+                hint: "Indice technique : ",
+                chapters: {
+                    1: { t: "Les Fondations", c: "Une cellule est l'unité de base. Cliquez sur valider pour entrer dans l'arène.", a: "Démarrer", r: "C'est parti ! +10 XP" },
+                    2: { t: "Saisie Stratégique", c: "La précision évite les erreurs de calcul. Validez votre rigueur.", a: "Confirmer", r: "Précision validée ! +10 XP" },
+                    // ... (Ajoute tes 50 chapitres ici en suivant la même structure)
+                    6: { t: "Défi : La Moyenne", c: "Quelle est la formule pour calculer la moyenne des cellules A1 à A10 ?", quiz: true, ans: "=MOYENNE(A1:A10)", r: "Excellent ! +50 XP" },
+                    50: { t: "LE GRAND FINAL", c: "Le raccourci ultime pour sauvegarder votre génie ?", quiz: true, ans: "CTRL+S", r: "MAÎTRE EXCEL ABSOLU !" }
+                }
+            },
+            en: {
+                welcome: "Welcome, Master!",
+                desc: "Select a chapter on the left to start your journey.",
+                valBtn: "Validate",
+                checkBtn: "Check Formula",
+                certTitle: "CERTIFICATE OF MASTERY",
+                certDesc: "This document certifies that you have successfully completed the 50 levels of EXCEL MASTER FUN.",
+                certAuth: "Lead Author: Ntsanli Michel",
+                print: "Print my Diploma",
+                hint: "Technical Hint: ",
+                chapters: {
+                    1: { t: "Foundations", c: "A cell is the basic unit. Click validate to enter the arena.", a: "Start", r: "Let's go! +10 XP" },
+                    6: { t: "Average Challenge", c: "Formula to calculate the average of cells A1 to A10 ?", quiz: true, ans: "=AVERAGE(A1:A10)", r: "Excellent! +50 XP" },
+                    50: { t: "THE GRAND FINAL", c: "The ultimate shortcut to save your work?", quiz: true, ans: "CTRL+S", r: "ABSOLUTE EXCEL MASTER!" }
+                }
+            }
+        };
+
+        const lang = translations[currentLang];
+
+        function changeLanguage(l) {
+            localStorage.setItem('excelLang', l);
+            location.reload();
+        }
+
+        function updateProgressBar() {
+            const progress = (completedChapters.size / 50) * 100;
+            document.getElementById('progress-bar').style.width = progress + "%";
+            document.getElementById('progress-text').textContent = Math.round(progress) + "%";
+            localStorage.setItem('excelMasterProgress', JSON.stringify(Array.from(completedChapters)));
+        }
+
+        function showDiploma() {
+            display.innerHTML = `
+                <div class="certificate">
+                    <h1 style="color:#d4af37">🏆</h1>
+                    <h2 style="text-transform:uppercase; letter-spacing:3px;">${lang.certTitle}</h2>
+                    <p style="margin:20px 0; line-height:1.6;">${lang.certDesc}</p>
+                    <div style="margin-top:40px; border-top:2px solid #1a1a2e; padding-top:20px;">
+                        <p style="font-family:serif; font-size:1.4rem;"><strong>${lang.certAuth}</strong></p>
+                        <button onclick="window.print()">${lang.print}</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadChapters() {
+            list.innerHTML = "";
+            for (let i = 1; i <= 50; i++) {
+                const chData = lang.chapters[i] || { t: `Chapitre ${i}`, c: "Contenu en cours de rédaction...", a: "Valider", r: "+10 XP" };
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${i}.</strong> &nbsp; ${chData.t}`;
+                if (completedChapters.has(i)) li.className = "completed";
+
+                li.onclick = () => {
+                    display.style.animation = "none";
+                    setTimeout(() => display.style.animation = "fadeIn 0.5s ease", 10);
+
+                    if (chData.quiz) {
+                        display.innerHTML = `
+                            <h2 style="color:var(--primary)">${chData.t}</h2>
+                            <div class="coach-box">${chData.c}</div>
+                            <input type="text" id="q-in" placeholder="Tapez votre formule ici...">
+                            <br>
+                            <button id="q-bt">${lang.checkBtn}</button>
+                            <p id="fb" style="margin-top:20px;"></p>
+                        `;
+                        document.getElementById('q-bt').onclick = () => {
+                            const val = document.getElementById('q-in').value.trim().toUpperCase().replace(/,/g, ';');
+                            const ans = chData.ans.toUpperCase().replace(/,/g, ';');
+                            if (val === ans) {
+                                completedChapters.add(i); updateProgressBar();
+                                li.className = "completed";
+                                if (i === 50) showDiploma(); else document.getElementById('fb').innerHTML = `<span style="color:var(--accent)">✔️ ${chData.r}</span>`;
+                            } else {
+                                document.getElementById('fb').innerHTML = `<span style="color:var(--danger)">❌ ${lang.hint} ${chData.ans}</span>`;
+                            }
+                        };
+                    } else {
+                        display.innerHTML = `
+                            <h2 style="color:var(--primary)">${chData.t}</h2>
+                            <div class="coach-box">${chData.c}</div>
+                            <button id="s-bt">${chData.a}</button>
+                            <p id="fb" style="margin-top:20px;"></p>
+                        `;
+                        document.getElementById('s-bt').onclick = () => {
+                            completedChapters.add(i); updateProgressBar();
+                            li.className = "completed";
+                            document.getElementById('fb').innerHTML = `<span style="color:var(--accent)">✔️ ${chData.r}</span>`;
+                            if (i === 50) showDiploma();
+                        };
+                    }
+                };
+                list.appendChild(li);
+            }
+        }
+
+        updateProgressBar();
+        loadChapters();
+    </script>
 </body>
 </html>
