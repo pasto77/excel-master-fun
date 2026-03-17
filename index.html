@@ -33,6 +33,7 @@
             display: flex;
             flex-direction: column;
             box-shadow: 10px 0 20px rgba(0,0,0,0.3);
+            z-index: 10;
         }
 
         .brand {
@@ -62,14 +63,14 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
         }
 
         #chapters-list li:hover {
             background: rgba(255,215,0,0.1);
-            padding-left: 30px;
+            padding-left: 25px;
         }
 
         #chapters-list li.completed {
@@ -86,104 +87,134 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            background: radial-gradient(circle at center, #1b1b3a 0%, #1a1a2e 100%);
         }
 
         .progress-container {
             position: absolute;
-            top: 20px;
-            width: 80%;
+            top: 30px;
+            width: 70%;
             background: rgba(255,255,255,0.1);
-            height: 10px;
-            border-radius: 5px;
+            height: 12px;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         #progress-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            background: linear-gradient(90deg, var(--primary), #fff176);
             width: 0%;
-            border-radius: 5px;
-            transition: width 0.5s ease;
+            transition: width 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .card {
             background: var(--card-bg);
             padding: 40px;
-            border-radius: 20px;
+            border-radius: 24px;
             width: 100%;
-            max-width: 600px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            max-width: 650px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
             text-align: center;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.6s ease-out;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         .coach-box {
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
+            background: rgba(255,255,255,0.03);
+            padding: 25px;
+            border-radius: 16px;
+            margin: 25px 0;
             font-style: italic;
             border-left: 4px solid var(--primary);
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
 
         input[type="text"] {
-            width: 80%;
-            padding: 12px;
-            background: #0f172a;
-            border: 2px solid rgba(255,215,0,0.3);
-            border-radius: 8px;
+            width: 85%;
+            padding: 15px;
+            background: #0a0a1a;
+            border: 2px solid rgba(255,215,0,0.2);
+            border-radius: 12px;
             color: white;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
         }
 
         button {
             background: var(--primary);
-            color: var(--bg-dark);
+            color: #000;
             border: none;
-            padding: 12px 30px;
+            padding: 14px 40px;
             font-weight: 700;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: transform 0.2s;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
         }
 
         button:hover {
-            transform: scale(1.05);
-            background: #ffea00;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255,215,0,0.3);
         }
 
         .lang-switch {
             position: absolute;
-            top: 20px;
+            top: 30px;
             right: 40px;
+            display: flex;
+            gap: 10px;
         }
 
         .lang-switch button {
-            background: transparent;
+            background: rgba(255,255,255,0.05);
             color: var(--primary);
             border: 1px solid var(--primary);
-            padding: 5px 10px;
-            margin-left: 5px;
+            padding: 8px 15px;
+            font-size: 0.8rem;
         }
 
-        /* Certificate Styling */
-        .certificate {
-            border: 10px double var(--primary);
-            padding: 40px;
-            background: #fff;
-            color: #1a1a2e;
+        .lang-switch button.active {
+            background: var(--primary);
+            color: #000;
         }
+
+        /* --- CERTIFICAT --- */
+        .certificate {
+            background: white;
+            color: #1a1a2e;
+            padding: 50px;
+            border: 15px double var(--primary);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .certificate h1 { font-family: 'Times New Roman', serif; font-size: 3rem; margin: 0; }
+        .certificate h2 { letter-spacing: 5px; margin-top: 10px; border-bottom: 2px solid #1a1a2e; display: inline-block; padding-bottom: 10px; }
 
         @media print {
             body * { visibility: hidden; }
             .certificate, .certificate * { visibility: visible; }
-            .certificate { position: absolute; left: 0; top: 0; width: 100%; }
+            .certificate { position: absolute; left: 0; top: 0; width: 100%; border: none; }
         }
+
+        /* Custom Scrollbar */
+        #chapters-list::-webkit-scrollbar { width: 6px; }
+        #chapters-list::-webkit-scrollbar-track { background: transparent; }
+        #chapters-list::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.2); border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -191,30 +222,26 @@
     <div id="sidebar">
         <div class="brand">
             <h1>Excel Master</h1>
-            <small>By Ntsanli Michel</small>
+            <small style="color: var(--primary); opacity: 0.8;">Premium Training</small>
         </div>
         <ul id="chapters-list"></ul>
     </div>
 
     <div id="main">
         <div class="lang-switch">
-            <button onclick="changeLanguage('fr')">FR</button>
-            <button onclick="changeLanguage('en')">EN</button>
+            <button id="btn-fr" onclick="changeLanguage('fr')">FR</button>
+            <button id="btn-en" onclick="changeLanguage('en')">EN</button>
         </div>
 
         <div class="progress-container">
             <div id="progress-bar"></div>
-            <p id="progress-text" style="text-align: right; font-size: 12px; margin-top: 5px;">0%</p>
         </div>
 
         <div id="lesson-content" class="card">
-            <h2 id="welcome-title">Bienvenue, Maître !</h2>
-            <p id="welcome-desc">Sélectionnez un chapitre pour commencer votre ascension vers l'excellence.</p>
-        </div>
+            </div>
     </div>
 
     <script>
-        // --- LE MOTEUR JS OPTIMISÉ ---
         const list = document.getElementById('chapters-list');
         const display = document.getElementById('lesson-content');
         
@@ -225,41 +252,85 @@
         const translations = {
             fr: {
                 welcome: "Bienvenue, Maître !",
-                desc: "Sélectionnez un chapitre à gauche pour commencer votre ascension.",
-                valBtn: "Valider",
+                desc: "50 étapes pour transformer vos feuilles de calcul en œuvres d'art. Prêt pour l'ascension ?",
+                valBtn: "Valider l'étape",
                 checkBtn: "Vérifier la formule",
                 certTitle: "CERTIFICAT DE MAÎTRISE",
-                certDesc: "Ce document atteste que vous avez complété avec succès les 50 paliers de la formation EXCEL MASTER FUN.",
+                certDesc: "Décerné pour avoir complété avec brio les 50 paliers de formation.",
                 certAuth: "Expert Formateur : Ntsanli Michel",
-                print: "Imprimer mon diplôme",
-                hint: "Indice technique : ",
+                print: "Imprimer mon Diplôme",
+                hint: "Indice : ",
                 chapters: {
-                    1: { t: "Les Fondations", c: "Une cellule est l'unité de base. Cliquez sur valider pour entrer dans l'arène.", a: "Démarrer", r: "C'est parti ! +10 XP" },
-                    2: { t: "Saisie Stratégique", c: "La précision évite les erreurs de calcul. Validez votre rigueur.", a: "Confirmer", r: "Précision validée ! +10 XP" },
-                    // ... (Ajoute tes 50 chapitres ici en suivant la même structure)
-                    6: { t: "Défi : La Moyenne", c: "Quelle est la formule pour calculer la moyenne des cellules A1 à A10 ?", quiz: true, ans: "=MOYENNE(A1:A10)", r: "Excellent ! +50 XP" },
-                    50: { t: "LE GRAND FINAL", c: "Le raccourci ultime pour sauvegarder votre génie ?", quiz: true, ans: "CTRL+S", r: "MAÎTRE EXCEL ABSOLU !" }
+                    1: { t: "Les Fondations", c: "Une cellule est une boîte pour vos données. Elle a une adresse (ex: A1).", a: "Compris", r: "+10 XP" },
+                    2: { t: "Saisie de données", c: "Tapez du texte ou des chiffres, puis appuyez sur Entrée.", a: "Validé", r: "+10 XP" },
+                    3: { t: "Calculs de base", c: "Tout calcul commence par le signe égal (=).", a: "C'est noté", r: "+10 XP" },
+                    4: { t: "Formatage", c: "Mettez en gras ou changez la couleur pour plus de clarté.", a: "Appliqué", r: "+10 XP" },
+                    5: { t: "Somme auto", c: "L'outil magique pour additionner rapidement une colonne.", a: "Sommer", r: "+20 XP" },
+                    6: { t: "Défi : La Moyenne", c: "Quelle formule calcule la moyenne de A1 à A10 ?", quiz: true, ans: "=MOYENNE(A1:A10)", r: "Bravo ! +50 XP" },
+                    7: { t: "Le secret du '$'", c: "Comment figer la cellule B1 dans une formule ?", quiz: true, ans: "$B$1", r: "Expert ! +50 XP" },
+                    8: { t: "La fonction SI", c: "Si A1 > 10, affiche 'OK', sinon 'NON' ?", quiz: true, ans: '=SI(A1>10;"OK";"NON")', r: "Logique pure !" },
+                    9: { t: "Tri & Filtres", c: "Organisez vos données pour y voir plus clair.", a: "Trier", r: "+20 XP" },
+                    10: { t: "Graphiques", c: "Transformez vos chiffres en visuels percutants.", a: "Tracer", r: "Palier 1 atteint !" },
+                    11: { t: "RECHERCHEV", c: "Cherche A1 dans D1:E10, colonne 2, correspondance exacte.", quiz: true, ans: "=RECHERCHEV(A1;D1:E10;2;0)", r: "Magique !" },
+                    12: { t: "Tableaux Croisés", c: "L'outil ultime pour analyser des milliers de lignes.", a: "Générer", r: "+30 XP" },
+                    13: { t: "Doublons", c: "Nettoyez vos listes en un clic.", a: "Nettoyer", r: "+20 XP" },
+                    14: { t: "Listes déroulantes", c: "Nom de l'outil pour créer un menu de choix ?", quiz: true, ans: "Validation des données", r: "Exact !" },
+                    15: { t: "Calcul de dates", c: "Soustraire deux dates donne le nombre de jours.", quiz: true, ans: "=B1-A1", r: "+40 XP" },
+                    16: { t: "Figer les Volets", c: "Gardez vos entêtes visibles en scrollant.", a: "Figer", r: "+20 XP" },
+                    17: { t: "Mise en forme Cond.", c: "Colorer les cellules selon leur valeur.", a: "Colorer", r: "+30 XP" },
+                    18: { t: "Protection", c: "Quel onglet permet de verrouiller une feuille ?", quiz: true, ans: "Révision", r: "Sécurisé !" },
+                    19: { t: "Somme SI", c: "Faire la somme de A1:A10 si la valeur est > 100 ?", quiz: true, ans: '=SOMME.SI(A1:A10;">100")', r: "+70 XP" },
+                    20: { t: "EXAMEN : Niveau 2", c: "Fonction pour compter les cellules non vides ?", quiz: true, ans: "=NBVAL", r: "Niveau 2 validé !" },
+                    21: { t: "GAUCHE", c: "Extraire les 3 premiers caractères de A1 ?", quiz: true, ans: "=GAUCHE(A1;3)", r: "+40 XP" },
+                    22: { t: "DROITE", c: "Extraire les 2 derniers caractères de A1 ?", quiz: true, ans: "=DROITE(A1;2)", r: "+40 XP" },
+                    23: { t: "CONCAT", c: "Fusionner le texte de A1 et B1 ?", quiz: true, ans: "=CONCAT(A1;B1)", r: "+50 XP" },
+                    24: { t: "SUPPRESPACE", c: "Nettoyer les espaces inutiles dans A1 ?", quiz: true, ans: "=SUPPRESPACE(A1)", r: "+50 XP" },
+                    25: { t: "MAJUSCULE", c: "Mettre tout le texte de A1 en capitales ?", quiz: true, ans: "=MAJUSCULE(A1)", r: "+30 XP" },
+                    26: { t: "TROUVE", c: "Chercher la position d'un caractère ?", quiz: true, ans: "=TROUVE(A1)", r: "+60 XP" },
+                    27: { t: "SUBSTITUE", c: "Remplacer un texte par un autre ?", quiz: true, ans: "=SUBSTITUE(A1)", r: "+60 XP" },
+                    28: { t: "NBCAR", c: "Compter le nombre de caractères ?", quiz: true, ans: "=NBCAR(A1)", r: "+40 XP" },
+                    29: { t: "VALEUR", c: "Convertir un texte numérique en chiffre ?", quiz: true, ans: "=VALEUR(A1)", r: "+50 XP" },
+                    30: { t: "EXAMEN : Niveau 3", c: "Mettre la première lettre en Majuscule ?", quiz: true, ans: "=NOMPROPRE(A1)", r: "Niveau 3 validé !" },
+                    31: { t: "SI imbriqués", c: "A1>10 'A', sinon si A1>5 'B', sinon 'C' ?", quiz: true, ans: '=SI(A1>10;"A";SI(A1>5;"B";"C"))', r: "Pro !" },
+                    32: { t: "ET", c: "Vérifier si A1 > 0 ET B1 < 100 ?", quiz: true, ans: "=ET(A1>0;B1<100)", r: "+50 XP" },
+                    33: { t: "OU", c: "Vérifier si A1 est 'OUI' OU 'YES' ?", quiz: true, ans: '=OU(A1="OUI";A1="YES")', r: "+50 XP" },
+                    34: { t: "SIERREUR", c: "Si la formule échoue, afficher 0 ?", quiz: true, ans: "=SIERREUR(A1;0)", r: "+60 XP" },
+                    35: { t: "NB.SI.ENS", c: "Compter avec plusieurs critères ?", quiz: true, ans: "=NB.SI.ENS", r: "+80 XP" },
+                    36: { t: "RECHERCHEX", c: "La nouvelle fonction qui remplace RECHERCHEV ?", quiz: true, ans: "=RECHERCHEX", r: "Futuriste !" },
+                    37: { t: "SOMMEPROD", c: "Multiplier et additionner des plages ?", quiz: true, ans: "=SOMMEPROD", r: "+90 XP" },
+                    38: { t: "FIN.MOIS", c: "Trouver le dernier jour du mois ?", quiz: true, ans: "=FIN.MOIS(A1;0)", r: "+70 XP" },
+                    39: { t: "Année Actuelle", c: "Extraire l'année de la date du jour ?", quiz: true, ans: "=ANNEE(AUJOURDHUI())", r: "+60 XP" },
+                    40: { t: "EXAMEN : Niveau 4", c: "Vrai ou Faux : Excel gère le format JSON ?", quiz: true, ans: "Vrai", r: "Niveau 4 validé !" },
+                    41: { t: "Introduction VBA", c: "Le langage pour automatiser Excel ?", quiz: true, ans: "VBA", r: "+50 XP" },
+                    42: { t: "Onglet Développeur", c: "Où se trouvent les outils Macros ?", quiz: true, ans: "Développeur", r: "+40 XP" },
+                    43: { t: "Extensions", c: "Format d'un fichier Excel avec macros ?", quiz: true, ans: ".xlsm", r: "+40 XP" },
+                    44: { t: "Sécurité", c: "Activer le contenu à l'ouverture ?", quiz: true, ans: "Activer les macros", r: "+30 XP" },
+                    45: { t: "MsgBox", c: "Commande VBA pour afficher une boîte de message ?", quiz: true, ans: "MsgBox", r: "Codeur !" },
+                    46: { t: "VBA : Variables", c: "Déclarer une variable texte ?", quiz: true, ans: "Dim Nom As String", r: "+60 XP" },
+                    47: { t: "VBA : Boucles", c: "Répéter une action sur chaque cellule ?", quiz: true, ans: "For Each", r: "+80 XP" },
+                    48: { t: "Power Query", c: "Importer et transformer des données ?", quiz: true, ans: "Power Query", r: "+70 XP" },
+                    49: { t: "Valeur cible", c: "Atteindre un résultat en changeant une cellule ?", quiz: true, ans: "Valeur cible", r: "+60 XP" },
+                    50: { t: "DIPLÔME FINAL", c: "Le raccourci ultime pour sauvegarder ?", quiz: true, ans: "CTRL+S", r: "MAÎTRE EXCEL ABSOLU !" }
                 }
             },
             en: {
                 welcome: "Welcome, Master!",
-                desc: "Select a chapter on the left to start your journey.",
-                valBtn: "Validate",
+                desc: "50 steps to turn your spreadsheets into masterpieces. Ready to climb?",
+                valBtn: "Validate Step",
                 checkBtn: "Check Formula",
                 certTitle: "CERTIFICATE OF MASTERY",
-                certDesc: "This document certifies that you have successfully completed the 50 levels of EXCEL MASTER FUN.",
-                certAuth: "Lead Author: Ntsanli Michel",
+                certDesc: "Awarded for successfully completing the 50 training levels.",
+                certAuth: "Lead Trainer: Ntsanli Michel",
                 print: "Print my Diploma",
-                hint: "Technical Hint: ",
+                hint: "Hint: ",
                 chapters: {
-                    1: { t: "Foundations", c: "A cell is the basic unit. Click validate to enter the arena.", a: "Start", r: "Let's go! +10 XP" },
-                    6: { t: "Average Challenge", c: "Formula to calculate the average of cells A1 to A10 ?", quiz: true, ans: "=AVERAGE(A1:A10)", r: "Excellent! +50 XP" },
-                    50: { t: "THE GRAND FINAL", c: "The ultimate shortcut to save your work?", quiz: true, ans: "CTRL+S", r: "ABSOLUTE EXCEL MASTER!" }
+                    1: { t: "Foundations", c: "A cell is a box for your data. It has an address (e.g. A1).", a: "Understood", r: "+10 XP" },
+                    6: { t: "Average Challenge", c: "Formula to calculate average from A1 to A10 ?", quiz: true, ans: "=AVERAGE(A1:A10)", r: "Well done! +50 XP" },
+                    50: { t: "FINAL DIPLOMA", c: "The ultimate shortcut to save your work ?", quiz: true, ans: "CTRL+S", r: "ABSOLUTE EXCEL MASTER!" }
+                    // Les autres chapitres EN sont à compléter ici
                 }
             }
         };
-
-        const lang = translations[currentLang];
 
         function changeLanguage(l) {
             localStorage.setItem('excelLang', l);
@@ -269,52 +340,60 @@
         function updateProgressBar() {
             const progress = (completedChapters.size / 50) * 100;
             document.getElementById('progress-bar').style.width = progress + "%";
-            document.getElementById('progress-text').textContent = Math.round(progress) + "%";
             localStorage.setItem('excelMasterProgress', JSON.stringify(Array.from(completedChapters)));
         }
 
         function showDiploma() {
+            const lang = translations[currentLang];
             display.innerHTML = `
                 <div class="certificate">
                     <h1 style="color:#d4af37">🏆</h1>
-                    <h2 style="text-transform:uppercase; letter-spacing:3px;">${lang.certTitle}</h2>
-                    <p style="margin:20px 0; line-height:1.6;">${lang.certDesc}</p>
+                    <h2>${lang.certTitle}</h2>
+                    <p style="margin:25px 0; font-size:1.2rem; color:#555;">${lang.certDesc}</p>
                     <div style="margin-top:40px; border-top:2px solid #1a1a2e; padding-top:20px;">
-                        <p style="font-family:serif; font-size:1.4rem;"><strong>${lang.certAuth}</strong></p>
-                        <button onclick="window.print()">${lang.print}</button>
+                        <p style="font-family:serif; font-size:1.8rem; color:#1a1a2e; margin-bottom:10px;"><strong>${lang.certAuth}</strong></p>
+                        <button onclick="window.print()" style="background:#1a1a2e; color:white;">${lang.print}</button>
                     </div>
                 </div>
             `;
         }
 
-        function loadChapters() {
-            list.innerHTML = "";
+        function loadInitialState() {
+            const lang = translations[currentLang];
+            document.getElementById(`btn-${currentLang}`).classList.add('active');
+            display.innerHTML = `
+                <h2 style="color:var(--primary); font-size: 2rem;">${lang.welcome}</h2>
+                <p style="font-size: 1.1rem; opacity: 0.9;">${lang.desc}</p>
+                <div class="coach-box">Sélectionnez le chapitre 1 pour commencer.</div>
+            `;
+
             for (let i = 1; i <= 50; i++) {
-                const chData = lang.chapters[i] || { t: `Chapitre ${i}`, c: "Contenu en cours de rédaction...", a: "Valider", r: "+10 XP" };
+                const chData = lang.chapters[i] || { t: `Module ${i}`, c: "...", a: "Ok", r: "..." };
                 const li = document.createElement('li');
-                li.innerHTML = `<strong>${i}.</strong> &nbsp; ${chData.t}`;
-                if (completedChapters.has(i)) li.className = "completed";
+                li.innerHTML = `<span style="width:25px; display:inline-block; color:var(--primary); font-weight:bold;">${i}</span> ${chData.t}`;
+                if (completedChapters.has(i)) li.classList.add('completed');
 
                 li.onclick = () => {
                     display.style.animation = "none";
-                    setTimeout(() => display.style.animation = "fadeIn 0.5s ease", 10);
+                    setTimeout(() => display.style.animation = "fadeIn 0.6s ease-out", 10);
 
                     if (chData.quiz) {
                         display.innerHTML = `
                             <h2 style="color:var(--primary)">${chData.t}</h2>
                             <div class="coach-box">${chData.c}</div>
-                            <input type="text" id="q-in" placeholder="Tapez votre formule ici...">
+                            <input type="text" id="q-in" placeholder="Votre réponse..." autofocus>
                             <br>
                             <button id="q-bt">${lang.checkBtn}</button>
-                            <p id="fb" style="margin-top:20px;"></p>
+                            <p id="fb" style="margin-top:25px; font-weight:bold; font-size:1.2rem;"></p>
                         `;
                         document.getElementById('q-bt').onclick = () => {
                             const val = document.getElementById('q-in').value.trim().toUpperCase().replace(/,/g, ';');
                             const ans = chData.ans.toUpperCase().replace(/,/g, ';');
                             if (val === ans) {
                                 completedChapters.add(i); updateProgressBar();
-                                li.className = "completed";
-                                if (i === 50) showDiploma(); else document.getElementById('fb').innerHTML = `<span style="color:var(--accent)">✔️ ${chData.r}</span>`;
+                                li.classList.add('completed');
+                                if (i === 50) showDiploma(); 
+                                else document.getElementById('fb').innerHTML = `<span style="color:var(--accent)">🌟 ${chData.r}</span>`;
                             } else {
                                 document.getElementById('fb').innerHTML = `<span style="color:var(--danger)">❌ ${lang.hint} ${chData.ans}</span>`;
                             }
@@ -324,11 +403,11 @@
                             <h2 style="color:var(--primary)">${chData.t}</h2>
                             <div class="coach-box">${chData.c}</div>
                             <button id="s-bt">${chData.a}</button>
-                            <p id="fb" style="margin-top:20px;"></p>
+                            <p id="fb" style="margin-top:25px; font-weight:bold; font-size:1.2rem;"></p>
                         `;
                         document.getElementById('s-bt').onclick = () => {
                             completedChapters.add(i); updateProgressBar();
-                            li.className = "completed";
+                            li.classList.add('completed');
                             document.getElementById('fb').innerHTML = `<span style="color:var(--accent)">✔️ ${chData.r}</span>`;
                             if (i === 50) showDiploma();
                         };
@@ -339,7 +418,7 @@
         }
 
         updateProgressBar();
-        loadChapters();
+        loadInitialState();
     </script>
 </body>
 </html>
