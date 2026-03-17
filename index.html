@@ -3,177 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excel Master Fun | Solutions Techniques</title>
+    <title>Excel Master Fun | Solution Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #ffd700;
-            --bg-dark: #1a1a2e;
-            --card-bg: #16213e;
-            --text: #e9ecef;
-            --accent: #4ecca3;
-            --danger: #ff4b5c;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text);
-            margin: 0;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        #sidebar {
-            width: 320px;
-            background: var(--card-bg);
-            border-right: 1px solid rgba(255,215,0,0.2);
-            display: flex;
-            flex-direction: column;
-            box-shadow: 10px 0 20px rgba(0,0,0,0.3);
-        }
-
-        .brand {
-            padding: 25px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255,215,0,0.1);
-        }
-
-        .brand h1 {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        #chapters-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            overflow-y: auto;
-            flex-grow: 1;
-        }
-
-        #chapters-list li {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.85rem;
-        }
-
+        :root { --primary: #ffd700; --bg-dark: #1a1a2e; --card-bg: #16213e; --text: #e9ecef; --accent: #4ecca3; --danger: #ff4b5c; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-dark); color: var(--text); margin: 0; display: flex; height: 100vh; overflow: hidden; }
+        #sidebar { width: 320px; background: var(--card-bg); border-right: 1px solid rgba(255,215,0,0.2); display: flex; flex-direction: column; box-shadow: 10px 0 20px rgba(0,0,0,0.3); }
+        .brand { padding: 25px; text-align: center; border-bottom: 1px solid rgba(255,215,0,0.1); }
+        .brand h1 { font-size: 1.4rem; color: var(--primary); margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        #chapters-list { list-style: none; padding: 0; margin: 0; overflow-y: auto; flex-grow: 1; }
+        #chapters-list li { padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: all 0.3s ease; font-size: 0.85rem; display: flex; justify-content: space-between; }
         #chapters-list li:hover { background: rgba(255,215,0,0.1); }
+        #chapters-list li.locked { opacity: 0.5; cursor: not-allowed; }
         #chapters-list li.completed { border-left: 5px solid var(--primary); background: rgba(78, 204, 163, 0.1); }
-
-        #main {
-            flex-grow: 1;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .progress-container {
-            position: absolute;
-            top: 30px;
-            width: 70%;
-            background: rgba(255,255,255,0.1);
-            height: 10px;
-            border-radius: 5px;
-        }
-
-        #progress-bar {
-            height: 100%;
-            background: var(--primary);
-            width: 0%;
-            transition: width 0.4s;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            width: 100%;
-            max-width: 600px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            text-align: center;
-        }
-
-        .coach-box {
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            font-style: italic;
-            border-left: 4px solid var(--primary);
-        }
-
-        input[type="text"] {
-            width: 80%;
-            padding: 12px;
-            background: #0f172a;
-            border: 2px solid rgba(255,215,0,0.2);
-            border-radius: 8px;
-            color: white;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        button {
-            background: var(--primary);
-            color: #000;
-            border: none;
-            padding: 12px 30px;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .lang-switch { position: absolute; top: 30px; right: 40px; }
-        .lang-switch button { background: none; color: var(--primary); border: 1px solid var(--primary); margin-left: 5px; padding: 5px 10px; }
-
-        .certificate {
-            background: white;
-            color: #333;
-            padding: 40px;
-            border: 10px double var(--primary);
-            text-align: center;
-        }
-
-        @media print {
-            body * { visibility: hidden; }
-            .certificate, .certificate * { visibility: visible; }
-            .certificate { position: absolute; left: 0; top: 0; width: 100%; }
-        }
+        #main { flex-grow: 1; padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
+        .progress-container { position: absolute; top: 30px; width: 70%; background: rgba(255,255,255,0.1); height: 10px; border-radius: 5px; }
+        #progress-bar { height: 100%; background: var(--primary); width: 0%; transition: width 0.4s; }
+        .card { background: var(--card-bg); padding: 40px; border-radius: 20px; width: 100%; max-width: 600px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); text-align: center; }
+        .coach-box { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin: 20px 0; font-style: italic; border-left: 4px solid var(--primary); }
+        input[type="text"] { width: 80%; padding: 12px; background: #0f172a; border: 2px solid rgba(255,215,0,0.2); border-radius: 8px; color: white; font-size: 1.1rem; margin-bottom: 20px; text-align: center; }
+        button { background: var(--primary); color: #000; border: none; padding: 12px 30px; font-weight: 700; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        button:hover { transform: scale(1.05); }
+        .lock-icon { font-size: 12px; }
     </style>
 </head>
 <body>
 
     <div id="sidebar">
-        <div class="brand">
-            <h1>Excel Master</h1>
-            <small>Solution Interactive</small>
-        </div>
+        <div class="brand"><h1>Excel Master</h1><small>Version Professionnelle</small></div>
         <ul id="chapters-list"></ul>
     </div>
 
     <div id="main">
-        <div class="lang-switch">
-            <button onclick="changeLanguage('fr')">FR</button>
-            <button onclick="changeLanguage('en')">EN</button>
-        </div>
-
-        <div class="progress-container">
-            <div id="progress-bar"></div>
-        </div>
-
+        <div class="progress-container"><div id="progress-bar"></div></div>
         <div id="lesson-content" class="card">
-            <h2>Bienvenue</h2>
-            <p>Choisissez un module pour commencer la résolution de vos défis Excel.</p>
+            <h2>Prêt pour la Maîtrise ?</h2>
+            <p>Commencez les 10 premiers modules gratuitement.</p>
+            <button onclick="loadChapter(1)">Démarrer le Module 1</button>
         </div>
     </div>
 
@@ -181,95 +47,101 @@
         const list = document.getElementById('chapters-list');
         const display = document.getElementById('lesson-content');
         
-        let currentLang = localStorage.getItem('excelLang') || 'fr';
-        let savedData = localStorage.getItem('excelMasterProgress');
-        let completedChapters = savedData ? new Set(JSON.parse(savedData)) : new Set();
+        // --- CONFIGURATION ---
+        const MASTER_KEY = "EXCEL-GOLD-2026"; // La clé que tu peux vendre
+        let isPremium = localStorage.getItem('excelPremium') === 'true';
+        let completedChapters = new Set(JSON.parse(localStorage.getItem('excelProgress') || '[]'));
 
-        const translations = {
+        const content = {
             fr: {
-                checkBtn: "Vérifier",
-                certTitle: "MAÎTRISE EXCEL",
-                certDesc: "Félicitations pour avoir complété les 50 modules techniques.",
-                print: "Imprimer le certificat",
-                hint: "Indice : ",
+                lockedMsg: "Ce module fait partie de la version Premium.",
+                unlockBtn: "Activer la version complète",
+                placeholder: "Entrez votre clé d'activation",
                 chapters: {
-                    1: { t: "Les Fondations", c: "Une cellule est l'unité de base.", a: "Continuer", r: "Module validé" },
-                    // ... tes 50 chapitres techniques sans mention d'auteur
-                    6: { t: "La Moyenne", c: "Calculer la moyenne de A1 à A10 ?", quiz: true, ans: "=MOYENNE(A1:A10)", r: "Correct" },
-                    50: { t: "FIN DU PARCOURS", c: "Raccourci pour enregistrer ?", quiz: true, ans: "CTRL+S", r: "Maîtrise complète" }
-                }
-            },
-            en: {
-                checkBtn: "Check",
-                certTitle: "EXCEL MASTERY",
-                certDesc: "Congratulations on completing the 50 technical modules.",
-                print: "Print Certificate",
-                hint: "Hint: ",
-                chapters: {
-                    1: { t: "Foundations", c: "A cell is the basic unit.", a: "Continue", r: "Validated" },
-                    6: { t: "Average", c: "Calculate average of A1 to A10 ?", quiz: true, ans: "=AVERAGE(A1:A10)", r: "Correct" },
-                    50: { t: "FINAL STEP", c: "Save shortcut ?", quiz: true, ans: "CTRL+S", r: "Full Mastery" }
+                    1: { t: "Les Fondations", c: "Une cellule est l'unité de base.", quiz: false, r: "Bienvenue !" },
+                    6: { t: "La Moyenne", c: "Calculer la moyenne de A1 à A10 ?", quiz: true, ans: "=MOYENNE(A1:A10)", r: "Correct !" },
+                    11: { t: "RECHERCHEV (Premium)", c: "Cherche A1 dans D1:E10, colonne 2 ?", quiz: true, ans: "=RECHERCHEV(A1;D1:E10;2;0)", r: "Expert !" },
+                    50: { t: "FIN DU PARCOURS", c: "Raccourci pour enregistrer ?", quiz: true, ans: "CTRL+S", r: "Maîtrise totale !" }
                 }
             }
         };
 
-        const lang = translations[currentLang];
-
-        function changeLanguage(l) {
-            localStorage.setItem('excelLang', l);
-            location.reload();
-        }
-
-        function updateProgressBar() {
+        function updateUI() {
             const progress = (completedChapters.size / 50) * 100;
             document.getElementById('progress-bar').style.width = progress + "%";
-            localStorage.setItem('excelMasterProgress', JSON.stringify(Array.from(completedChapters)));
+            localStorage.setItem('excelProgress', JSON.stringify(Array.from(completedChapters)));
+            renderList();
         }
 
-        function showDiploma() {
+        function unlockPremium() {
+            const inputKey = document.getElementById('key-input').value.trim();
+            if (inputKey === MASTER_KEY) {
+                isPremium = true;
+                localStorage.setItem('excelPremium', 'true');
+                alert("Félicitations ! Version Premium activée.");
+                renderList();
+                loadChapter(11);
+            } else {
+                alert("Clé invalide. Veuillez vérifier ou contacter le support.");
+            }
+        }
+
+        function showUnlockScreen() {
             display.innerHTML = `
-                <div class="certificate">
-                    <h1>🏆</h1>
-                    <h2>${lang.certTitle}</h2>
-                    <p>${lang.certDesc}</p>
-                    <button onclick="window.print()">${lang.print}</button>
-                </div>
+                <h2>🔓 Activer le contenu Premium</h2>
+                <p>Pour accéder aux 50 modules et obtenir votre certificat, veuillez entrer votre clé d'activation.</p>
+                <input type="text" id="key-input" placeholder="XXXX-XXXX-XXXX">
+                <br>
+                <button onclick="unlockPremium()">${content.fr.unlockBtn}</button>
+                <p style="margin-top:15px; font-size:0.8rem; opacity:0.7;">Contactez l'administrateur pour obtenir une clé.</p>
             `;
         }
 
-        function load() {
-            for (let i = 1; i <= 50; i++) {
-                const ch = lang.chapters[i] || { t: `Module ${i}`, c: "...", a: "Ok", r: "Ok" };
-                const li = document.createElement('li');
-                li.innerHTML = `<strong>${i}.</strong> ${ch.t}`;
-                if (completedChapters.has(i)) li.className = "completed";
-                li.onclick = () => {
-                    if (ch.quiz) {
-                        display.innerHTML = `<h2>${ch.t}</h2><div class="coach-box">${ch.c}</div><input type="text" id="q-in"><br><button id="q-bt">${lang.checkBtn}</button><p id="fb"></p>`;
-                        document.getElementById('q-bt').onclick = () => {
-                            const val = document.getElementById('q-in').value.trim().toUpperCase().replace(/,/g, ';');
-                            const ans = ch.ans.toUpperCase().replace(/,/g, ';');
-                            if (val === ans) {
-                                completedChapters.add(i); updateProgressBar(); li.className = "completed";
-                                if (i === 50) showDiploma(); else document.getElementById('fb').innerHTML = `<span style="color:var(--accent)">${ch.r}</span>`;
-                            } else {
-                                document.getElementById('fb').innerHTML = `<span style="color:var(--danger)">${lang.hint} ${ch.ans}</span>`;
-                            }
-                        };
+        function loadChapter(i) {
+            if (i > 10 && !isPremium) {
+                showUnlockScreen();
+                return;
+            }
+
+            const ch = content.fr.chapters[i] || { t: `Module ${i}`, c: "Contenu technique en cours...", quiz: false, r: "Validé" };
+            
+            if (ch.quiz) {
+                display.innerHTML = `<h2>${ch.t}</h2><div class="coach-box">${ch.c}</div><input type="text" id="q-in" autofocus><br><button id="q-bt">Vérifier</button><p id="fb"></p>`;
+                document.getElementById('q-bt').onclick = () => {
+                    const val = document.getElementById('q-in').value.trim().toUpperCase().replace(/,/g, ';');
+                    if (val === ch.ans.toUpperCase().replace(/,/g, ';')) {
+                        completedChapters.add(i); updateUI();
+                        document.getElementById('fb').innerHTML = `<span style="color:var(--accent)">${ch.r}</span>`;
                     } else {
-                        display.innerHTML = `<h2>${ch.t}</h2><div class="coach-box">${ch.c}</div><button id="s-bt">${ch.a}</button><p id="fb"></p>`;
-                        document.getElementById('s-bt').onclick = () => {
-                            completedChapters.add(i); updateProgressBar(); li.className = "completed";
-                            document.getElementById('fb').innerHTML = `<span style="color:var(--accent)">${ch.r}</span>`;
-                            if (i === 50) showDiploma();
-                        };
+                        document.getElementById('fb').innerHTML = `<span style="color:var(--danger)">Indice: ${ch.ans}</span>`;
                     }
                 };
+            } else {
+                display.innerHTML = `<h2>${ch.t}</h2><div class="coach-box">${ch.c}</div><button onclick="markDone(${i})">Valider l'étape</button>`;
+            }
+        }
+
+        function markDone(i) {
+            completedChapters.add(i);
+            updateUI();
+            display.innerHTML = `<h2>Excellent !</h2><p>Module ${i} terminé.</p><button onclick="loadChapter(${i+1})">Passer au suivant</button>`;
+        }
+
+        function renderList() {
+            list.innerHTML = "";
+            for (let i = 1; i <= 50; i++) {
+                const isLocked = i > 10 && !isPremium;
+                const ch = content.fr.chapters[i] || { t: `Module ${i}` };
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${i}. ${ch.t}</span> <span>${isLocked ? '🔒' : ''}</span>`;
+                if (isLocked) li.className = "locked";
+                if (completedChapters.has(i)) li.className = "completed";
+                li.onclick = () => loadChapter(i);
                 list.appendChild(li);
             }
         }
-        updateProgressBar();
-        load();
+
+        updateUI();
     </script>
 </body>
 </html>
