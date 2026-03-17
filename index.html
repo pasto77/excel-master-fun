@@ -3,144 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excel Master Fun | Solution Premium</title>
+    <title>Excel Master Fun | Solution Technique</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #ffd700; --bg-dark: #1a1a2e; --card-bg: #16213e; --text: #e9ecef; --accent: #4ecca3; --danger: #ff4b5c; }
         body { font-family: 'Poppins', sans-serif; background-color: var(--bg-dark); color: var(--text); margin: 0; display: flex; height: 100vh; overflow: hidden; }
-        #sidebar { width: 320px; background: var(--card-bg); border-right: 1px solid rgba(255,215,0,0.2); display: flex; flex-direction: column; box-shadow: 10px 0 20px rgba(0,0,0,0.3); }
+        #sidebar { width: 320px; background: var(--card-bg); border-right: 1px solid rgba(255,215,0,0.2); display: flex; flex-direction: column; }
         .brand { padding: 25px; text-align: center; border-bottom: 1px solid rgba(255,215,0,0.1); }
         .brand h1 { font-size: 1.4rem; color: var(--primary); margin: 0; text-transform: uppercase; letter-spacing: 2px; }
         #chapters-list { list-style: none; padding: 0; margin: 0; overflow-y: auto; flex-grow: 1; }
-        #chapters-list li { padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: all 0.3s ease; font-size: 0.85rem; display: flex; justify-content: space-between; }
+        #chapters-list li { padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; display: flex; justify-content: space-between; font-size: 0.85rem; transition: 0.3s; }
         #chapters-list li:hover { background: rgba(255,215,0,0.1); }
-        #chapters-list li.locked { opacity: 0.5; cursor: not-allowed; }
+        #chapters-list li.locked { opacity: 0.4; cursor: not-allowed; }
         #chapters-list li.completed { border-left: 5px solid var(--primary); background: rgba(78, 204, 163, 0.1); }
         #main { flex-grow: 1; padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
         .progress-container { position: absolute; top: 30px; width: 70%; background: rgba(255,255,255,0.1); height: 10px; border-radius: 5px; }
         #progress-bar { height: 100%; background: var(--primary); width: 0%; transition: width 0.4s; }
         .card { background: var(--card-bg); padding: 40px; border-radius: 20px; width: 100%; max-width: 600px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); text-align: center; }
-        .coach-box { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin: 20px 0; font-style: italic; border-left: 4px solid var(--primary); }
-        input[type="text"] { width: 80%; padding: 12px; background: #0f172a; border: 2px solid rgba(255,215,0,0.2); border-radius: 8px; color: white; font-size: 1.1rem; margin-bottom: 20px; text-align: center; }
-        button { background: var(--primary); color: #000; border: none; padding: 12px 30px; font-weight: 700; border-radius: 8px; cursor: pointer; transition: 0.3s; }
-        button:hover { transform: scale(1.05); }
-        .lock-icon { font-size: 12px; }
+        .coach-box { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin: 20px 0; font-style: italic; border-left: 4px solid var(--primary); line-height: 1.6; }
+        input { width: 80%; padding: 12px; background: #0f172a; border: 2px solid rgba(255,215,0,0.2); border-radius: 8px; color: white; margin-bottom: 15px; text-align: center; font-size: 1rem; }
+        button { background: var(--primary); color: #000; border: none; padding: 12px 30px; font-weight: 700; border-radius: 8px; cursor: pointer; text-transform: uppercase; }
+        .lang-switch { position: absolute; top: 25px; right: 30px; }
+        .lang-switch button { background: none; color: var(--primary); border: 1px solid var(--primary); padding: 5px 10px; margin-left: 5px; font-size: 0.7rem; }
+        .certificate { background: white; color: #333; padding: 50px; border: 15px double var(--primary); text-align: center; }
+        @media print { body * { visibility: hidden; } .certificate, .certificate * { visibility: visible; } .certificate { position: absolute; left: 0; top: 0; width: 100%; border: none; } }
     </style>
 </head>
 <body>
 
     <div id="sidebar">
-        <div class="brand"><h1>Excel Master</h1><small>Version Professionnelle</small></div>
+        <div class="brand"><h1>Excel Master</h1><small>Interactive Solutions</small></div>
         <ul id="chapters-list"></ul>
     </div>
 
     <div id="main">
+        <div class="lang-switch">
+            <button onclick="changeLanguage('fr')">FR</button>
+            <button onclick="changeLanguage('en')">EN</button>
+        </div>
         <div class="progress-container"><div id="progress-bar"></div></div>
         <div id="lesson-content" class="card">
-            <h2>Prêt pour la Maîtrise ?</h2>
-            <p>Commencez les 10 premiers modules gratuitement.</p>
-            <button onclick="loadChapter(1)">Démarrer le Module 1</button>
+            <h2 id="welcome-title">Chargement...</h2>
+            <p id="welcome-desc"></p>
+            <button onclick="loadChapter(1)" id="start-btn">Commencer</button>
         </div>
     </div>
 
     <script>
         const list = document.getElementById('chapters-list');
         const display = document.getElementById('lesson-content');
+
+        // --- SÉCURITÉ : PLAN B (Clé Maître) ---
+        const MASTER_KEY_PLAN_B = "EXCEL-PRO-99"; 
         
-        // --- CONFIGURATION ---
-        const MASTER_KEY = "EXCEL-GOLD-2026"; // La clé que tu peux vendre
+        let currentLang = localStorage.getItem('excelLang') || 'fr';
         let isPremium = localStorage.getItem('excelPremium') === 'true';
+        let userName = localStorage.getItem('userName') || "Apprenant";
         let completedChapters = new Set(JSON.parse(localStorage.getItem('excelProgress') || '[]'));
 
-        const content = {
+        const translations = {
             fr: {
-                lockedMsg: "Ce module fait partie de la version Premium.",
-                unlockBtn: "Activer la version complète",
-                placeholder: "Entrez votre clé d'activation",
+                welcome: "Bienvenue au Sommet",
+                desc: "Maîtrisez Excel en 50 étapes interactives.",
+                start: "Démarrer le parcours",
+                unlockTitle: "🔓 Activation Premium",
+                unlockDesc: "Entrez votre nom et votre clé pour débloquer les 50 modules.",
+                btnActivate: "Activer maintenant",
+                hint: "Indice : ",
+                certTitle: "CERTIFICAT DE RÉUSSITE",
+                certMsg: "Ce document atteste de la maîtrise des 50 fonctions avancées d'Excel.",
                 chapters: {
-                    1: { t: "Les Fondations", c: "Une cellule est l'unité de base.", quiz: false, r: "Bienvenue !" },
-                    6: { t: "La Moyenne", c: "Calculer la moyenne de A1 à A10 ?", quiz: true, ans: "=MOYENNE(A1:A10)", r: "Correct !" },
-                    11: { t: "RECHERCHEV (Premium)", c: "Cherche A1 dans D1:E10, colonne 2 ?", quiz: true, ans: "=RECHERCHEV(A1;D1:E10;2;0)", r: "Expert !" },
-                    50: { t: "FIN DU PARCOURS", c: "Raccourci pour enregistrer ?", quiz: true, ans: "CTRL+S", r: "Maîtrise totale !" }
+                    1: { t: "Les Fondations", c: "Une cellule est l'adresse de vos données (ex: A1).", r: "C'est parti !" },
+                    6: { t: "Défi : La Moyenne", c: "Formule pour la moyenne de A1 à A10 ?", quiz: true, ans: "=MOYENNE(A1:A10)", r: "Bravo !" },
+                    8: { t: "La Logique SI", c: "Si A1 > 10, affiche 'OK', sinon 'NO' ?", quiz: true, ans: '=SI(A1>10;"OK";"NO")', r: "Logique validée !" },
+                    11: { t: "RECHERCHEV (Premium)", c: "Cherche A1 dans D1:E10, colonne 2, correspondance exacte ?", quiz: true, ans: "=RECHERCHEV(A1;D1:E10;2;0)", r: "Maître des données !" },
+                    50: { t: "Dernière Étape", c: "Raccourci clavier pour Sauvegarder ?", quiz: true, ans: "CTRL+S", r: "MAÎTRE EXCEL !" }
+                }
+            },
+            en: {
+                welcome: "Welcome to the Top",
+                desc: "Master Excel in 50 interactive steps.",
+                start: "Start Journey",
+                unlockTitle: "🔓 Premium Activation",
+                unlockDesc: "Enter your name and key to unlock all 50 modules.",
+                btnActivate: "Activate Now",
+                hint: "Hint: ",
+                certTitle: "CERTIFICATE OF MASTERY",
+                certMsg: "This certifies completion of 50 advanced Excel functions.",
+                chapters: {
+                    1: { t: "Foundations", c: "A cell is your data's address (e.g., A1).", r: "Let's go!" },
+                    6: { t: "Challenge: Average", c: "Formula for average of A1 to A10 ?", quiz: true, ans: "=AVERAGE(A1:A10)", r: "Well done!" },
+                    50: { t: "Final Step", c: "Keyboard shortcut to Save ?", quiz: true, ans: "CTRL+S", r: "EXCEL MASTER!" }
                 }
             }
         };
 
-        function updateUI() {
-            const progress = (completedChapters.size / 50) * 100;
-            document.getElementById('progress-bar').style.width = progress + "%";
-            localStorage.setItem('excelProgress', JSON.stringify(Array.from(completedChapters)));
-            renderList();
-        }
+        function changeLanguage(l) { localStorage.setItem('excelLang', l); location.reload(); }
 
         function unlockPremium() {
-            const inputKey = document.getElementById('key-input').value.trim();
-            if (inputKey === MASTER_KEY) {
-                isPremium = true;
-                localStorage.setItem('excelPremium', 'true');
-                alert("Félicitations ! Version Premium activée.");
-                renderList();
-                loadChapter(11);
-            } else {
-                alert("Clé invalide. Veuillez vérifier ou contacter le support.");
-            }
+            const n = document.getElementById('name-input').value.trim().toUpperCase();
+            const k = document.getElementById('key-input').value.trim().toUpperCase();
+            const planA = "EXL-" + n + "-2026";
+
+            if (k === planA && n !== "") { activate(n); } 
+            else if (k === MASTER_KEY_PLAN_B) { activate(n || "Expert"); } 
+            else { alert("Clé ou nom incorrect."); }
+        }
+
+        function activate(name) {
+            localStorage.setItem('excelPremium', 'true');
+            localStorage.setItem('userName', name);
+            alert("Accès Premium activé !");
+            location.reload();
         }
 
         function showUnlockScreen() {
+            const lang = translations[currentLang];
             display.innerHTML = `
-                <h2>🔓 Activer le contenu Premium</h2>
-                <p>Pour accéder aux 50 modules et obtenir votre certificat, veuillez entrer votre clé d'activation.</p>
-                <input type="text" id="key-input" placeholder="XXXX-XXXX-XXXX">
-                <br>
-                <button onclick="unlockPremium()">${content.fr.unlockBtn}</button>
-                <p style="margin-top:15px; font-size:0.8rem; opacity:0.7;">Contactez l'administrateur pour obtenir une clé.</p>
+                <div class="card">
+                    <h2>${lang.unlockTitle}</h2>
+                    <p>${lang.unlockDesc}</p>
+                    <input type="text" id="name-input" placeholder="VOTRE NOM">
+                    <input type="text" id="key-input" placeholder="CLÉ (EXL-...)">
+                    <br><button onclick="unlockPremium()">${lang.btnActivate}</button>
+                </div>
             `;
         }
 
         function loadChapter(i) {
-            if (i > 10 && !isPremium) {
-                showUnlockScreen();
-                return;
-            }
+            const lang = translations[currentLang];
+            if (i > 10 && !isPremium) { showUnlockScreen(); return; }
+            if (i > 50) { showDiploma(); return; }
 
-            const ch = content.fr.chapters[i] || { t: `Module ${i}`, c: "Contenu technique en cours...", quiz: false, r: "Validé" };
+            const ch = lang.chapters[i] || { t: `Module ${i}`, c: "Analyse technique de la fonction...", quiz: false, r: "Étape validée" };
+            
+            display.innerHTML = `<h2>${ch.t}</h2><div class="coach-box">${ch.c}</div>`;
             
             if (ch.quiz) {
-                display.innerHTML = `<h2>${ch.t}</h2><div class="coach-box">${ch.c}</div><input type="text" id="q-in" autofocus><br><button id="q-bt">Vérifier</button><p id="fb"></p>`;
+                display.innerHTML += `<input type="text" id="q-in" autofocus><br><button id="q-bt">Vérifier</button><p id="fb"></p>`;
                 document.getElementById('q-bt').onclick = () => {
                     const val = document.getElementById('q-in').value.trim().toUpperCase().replace(/,/g, ';');
-                    if (val === ch.ans.toUpperCase().replace(/,/g, ';')) {
+                    const ans = ch.ans.toUpperCase().replace(/,/g, ';');
+                    if (val === ans) {
                         completedChapters.add(i); updateUI();
                         document.getElementById('fb').innerHTML = `<span style="color:var(--accent)">${ch.r}</span>`;
+                        setTimeout(() => loadChapter(i+1), 1500);
                     } else {
-                        document.getElementById('fb').innerHTML = `<span style="color:var(--danger)">Indice: ${ch.ans}</span>`;
+                        document.getElementById('fb').innerHTML = `<span style="color:var(--danger)">${lang.hint} ${ch.ans}</span>`;
                     }
                 };
             } else {
-                display.innerHTML = `<h2>${ch.t}</h2><div class="coach-box">${ch.c}</div><button onclick="markDone(${i})">Valider l'étape</button>`;
+                display.innerHTML += `<button onclick="markDone(${i})">Continuer</button>`;
             }
         }
 
-        function markDone(i) {
-            completedChapters.add(i);
-            updateUI();
-            display.innerHTML = `<h2>Excellent !</h2><p>Module ${i} terminé.</p><button onclick="loadChapter(${i+1})">Passer au suivant</button>`;
+        function markDone(i) { completedChapters.add(i); updateUI(); loadChapter(i+1); }
+
+        function showDiploma() {
+            const lang = translations[currentLang];
+            display.innerHTML = `
+                <div class="certificate">
+                    <h1 style="color:goldenrod">🏆</h1>
+                    <h2>${lang.certTitle}</h2>
+                    <p>${lang.certMsg}</p>
+                    <h3 style="border-bottom: 2px solid #333; display: inline-block; padding: 10px 40px;">${userName}</h3>
+                    <br><br><button onclick="window.print()">Imprimer</button>
+                </div>
+            `;
+        }
+
+        function updateUI() {
+            const prog = (completedChapters.size / 50) * 100;
+            document.getElementById('progress-bar').style.width = prog + "%";
+            localStorage.setItem('excelProgress', JSON.stringify(Array.from(completedChapters)));
+            renderList();
         }
 
         function renderList() {
+            const lang = translations[currentLang];
             list.innerHTML = "";
             for (let i = 1; i <= 50; i++) {
-                const isLocked = i > 10 && !isPremium;
-                const ch = content.fr.chapters[i] || { t: `Module ${i}` };
+                const locked = i > 10 && !isPremium;
+                const ch = lang.chapters[i] || { t: `Module ${i}` };
                 const li = document.createElement('li');
-                li.innerHTML = `<span>${i}. ${ch.t}</span> <span>${isLocked ? '🔒' : ''}</span>`;
-                if (isLocked) li.className = "locked";
+                li.innerHTML = `<span>${i}. ${ch.t}</span> <span>${locked ? '🔒' : ''}</span>`;
+                if (locked) li.className = "locked";
                 if (completedChapters.has(i)) li.className = "completed";
                 li.onclick = () => loadChapter(i);
                 list.appendChild(li);
             }
         }
 
+        // Initialisation
+        const langInit = translations[currentLang];
+        document.getElementById('welcome-title').innerText = langInit.welcome;
+        document.getElementById('welcome-desc').innerText = langInit.desc;
+        document.getElementById('start-btn').innerText = langInit.start;
         updateUI();
     </script>
 </body>
