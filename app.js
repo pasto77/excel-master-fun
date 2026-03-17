@@ -33,7 +33,41 @@ document.addEventListener('DOMContentLoaded', () => {
         28: { t: "Nombre de caractères", c: "Compter la longueur du texte en A1 ?", quiz: true, answer: "=NBCAR(A1)", r: "Mesure effectuée ! +40 XP" },
         29: { t: "Convertir en nombre", c: "Transformer du texte '12' en vrai chiffre ?", quiz: true, answer: "=VALEUR(A1)", r: "Calculs désormais possibles ! +50 XP" },
         30: { t: "EXAMEN : Niveau 3", c: "Quelle fonction permet de mettre seulement la 1ère lettre en Majuscule ?", quiz: true, answer: "=NOMPROPRE(A1)", r: "GÉNIAL ! Niveau 3 validé. Expert en données ! +200 XP" }
-    };
+    },31: { 
+            t: "SI imbriqués", 
+            c: "Si A1 > 10 affiche 'Top', si A1 > 5 affiche 'Moyen', sinon 'Bas' ?", 
+            quiz: true, 
+            answer: '=SI(A1>10;"Top";SI(A1>5;"Moyen";"Bas"))', 
+            r: "Impressionnant ! Vous gérez des conditions multiples. +80 XP" 
+        },
+        32: { 
+            t: "La fonction ET", 
+            c: "Vérifier si A1 est > 0 ET B1 est < 100 ?", 
+            quiz: true, 
+            answer: "=ET(A1>0;B1<100)", 
+            r: "Double vérification réussie ! +50 XP" 
+        },
+        33: { 
+            t: "La fonction OU", 
+            c: "Vérifier si A1 est égal à 'OUI' OU à 'YES' ?", 
+            quiz: true, 
+            answer: '=OU(A1="OUI";A1="YES")', 
+            r: "Flexible et efficace ! +50 XP" 
+        },
+        34: { 
+            t: "Gérer les erreurs", 
+            c: "Si la formule en A1 fait une erreur, afficher 0 ?", 
+            quiz: true, 
+            answer: "=SIERREUR(A1;0)", 
+            r: "Fini les #N/A qui gâchent vos tableaux ! +60 XP" 
+        },
+        35: { 
+            t: "Compter avec critères", 
+            c: "Compter les 'Ventes' en A1:A10 si le prix en B1:B10 est > 100 ?", 
+            quiz: true, 
+            answer: '=NB.SI.ENS(A1:A10;"Ventes";B1:B10;">100")', 
+            r: "C'est du reporting de haut niveau ! +80 XP" 
+        }
 
     for (let i = 1; i <= 50; i++) {
         const li = document.createElement('li');
