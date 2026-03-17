@@ -152,13 +152,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showDiploma() {
         display.innerHTML = `
-            <div class="certificate-overlay">
-                <span class="medal">🏆</span>
-                <h2>${lang.certTitle}</h2>
-                <p>${lang.certDesc}</p>
+            <div class="certificate-overlay" style="text-align:center; padding:40px; border:10px double #ffd700; background:#fff;">
+                <span class="medal" style="font-size:60px;">🏆</span>
+                <h2 style="color:#2c3e50;">${lang.certTitle}</h2>
+                <p style="font-size:18px;">${lang.certDesc}</p>
                 <div style="margin-top:30px; border-top: 1px solid #ddd; padding-top:20px;">
-                    <p><strong>${lang.certAuth}</strong></p>
-                    <button onclick="window.print()">${lang.print}</button>
+                    <p style="font-size:20px; font-family: 'Times New Roman', serif;"><strong>${lang.certAuth}</strong></p>
+                    <button onclick="window.print()" style="padding:10px 20px; cursor:pointer;">${lang.print}</button>
                 </div>
             </div>
         `;
@@ -170,32 +170,52 @@ document.addEventListener('DOMContentLoaded', () => {
         const li = document.createElement('li');
         const chData = lang.chapters[i];
         li.textContent = `Cap. ${i}: ${chData.t}`;
-        if (completedChapters.has(i)) { li.style.borderLeft = "5px solid #ffd700"; li.style.background = "#e8f5e9"; }
+        
+        // Style pour chapitres complétés
+        if (completedChapters.has(i)) { 
+            li.style.borderLeft = "5px solid #ffd700"; 
+            li.style.background = "#e8f5e9"; 
+        }
 
         li.onclick = () => {
             if (chData.quiz) {
                 display.innerHTML = `
                     <h2>${chData.t}</h2>
-                    <div class="coach-box">${chData.c}</div>
-                    <input type="text" id="q-in" placeholder="...">
-                    <button id="q-bt">${lang.checkBtn}</button>
-                    <p id="fb" style="margin-top:10px;"></p>
+                    <div class="coach-box" style="background:#f4f4f4; padding:15px; border-radius:8px; margin-bottom:15px;">${chData.c}</div>
+                    <input type="text" id="q-in" placeholder="..." style="padding:10px; width:80%;">
+                    <button id="q-bt" style="padding:10px 20px; background:#2c3e50; color:white; border:none; cursor:pointer;">${lang.checkBtn}</button>
+                    <p id="fb" style="margin-top:10px; font-weight:bold;"></p>
                 `;
+                
                 document.getElementById('q-bt').onclick = () => {
-                    const val = document.getElementById('q-in').value.trim();
-                    if (val.toUpperCase() === chData.ans.toUpperCase()) {
-                        completedChapters.add(i); updateProgressBar();
-                        li.style.background = "#e8f5e9"; li.style.borderLeft = "5px solid #ffd700";
-                        if (i === 50) showDiploma(); else document.getElementById('fb').innerHTML = `<span style="color:green">${chData.r}</span>`;
+                    const inputVal = document.getElementById('q-in').value.trim().toUpperCase();
+                    // Normalisation : On remplace les virgules par des points-virgules pour la comparaison
+                    const cleanUserVal = inputVal.replace(/,/g, ';');
+                    const cleanCorrectAns = chData.ans.toUpperCase().replace(/,/g, ';');
+
+                    if (cleanUserVal === cleanCorrectAns) {
+                        completedChapters.add(i); 
+                        updateProgressBar();
+                        li.style.background = "#e8f5e9"; 
+                        li.style.borderLeft = "5px solid #ffd700";
+                        if (i === 50) showDiploma(); 
+                        else document.getElementById('fb').innerHTML = `<span style="color:green">${chData.r}</span>`;
                     } else {
                         document.getElementById('fb').innerHTML = `<span style="color:red">${lang.hint} ${chData.ans}</span>`;
                     }
                 };
             } else {
-                display.innerHTML = `<h2>${chData.t}</h2><div class="coach-box">${chData.c}</div><button id="s-bt">${chData.a}</button><p id="fb"></p>`;
+                display.innerHTML = `
+                    <h2>${chData.t}</h2>
+                    <div class="coach-box" style="background:#f4f4f4; padding:15px; border-radius:8px; margin-bottom:15px;">${chData.c}</div>
+                    <button id="s-bt" style="padding:10px 20px; background:#27ae60; color:white; border:none; cursor:pointer;">${chData.a}</button>
+                    <p id="fb" style="margin-top:10px; font-weight:bold;"></p>
+                `;
                 document.getElementById('s-bt').onclick = () => {
-                    completedChapters.add(i); updateProgressBar();
-                    li.style.background = "#e8f5e9"; li.style.borderLeft = "5px solid #ffd700";
+                    completedChapters.add(i); 
+                    updateProgressBar();
+                    li.style.background = "#e8f5e9"; 
+                    li.style.borderLeft = "5px solid #ffd700";
                     document.getElementById('fb').innerHTML = `<span style="color:green">${chData.r}</span>`;
                     if (i === 50) showDiploma();
                 };
