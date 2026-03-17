@@ -38,17 +38,22 @@ document.addEventListener('DOMContentLoaded', () => {
         33: { t: "La fonction OU", c: "A1 = 'OUI' OU 'YES' ?", quiz: true, answer: '=OU(A1="OUI";A1="YES")', r: "Flexibilité acquise ! +50 XP" },
         34: { t: "Gérer les erreurs", c: "Si erreur en A1, afficher 0 ?", quiz: true, answer: "=SIERREUR(A1;0)", r: "Tableaux propres ! +60 XP" },
         35: { t: "Compter avec critères", c: "A1:A10='Ventes' et B1:B10>100 ?", quiz: true, answer: '=NB.SI.ENS(A1:A10;"Ventes";B1:B10;">100")', r: "Reporting précis ! +80 XP" },
-        36: { t: "RECHERCHEX (L'élite)", c: "Quelle fonction remplace RECHERCHEV depuis 2020 ?", quiz: true, answer: "=RECHERCHEX", r: "Vous utilisez le futur d'Excel ! +90 XP" },
-        37: { t: "SOMMEPROD", c: "Calculer le total (Prix * Quantité) sans colonne intermédiaire ?", quiz: true, answer: "=SOMMEPROD(A1:A10;B1:B10)", r: "Puissance de calcul activée ! +90 XP" },
-        38: { t: "Gestion des dates complexes", c: "Quelle fonction donne le dernier jour du mois de A1 ?", quiz: true, answer: "=FIN.MOIS(A1;0)", r: "Calendrier maîtrisé ! +70 XP" },
-        39: { t: "Calcul de l'âge", c: "Extraire l'année actuelle pour un calcul ?", quiz: true, answer: "=ANNEE(AUJOURDHUI())", r: "Temps réel capturé ! +60 XP" },
-        40: { t: "EXAMEN : Niveau 4", c: "Combiner ET/OU s'appelle de la logique... ?", quiz: true, answer: "Booléenne", r: "BRAVO ! Niveau 4 terminé. Vous êtes un stratège ! +300 XP" },
-        41: { t: "Intro aux Macros", c: "Quel langage est utilisé pour les macros Excel ?", quiz: true, answer: "VBA", r: "Bienvenue dans l'automatisation ! +50 XP" },
-        42: { t: "Enregistreur de Macros", c: "Où se trouve le bouton pour enregistrer une action ?", quiz: true, answer: "Développeur", r: "L'onglet secret est activé ! +40 XP" },
-        43: { t: "Extensions de fichiers", c: "Extension d'un fichier Excel contenant des macros ?", quiz: true, answer: ".xlsm", r: "Format correct ! +40 XP" },
-        44: { t: "La sécurité des Macros", c: "Comment s'appelle l'alerte jaune à l'ouverture ?", quiz: true, answer: "Avertissement de sécurité", r: "Prudence est mère de sûreté. +30 XP" },
-        45: { t: "Premier script", c: "Instruction VBA pour afficher un message ?", quiz: true, answer: "MsgBox", r: "Votre premier code fonctionne ! +100 XP" }
-    };
+        36: { t: "RECHERCHEX (L'élite)", c: "Quelle fonction remplace RECHERCHEV ?", quiz: true, answer: "=RECHERCHEX", r: "Vous utilisez le futur d'Excel ! +90 XP" },
+        37: { t: "SOMMEPROD", c: "Calculer le total (Prix * Qté) sans colonne ?", quiz: true, answer: "=SOMMEPROD(A1:A10;B1:B10)", r: "Puissance de calcul ! +90 XP" },
+        38: { t: "Gestion des dates", c: "Dernier jour du mois de A1 ?", quiz: true, answer: "=FIN.MOIS(A1;0)", r: "Calendrier maîtrisé ! +70 XP" },
+        39: { t: "Calcul de l'âge", c: "Extraire l'année actuelle ?", quiz: true, answer: "=ANNEE(AUJOURDHUI())", r: "Temps réel capturé ! +60 XP" },
+        40: { t: "EXAMEN : Niveau 4", c: "Combiner ET/OU s'appelle la logique... ?", quiz: true, answer: "Booléenne", r: "BRAVO ! Niveau 4 terminé. +300 XP" },
+        41: { t: "Intro aux Macros", c: "Quel langage est utilisé pour les macros ?", quiz: true, answer: "VBA", r: "Bienvenue dans l'automatisation ! +50 XP" },
+        42: { t: "Enregistreur de Macros", c: "Quel onglet secret pour les macros ?", quiz: true, answer: "Développeur", r: "L'onglet secret est activé ! +40 XP" },
+        43: { t: "Extensions", c: "Extension Excel avec macros ?", quiz: true, answer: ".xlsm", r: "Format correct ! +40 XP" },
+        44: { t: "Sécurité", c: "Alerte jaune à l'ouverture ?", quiz: true, answer: "Avertissement de sécurité", r: "Prudence acquise. +30 XP" },
+        45: { t: "Premier script", c: "VBA pour afficher un message ?", quiz: true, answer: "MsgBox", r: "Code validé ! +100 XP" },
+        46: { t: "VBA : Les Variables", c: "Déclarer 'Nom' en texte ?", quiz: true, answer: "Dim Nom As String", r: "Structure propre ! +60 XP" },
+        47: { t: "VBA : Les Boucles", c: "Instruction pour répéter une action ?", quiz: true, answer: "For Each", r: "Vitesse multipliée ! +80 XP" },
+        48: { t: "Power Query", c: "Nettoyer des données externes ?", quiz: true, answer: "Power Query", r: "Nettoyage pro ! +70 XP" },
+        49: { t: "Analyse Scénario", c: "Trouver la valeur cible ?", quiz: true, answer: "Valeur cible", r: "Prédicteur expert ! +60 XP" },
+        50: { t: "DIPLÔME FINAL", c: "Raccourci pour sauvegarder ?", quiz: true, answer: "CTRL+S", r: "DIPLÔME OBTENU ! Félicitations Maître Michel ! +1000 XP" }
+    }; // FIN DE L'OBJET CONTENT
 
     for (let i = 1; i <= 50; i++) {
         const li = document.createElement('li');
@@ -75,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if(i === 20) alert("Niveau 2 validé !");
                         if(i === 30) alert("Niveau 3 validé !");
                         if(i === 40) alert("Niveau 4 validé !");
+                        if(i === 50) alert("INCROYABLE MICHEL ! VOUS ÊTES UN EXPERT EXCEL !");
                     } else {
                         f.textContent = "Indice : " + item.answer;
                         f.style.color = "red";
@@ -90,8 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('simple-btn').onclick = () => {
                     document.getElementById('fb').textContent = item.r;
                 };
-            } else {
-                display.innerHTML = `<h2>Chapitre ${i}</h2><p>Contenu à venir...</p>`;
             }
         };
         list.appendChild(li);
