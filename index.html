@@ -3,24 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excel Master Fun | Par Ntsanli Michel</title>
+    <title>Excel Master Fun - Apprendre en s'amusant</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Excel Master Fun</h1>
-        <div id="stats">Niveau 1 | XP: 0</div>
+        <div class="logo-area">
+            <h1>Excel Master Fun</h1>
+        </div>
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+            <span id="progress-text">0% Complété</span>
+        </div>
     </header>
 
-    <main id="app">
+    <div id="app">
         <nav>
-            <ul id="chapters-list"></ul>
+            <ul id="chapters-list">
+                </ul>
         </nav>
-        <section id="lesson-content">
-            <h2>Bienvenue</h2>
-            <p>Sélectionnez un chapitre pour commencer l'aventure.</p>
-        </section>
-    </main>
+        <main id="lesson-content">
+            <div class="welcome-message">
+                <h2>Bienvenue Michel !</h2>
+                <p>Sélectionnez un chapitre à gauche pour commencer votre ascension vers la maîtrise d'Excel.</p>
+            </div>
+        </main>
+    </div>
 
     <script src="app.js"></script>
 </body>
