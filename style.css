@@ -18,5 +18,38 @@ button { background: #217346; color: white; border: none; padding: 10px 20px; cu
     border: 5px solid #ffd700 !important;
     padding: 20px;
     text-align: center;
-    border-radius: 15px;
+    border-radius: 15px;/* Ajoute ceci à la fin de ton fichier CSS */
+
+/* Permet de scroller dans la leçon si le texte est long */
+#lesson-content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto; 
+    background-color: white;
+}
+
+/* Style pour les inputs de quiz pour qu'ils soient plus "Excel" */
+#q-in {
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#q-in:focus {
+    border-color: #217346;
+}
+
+/* Version Mobile : On empile le menu et le contenu */
+@media (max-width: 768px) {
+    #app {
+        flex-direction: column;
+    }
+    nav {
+        width: 100%;
+        height: 200px; /* Hauteur fixe pour le menu sur mobile */
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+}
 }
