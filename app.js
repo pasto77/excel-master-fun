@@ -26,48 +26,29 @@ document.addEventListener('DOMContentLoaded', () => {
         21: { t: "Extraire à GAUCHE", c: "Prendre les 3 premiers caractères de A1 ?", quiz: true, answer: "=GAUCHE(A1;3)", r: "Parfait pour les codes ! +40 XP" },
         22: { t: "Extraire à DROITE", c: "Prendre les 2 derniers caractères de A1 ?", quiz: true, answer: "=DROITE(A1;2)", r: "Utile pour les extensions ! +40 XP" },
         23: { t: "Fusionner : CONCAT", c: "Coller le texte de A1 et B1 ensemble ?", quiz: true, answer: "=CONCAT(A1;B1)", r: "Fusion réussie ! +50 XP" },
-        24: { t: "Nettoyer les espaces", c: "Supprimer les espaces inutiles ?", quiz: true, answer: "=SUPPRESPACE(A1)", r: "Base de données propre ! +50 XP" },
+        24: { t: "Nettoyage : Espaces", c: "Supprimer les espaces inutiles ?", quiz: true, answer: "=SUPPRESPACE(A1)", r: "Base de données propre ! +50 XP" },
         25: { t: "Majuscules", c: "Mettre A1 en majuscules ?", quiz: true, answer: "=MAJUSCULE(A1)", r: "C'est bien plus lisible ! +30 XP" },
         26: { t: "Trouver la position", c: "Chercher la position d'un texte dans A1 ?", quiz: true, answer: "=TROUVE(A1)", r: "Repérage précis ! +60 XP" },
         27: { t: "Remplacer du texte", c: "Changer un mot par un autre dans A1 ?", quiz: true, answer: "=SUBSTITUE(A1)", r: "Correction automatique validée ! +60 XP" },
         28: { t: "Nombre de caractères", c: "Compter la longueur du texte en A1 ?", quiz: true, answer: "=NBCAR(A1)", r: "Mesure effectuée ! +40 XP" },
         29: { t: "Convertir en nombre", c: "Transformer du texte '12' en vrai chiffre ?", quiz: true, answer: "=VALEUR(A1)", r: "Calculs désormais possibles ! +50 XP" },
-        30: { t: "EXAMEN : Niveau 3", c: "Quelle fonction permet de mettre seulement la 1ère lettre en Majuscule ?", quiz: true, answer: "=NOMPROPRE(A1)", r: "GÉNIAL ! Niveau 3 validé. Expert en données ! +200 XP" }
-    },31: { 
-            t: "SI imbriqués", 
-            c: "Si A1 > 10 affiche 'Top', si A1 > 5 affiche 'Moyen', sinon 'Bas' ?", 
-            quiz: true, 
-            answer: '=SI(A1>10;"Top";SI(A1>5;"Moyen";"Bas"))', 
-            r: "Impressionnant ! Vous gérez des conditions multiples. +80 XP" 
-        },
-        32: { 
-            t: "La fonction ET", 
-            c: "Vérifier si A1 est > 0 ET B1 est < 100 ?", 
-            quiz: true, 
-            answer: "=ET(A1>0;B1<100)", 
-            r: "Double vérification réussie ! +50 XP" 
-        },
-        33: { 
-            t: "La fonction OU", 
-            c: "Vérifier si A1 est égal à 'OUI' OU à 'YES' ?", 
-            quiz: true, 
-            answer: '=OU(A1="OUI";A1="YES")', 
-            r: "Flexible et efficace ! +50 XP" 
-        },
-        34: { 
-            t: "Gérer les erreurs", 
-            c: "Si la formule en A1 fait une erreur, afficher 0 ?", 
-            quiz: true, 
-            answer: "=SIERREUR(A1;0)", 
-            r: "Fini les #N/A qui gâchent vos tableaux ! +60 XP" 
-        },
-        35: { 
-            t: "Compter avec critères", 
-            c: "Compter les 'Ventes' en A1:A10 si le prix en B1:B10 est > 100 ?", 
-            quiz: true, 
-            answer: '=NB.SI.ENS(A1:A10;"Ventes";B1:B10;">100")', 
-            r: "C'est du reporting de haut niveau ! +80 XP" 
-        }
+        30: { t: "EXAMEN : Niveau 3", c: "Quelle fonction met la 1ère lettre en Majuscule ?", quiz: true, answer: "=NOMPROPRE(A1)", r: "Niveau 3 validé ! +200 XP" },
+        31: { t: "SI imbriqués", c: "Si A1 > 10 'Top', si A1 > 5 'Moyen', sinon 'Bas' ?", quiz: true, answer: '=SI(A1>10;"Top";SI(A1>5;"Moyen";"Bas"))', r: "Conditions multiples gérées ! +80 XP" },
+        32: { t: "La fonction ET", c: "A1 > 0 ET B1 < 100 ?", quiz: true, answer: "=ET(A1>0;B1<100)", r: "Double vérification OK ! +50 XP" },
+        33: { t: "La fonction OU", c: "A1 = 'OUI' OU 'YES' ?", quiz: true, answer: '=OU(A1="OUI";A1="YES")', r: "Flexibilité acquise ! +50 XP" },
+        34: { t: "Gérer les erreurs", c: "Si erreur en A1, afficher 0 ?", quiz: true, answer: "=SIERREUR(A1;0)", r: "Tableaux propres ! +60 XP" },
+        35: { t: "Compter avec critères", c: "A1:A10='Ventes' et B1:B10>100 ?", quiz: true, answer: '=NB.SI.ENS(A1:A10;"Ventes";B1:B10;">100")', r: "Reporting précis ! +80 XP" },
+        36: { t: "RECHERCHEX (L'élite)", c: "Quelle fonction remplace RECHERCHEV depuis 2020 ?", quiz: true, answer: "=RECHERCHEX", r: "Vous utilisez le futur d'Excel ! +90 XP" },
+        37: { t: "SOMMEPROD", c: "Calculer le total (Prix * Quantité) sans colonne intermédiaire ?", quiz: true, answer: "=SOMMEPROD(A1:A10;B1:B10)", r: "Puissance de calcul activée ! +90 XP" },
+        38: { t: "Gestion des dates complexes", c: "Quelle fonction donne le dernier jour du mois de A1 ?", quiz: true, answer: "=FIN.MOIS(A1;0)", r: "Calendrier maîtrisé ! +70 XP" },
+        39: { t: "Calcul de l'âge", c: "Extraire l'année actuelle pour un calcul ?", quiz: true, answer: "=ANNEE(AUJOURDHUI())", r: "Temps réel capturé ! +60 XP" },
+        40: { t: "EXAMEN : Niveau 4", c: "Combiner ET/OU s'appelle de la logique... ?", quiz: true, answer: "Booléenne", r: "BRAVO ! Niveau 4 terminé. Vous êtes un stratège ! +300 XP" },
+        41: { t: "Intro aux Macros", c: "Quel langage est utilisé pour les macros Excel ?", quiz: true, answer: "VBA", r: "Bienvenue dans l'automatisation ! +50 XP" },
+        42: { t: "Enregistreur de Macros", c: "Où se trouve le bouton pour enregistrer une action ?", quiz: true, answer: "Développeur", r: "L'onglet secret est activé ! +40 XP" },
+        43: { t: "Extensions de fichiers", c: "Extension d'un fichier Excel contenant des macros ?", quiz: true, answer: ".xlsm", r: "Format correct ! +40 XP" },
+        44: { t: "La sécurité des Macros", c: "Comment s'appelle l'alerte jaune à l'ouverture ?", quiz: true, answer: "Avertissement de sécurité", r: "Prudence est mère de sûreté. +30 XP" },
+        45: { t: "Premier script", c: "Instruction VBA pour afficher un message ?", quiz: true, answer: "MsgBox", r: "Votre premier code fonctionne ! +100 XP" }
+    };
 
     for (let i = 1; i <= 50; i++) {
         const li = document.createElement('li');
@@ -90,11 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (isOk) {
                         f.textContent = item.r;
                         f.style.color = "green";
-                        if(i === 10) alert("Félicitations Michel ! Niveau 1 validé !");
-                        if(i === 20) alert("Bravo ! Niveau 2 terminé !");
-                        if(i === 30) alert("MAÎTRISE ! Niveau 3 terminé !");
+                        if(i === 10) alert("Niveau 1 validé !");
+                        if(i === 20) alert("Niveau 2 validé !");
+                        if(i === 30) alert("Niveau 3 validé !");
+                        if(i === 40) alert("Niveau 4 validé !");
                     } else {
-                        f.textContent = "Faux. Indice : " + item.answer;
+                        f.textContent = "Indice : " + item.answer;
                         f.style.color = "red";
                     }
                 };
@@ -109,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('fb').textContent = item.r;
                 };
             } else {
-                display.innerHTML = `<h2>Chapitre ${i}</h2><p>Contenu en cours de rédaction par Michel.</p>`;
+                display.innerHTML = `<h2>Chapitre ${i}</h2><p>Contenu à venir...</p>`;
             }
         };
         list.appendChild(li);
