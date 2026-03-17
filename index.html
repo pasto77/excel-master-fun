@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Excel Master Fun - Multilingual Premium Training</title>
+    <title>Excel Master Fun - Plateforme Universelle</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -32,7 +32,7 @@
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        /* Styles pour l'arabe (RTL) */
+        /* Styles RTL pour arabe */
         html[dir="rtl"] {
             text-align: right;
         }
@@ -45,6 +45,49 @@
         html[dir="rtl"] .chapter-number {
             margin-right: 0;
             margin-left: 10px;
+        }
+
+        html[dir="rtl"] #sidebar {
+            border-right: none;
+            border-left: 2px solid var(--border);
+        }
+
+        html[dir="rtl"] #chapters-list li.completed {
+            border-left: none;
+            border-right: 4px solid var(--secondary);
+        }
+
+        html[dir="rtl"] .language-selector {
+            right: auto;
+            left: 20px;
+        }
+
+        html[dir="rtl"] .coach-container {
+            right: auto;
+            left: 30px;
+        }
+
+        html[dir="rtl"] .coach-bubble {
+            border-radius: 20px 20px 20px 5px;
+        }
+
+        html[dir="rtl"] .coach-bubble::after {
+            right: auto;
+            left: 20px;
+        }
+
+        html[dir="rtl"] .coach-avatar {
+            justify-content: flex-start;
+        }
+
+        html[dir="rtl"] .coach-box {
+            border-left: none;
+            border-right: 5px solid var(--primary);
+        }
+
+        html[dir="rtl"] .coach-box::before {
+            left: auto;
+            right: 15px;
         }
 
         body {
@@ -67,6 +110,35 @@
             display: flex;
             overflow: hidden;
             border: 1px solid var(--border);
+            position: relative;
+        }
+
+        /* Mode Admin Toggle (secret) */
+        .admin-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,215,0,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .admin-toggle:hover {
+            background: var(--primary);
+            color: #000;
+        }
+
+        html[dir="rtl"] .admin-toggle {
+            right: auto;
+            left: 10px;
         }
 
         /* Sidebar */
@@ -78,11 +150,11 @@
             flex-direction: column;
             position: relative;
             overflow: hidden;
+            transition: 0.3s;
         }
 
-        html[dir="rtl"] #sidebar {
-            border-right: none;
-            border-left: 2px solid var(--border);
+        #sidebar.admin-mode {
+            filter: hue-rotate(90deg);
         }
 
         .brand {
@@ -238,11 +310,6 @@
             border-left: 4px solid var(--secondary);
         }
 
-        html[dir="rtl"] #chapters-list li.completed {
-            border-left: none;
-            border-right: 4px solid var(--secondary);
-        }
-
         #chapters-list li.locked {
             opacity: 0.4;
             filter: grayscale(0.8);
@@ -297,15 +364,10 @@
         .language-selector {
             position: absolute;
             top: 20px;
-            right: 20px;
+            right: 70px;
             z-index: 1000;
             display: flex;
             gap: 5px;
-        }
-
-        html[dir="rtl"] .language-selector {
-            right: auto;
-            left: 20px;
         }
 
         .lang-btn {
@@ -343,6 +405,10 @@
                         radial-gradient(circle at 70% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
                         var(--bg-dark);
             overflow-y: auto;
+        }
+
+        #main.admin-mode {
+            filter: hue-rotate(90deg);
         }
 
         .progress-container {
@@ -485,11 +551,6 @@
             z-index: 100;
         }
 
-        html[dir="rtl"] .coach-container {
-            right: auto;
-            left: 30px;
-        }
-
         .coach-bubble {
             background: var(--bg-card);
             border: 2px solid var(--primary);
@@ -500,10 +561,6 @@
             margin-bottom: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             animation: float 3s infinite ease-in-out;
-        }
-
-        html[dir="rtl"] .coach-bubble {
-            border-radius: 20px 20px 20px 5px;
         }
 
         @keyframes float {
@@ -523,11 +580,6 @@
             border-top: 10px solid var(--primary);
         }
 
-        html[dir="rtl"] .coach-bubble::after {
-            right: auto;
-            left: 20px;
-        }
-
         .coach-message {
             font-size: 0.9rem;
             color: var(--text);
@@ -537,10 +589,6 @@
         .coach-avatar {
             display: flex;
             justify-content: flex-end;
-        }
-
-        html[dir="rtl"] .coach-avatar {
-            justify-content: flex-start;
         }
 
         .coach-avatar img {
@@ -611,11 +659,6 @@
             position: relative;
         }
 
-        html[dir="rtl"] .coach-box {
-            border-left: none;
-            border-right: 5px solid var(--primary);
-        }
-
         .coach-box::before {
             content: '"';
             position: absolute;
@@ -627,16 +670,11 @@
             font-family: serif;
         }
 
-        html[dir="rtl"] .coach-box::before {
-            left: auto;
-            right: 15px;
-        }
-
         .input-group {
             margin: 20px 0;
         }
 
-        input {
+        input, textarea, select {
             width: 100%;
             padding: 15px;
             background: rgba(10, 10, 26, 0.8);
@@ -648,7 +686,17 @@
             transition: 0.3s;
         }
 
-        input:focus {
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        select option {
+            background: var(--bg-card);
+            color: var(--text);
+        }
+
+        input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
@@ -677,6 +725,22 @@
 
         button:active {
             transform: translateY(0);
+        }
+
+        button.secondary {
+            background: var(--secondary);
+            box-shadow: 0 5px 15px rgba(78, 204, 163, 0.3);
+        }
+
+        button.danger {
+            background: var(--danger);
+            box-shadow: 0 5px 15px rgba(255, 75, 92, 0.3);
+        }
+
+        button.small {
+            padding: 8px 15px;
+            font-size: 0.8rem;
+            width: auto;
         }
 
         .hint-text {
@@ -841,6 +905,318 @@
             margin-top: 20px;
         }
 
+        /* Admin Dashboard Styles */
+        .admin-dashboard {
+            width: 100%;
+            overflow-y: auto;
+            max-height: 100%;
+            padding: 10px;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .admin-tab {
+            padding: 8px 15px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .admin-tab.active {
+            background: var(--primary);
+            color: #000;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .stat-card h3 {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .course-icon {
+            font-size: 2rem;
+        }
+
+        .course-status {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            background: var(--warning);
+            color: #000;
+        }
+
+        .status-published {
+            background: var(--success);
+        }
+
+        .course-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .course-stats {
+            display: flex;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .course-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .editor-section {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .editor-section h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .lessons-list {
+            margin: 15px 0;
+        }
+
+        .lesson-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            margin-bottom: 5px;
+        }
+
+        .lesson-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .question-builder {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .question-type {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .type-option {
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .type-option.selected {
+            background: var(--primary);
+            color: #000;
+        }
+
+        .options-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 4px;
+        }
+
+        .media-uploader {
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .media-uploader:hover {
+            border-color: var(--primary);
+        }
+
+        .media-preview {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .media-thumb {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 12px;
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .badge-success {
+            background: var(--success);
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+        }
+
+        .badge-warning {
+            background: var(--warning);
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid var(--primary);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-close {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .flex-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
         @media print {
             body * { visibility: hidden; }
             .certificate, .certificate * { visibility: visible; }
@@ -876,14 +1252,19 @@
 
             .language-selector {
                 top: 10px;
-                right: 10px;
+                right: 60px;
             }
         }
     </style>
 </head>
 <body>
     <div id="app">
-        <!-- Language Selector -->
+        <!-- Bouton Admin secret -->
+        <div class="admin-toggle" onclick="toggleAdminMode()" title="Mode Admin (double-clic pour code secret)">
+            🔧
+        </div>
+
+        <!-- Sélecteur de langue -->
         <div class="language-selector">
             <button class="lang-btn active" onclick="changeLanguage('fr')">FR</button>
             <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
@@ -892,7 +1273,7 @@
             <button class="lang-btn" onclick="changeLanguage('pt')">PT</button>
         </div>
 
-        <!-- Sidebar gauche -->
+        <!-- Sidebar -->
         <div id="sidebar">
             <div class="brand">
                 <h1 id="brand-title">EXCEL MASTER FUN</h1>
@@ -946,14 +1327,164 @@
 
             <!-- Zone de contenu dynamique -->
             <div id="lesson-content" class="card">
-                <!-- Le contenu sera injecté ici -->
+                <!-- Le contenu sera injecté dynamiquement -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="adminPasswordModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 style="color: var(--primary);">Accès Administrateur</h2>
+                <span class="modal-close" onclick="closeModal('adminPasswordModal')">✕</span>
+            </div>
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <input type="password" id="admin-password" placeholder="Entrez le code secret...">
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="checkAdminPassword()">Valider</button>
+                <button class="secondary" onclick="closeModal('adminPasswordModal')">Annuler</button>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.8rem; color: var(--text-muted);">Indice : admin123</p>
+        </div>
+    </div>
+
+    <div class="modal" id="lessonModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 style="color: var(--primary);">Nouvelle leçon</h2>
+                <span class="modal-close" onclick="closeModal('lessonModal')">✕</span>
+            </div>
+            
+            <div class="form-group">
+                <label>Titre de la leçon</label>
+                <input type="text" class="form-control" id="lesson-title" placeholder="ex: Introduction aux cellules">
+            </div>
+            
+            <div class="form-group">
+                <label>Type de leçon</label>
+                <select class="form-control" id="lesson-type">
+                    <option>Texte + Image</option>
+                    <option>Vidéo</option>
+                    <option>Quiz</option>
+                    <option>Exercice pratique</option>
+                    <option>Simulation</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Contenu</label>
+                <textarea class="form-control" id="lesson-content-input" rows="5" placeholder="Contenu de la leçon..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>XP à gagner</label>
+                <input type="number" class="form-control" id="lesson-xp" value="10" min="5" max="100">
+            </div>
+            
+            <div style="display: flex; gap: 10px;">
+                <button onclick="saveLesson()">Créer la leçon</button>
+                <button class="secondary" onclick="closeModal('lessonModal')">Annuler</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="statsModal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2 style="color: var(--primary);">Statistiques détaillées</h2>
+                <span class="modal-close" onclick="closeModal('statsModal')">✕</span>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <h3>Progression</h3>
+                    <div style="height: 200px; background: rgba(255,255,255,0.05); border-radius: 10px; padding: 10px;">
+                        <div style="display: flex; gap: 5px; height: 100%; align-items: flex-end;">
+                            <div style="width: 30px; height: 80%; background: var(--primary); border-radius: 4px;"></div>
+                            <div style="width: 30px; height: 95%; background: var(--primary); border-radius: 4px;"></div>
+                            <div style="width: 30px; height: 60%; background: var(--primary); border-radius: 4px;"></div>
+                            <div style="width: 30px; height: 45%; background: var(--primary); border-radius: 4px;"></div>
+                            <div style="width: 30px; height: 70%; background: var(--primary); border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Points bloquants</h3>
+                    <ul style="list-style: none;">
+                        <li style="padding: 8px; background: rgba(255,75,92,0.1); margin: 5px 0;">RECHERCHEV - 67% échouent</li>
+                        <li style="padding: 8px; background: rgba(255,75,92,0.1); margin: 5px 0;">Tableaux croisés - 54% échouent</li>
+                        <li style="padding: 8px; background: rgba(78,204,163,0.1); margin: 5px 0;">Somme - 98% réussissent</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <h3>Élèves en difficulté</h3>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Progression</th>
+                            <th>Dernière activité</th>
+                        </tr>
+                        <tr>
+                            <td>Marie D.</td>
+                            <td>45%</td>
+                            <td>Il y a 3 jours</td>
+                        </tr>
+                        <tr>
+                            <td>Paul T.</td>
+                            <td>67%</td>
+                            <td>Il y a 5 jours</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
         // ============================================
-        // CONFIGURATION MULTILINGUE
+        // CONFIGURATION GLOBALE
+        // ============================================
+        
+        // État de l'application
+        let isAdminMode = false;
+        let currentLang = localStorage.getItem('excelLang') || 'fr';
+        let isPremium = localStorage.getItem('excelPremium') === 'true';
+        let userName = localStorage.getItem('userName') || "Apprenant";
+        let userLevel = parseInt(localStorage.getItem('userLevel') || '1');
+        let userXp = parseInt(localStorage.getItem('userXp') || '0');
+        let userBadges = JSON.parse(localStorage.getItem('userBadges') || '["welcome"]');
+        let completedChapters = new Set(JSON.parse(localStorage.getItem('excelProgress') || '[]'));
+        let streakDays = parseInt(localStorage.getItem('streakDays') || '0');
+        let lastLogin = localStorage.getItem('lastLogin');
+        let currentLesson = parseInt(localStorage.getItem('currentLesson') || '1');
+
+        // Données simulées
+        const MASTER_KEY = "EXCEL-MASTER-2026";
+        const ADMIN_PASSWORD = "admin123";
+
+        // Cours disponibles (dynamiques)
+        let courses = [
+            { id: 1, title: "Excel - Les bases", icon: "📊", students: 145, lessons: 20, completion: 78, status: "published" },
+            { id: 2, title: "Excel - Avancé", icon: "📈", students: 89, lessons: 25, completion: 62, status: "published" },
+            { id: 3, title: "Power BI", icon: "📉", students: 34, lessons: 15, completion: 41, status: "draft" }
+        ];
+
+        // Leçons simulées
+        let lessons = [
+            { id: 1, courseId: 1, title: "Introduction", content: "Bienvenue dans Excel", xp: 10 },
+            { id: 2, courseId: 1, title: "Les cellules", content: "Comment utiliser les cellules", xp: 15 },
+            { id: 3, courseId: 1, title: "Les formules", content: "Les bases des formules", xp: 20 }
+        ];
+
+        // ============================================
+        // TRADUCTIONS MULTILINGUES
         // ============================================
         
         const translations = {
@@ -973,7 +1504,7 @@
                 correct: "BRAVO !",
                 incorrect: "Presque ! Essaie encore.",
                 unlock: "🔓 Accès Premium",
-                unlockDesc: "Excellent travail ! Tu as terminé les 10 premiers chapitres. Pour continuer l'aventure et devenir un vrai pro Excel, débloque la suite !",
+                unlockDesc: "Excellent travail ! Tu as terminé les 10 premiers chapitres.",
                 unlockName: "TON NOM",
                 unlockKey: "CLÉ D'ACTIVATION",
                 unlockBtn: "DÉBLOQUER",
@@ -983,25 +1514,13 @@
                 awarded: "A validé avec succès les 100 chapitres",
                 print: "🖨️ IMPRIMER",
                 levelNames: {
-                    1: "L'abruti",
-                    2: "L'apprenti",
-                    3: "Le débrouillard",
-                    4: "Le pro",
-                    5: "Le génie",
-                    6: "L'expert",
-                    7: "La légende"
+                    1: "L'abruti", 2: "L'apprenti", 3: "Le débrouillard",
+                    4: "Le pro", 5: "Le génie", 6: "L'expert", 7: "La légende"
                 },
                 badges: {
-                    welcome: "Bienvenue",
-                    survivor: "Survivant",
-                    calculator: "Calculator",
-                    stylist: "Artiste",
-                    detective: "Détective",
-                    speedy: "L'éclair",
-                    streak7: "Habitué",
-                    streak30: "Accro",
-                    master: "Maître",
-                    legend: "Légende"
+                    welcome: "Bienvenue", survivor: "Survivant", calculator: "Calculator",
+                    stylist: "Artiste", detective: "Détective", speedy: "L'éclair",
+                    streak7: "Habitué", streak30: "Accro", master: "Maître", legend: "Légende"
                 }
             },
             en: {
@@ -1014,13 +1533,13 @@
                 start: "START THE ADVENTURE",
                 welcome: "Welcome to Excel Master Fun!",
                 welcomeDesc: "The interactive training that makes Excel addictive",
-                coachIntro: "With me, Excelix, you'll go from zero to hero without even realizing it. Ready for the adventure?",
+                coachIntro: "With me, Excelix, you'll go from zero to hero without even realizing it.",
                 answer: "Your answer...",
                 validate: "VALIDATE",
                 correct: "WELL DONE!",
                 incorrect: "Almost! Try again.",
                 unlock: "🔓 Premium Access",
-                unlockDesc: "Great job! You've completed the first 10 chapters. To continue the adventure and become a real Excel pro, unlock the rest!",
+                unlockDesc: "Great job! You've completed the first 10 chapters.",
                 unlockName: "YOUR NAME",
                 unlockKey: "ACTIVATION KEY",
                 unlockBtn: "UNLOCK",
@@ -1030,25 +1549,13 @@
                 awarded: "Successfully completed all 100 chapters",
                 print: "🖨️ PRINT",
                 levelNames: {
-                    1: "The Noob",
-                    2: "The Apprentice",
-                    3: "The Hustler",
-                    4: "The Pro",
-                    5: "The Genius",
-                    6: "The Expert",
-                    7: "The Legend"
+                    1: "The Noob", 2: "The Apprentice", 3: "The Hustler",
+                    4: "The Pro", 5: "The Genius", 6: "The Expert", 7: "The Legend"
                 },
                 badges: {
-                    welcome: "Welcome",
-                    survivor: "Survivor",
-                    calculator: "Calculator",
-                    stylist: "Stylist",
-                    detective: "Detective",
-                    speedy: "Speedy",
-                    streak7: "Regular",
-                    streak30: "Addict",
-                    master: "Master",
-                    legend: "Legend"
+                    welcome: "Welcome", survivor: "Survivor", calculator: "Calculator",
+                    stylist: "Stylist", detective: "Detective", speedy: "Speedy",
+                    streak7: "Regular", streak30: "Addict", master: "Master", legend: "Legend"
                 }
             },
             ar: {
@@ -1061,13 +1568,13 @@
                 start: "ابدأ المغامرة",
                 welcome: "مرحباً بك في إتقان إكسل للمتعة!",
                 welcomeDesc: "التدريب التفاعلي الذي يجعل إكسل مسبباً للإدمان",
-                coachIntro: "معي، إكسليز، ستنتقل من صفر إلى بطل دون أن تدرك ذلك. هل أنت مستعد للمغامرة؟",
+                coachIntro: "معي، إكسليز، ستنتقل من صفر إلى بطل دون أن تدرك ذلك.",
                 answer: "إجابتك...",
                 validate: "تحقق",
                 correct: "أحسنت!",
                 incorrect: "تقريباً! حاول مرة أخرى.",
                 unlock: "🔓 وصول مميز",
-                unlockDesc: "عمل رائع! لقد أكملت أول 10 دروس. لمواصلة المغامرة وتصبح محترف إكسل حقيقي، افتح الباقي!",
+                unlockDesc: "عمل رائع! لقد أكملت أول 10 دروس.",
                 unlockName: "اسمك",
                 unlockKey: "مفتاح التفعيل",
                 unlockBtn: "فتح",
@@ -1077,25 +1584,13 @@
                 awarded: "أكمل بنجاح جميع الدروس المئة",
                 print: "🖨️ طباعة",
                 levelNames: {
-                    1: "المبتدئ",
-                    2: "المتدرب",
-                    3: "المجتهد",
-                    4: "المحترف",
-                    5: "العبقري",
-                    6: "الخبير",
-                    7: "الأسطورة"
+                    1: "المبتدئ", 2: "المتدرب", 3: "المجتهد",
+                    4: "المحترف", 5: "العبقري", 6: "الخبير", 7: "الأسطورة"
                 },
                 badges: {
-                    welcome: "ترحيب",
-                    survivor: "ناجٍ",
-                    calculator: "آلة حاسبة",
-                    stylist: "فنان",
-                    detective: "محقق",
-                    speedy: "سريع",
-                    streak7: "منتظم",
-                    streak30: "مدمن",
-                    master: "أستاذ",
-                    legend: "أسطورة"
+                    welcome: "ترحيب", survivor: "ناجٍ", calculator: "آلة حاسبة",
+                    stylist: "فنان", detective: "محقق", speedy: "سريع",
+                    streak7: "منتظم", streak30: "مدمن", master: "أستاذ", legend: "أسطورة"
                 }
             },
             es: {
@@ -1108,13 +1603,13 @@
                 start: "COMENZAR LA AVENTURA",
                 welcome: "¡Bienvenido a Excel Master Fun!",
                 welcomeDesc: "La formación interactiva que hace adictivo Excel",
-                coachIntro: "Conmigo, Excelix, pasarás de cero a héroe sin darte cuenta. ¿Listo para la aventura?",
+                coachIntro: "Conmigo, Excelix, pasarás de cero a héroe sin darte cuenta.",
                 answer: "Tu respuesta...",
                 validate: "VALIDAR",
                 correct: "¡BIEN HECHO!",
                 incorrect: "¡Casi! Inténtalo de nuevo.",
                 unlock: "🔓 Acceso Premium",
-                unlockDesc: "¡Gran trabajo! Has completado los primeros 10 capítulos. Para continuar la aventura y convertirte en un verdadero profesional de Excel, ¡desbloquea el resto!",
+                unlockDesc: "¡Gran trabajo! Has completado los primeros 10 capítulos.",
                 unlockName: "TU NOMBRE",
                 unlockKey: "CLAVE DE ACTIVACIÓN",
                 unlockBtn: "DESBLOQUEAR",
@@ -1124,25 +1619,13 @@
                 awarded: "Ha completado con éxito los 100 capítulos",
                 print: "🖨️ IMPRIMIR",
                 levelNames: {
-                    1: "El novato",
-                    2: "El aprendiz",
-                    3: "El luchador",
-                    4: "El profesional",
-                    5: "El genio",
-                    6: "El experto",
-                    7: "La leyenda"
+                    1: "El novato", 2: "El aprendiz", 3: "El luchador",
+                    4: "El profesional", 5: "El genio", 6: "El experto", 7: "La leyenda"
                 },
                 badges: {
-                    welcome: "Bienvenida",
-                    survivor: "Superviviente",
-                    calculator: "Calculadora",
-                    stylist: "Artista",
-                    detective: "Detective",
-                    speedy: "Rápido",
-                    streak7: "Habitual",
-                    streak30: "Adicto",
-                    master: "Maestro",
-                    legend: "Leyenda"
+                    welcome: "Bienvenida", survivor: "Superviviente", calculator: "Calculadora",
+                    stylist: "Artista", detective: "Detective", speedy: "Rápido",
+                    streak7: "Habitual", streak30: "Adicto", master: "Maestro", legend: "Leyenda"
                 }
             },
             pt: {
@@ -1155,13 +1638,13 @@
                 start: "COMEÇAR A AVENTURA",
                 welcome: "Bem-vindo ao Excel Master Fun!",
                 welcomeDesc: "O treinamento interativo que torna o Excel viciante",
-                coachIntro: "Comigo, Excelix, você vai passar de zero a herói sem perceber. Pronto para a aventura?",
+                coachIntro: "Comigo, Excelix, você vai passar de zero a herói sem perceber.",
                 answer: "Sua resposta...",
                 validate: "VALIDAR",
                 correct: "MUITO BEM!",
                 incorrect: "Quase! Tente novamente.",
                 unlock: "🔓 Acesso Premium",
-                unlockDesc: "Ótimo trabalho! Você completou os primeiros 10 capítulos. Para continuar a aventura e se tornar um verdadeiro profissional de Excel, desbloqueie o resto!",
+                unlockDesc: "Ótimo trabalho! Você completou os primeiros 10 capítulos.",
                 unlockName: "SEU NOME",
                 unlockKey: "CHAVE DE ATIVAÇÃO",
                 unlockBtn: "DESBLOQUEAR",
@@ -1171,25 +1654,13 @@
                 awarded: "Concluiu com sucesso todos os 100 capítulos",
                 print: "🖨️ IMPRIMIR",
                 levelNames: {
-                    1: "O novato",
-                    2: "O aprendiz",
-                    3: "O esforçado",
-                    4: "O profissional",
-                    5: "O génio",
-                    6: "O perito",
-                    7: "A lenda"
+                    1: "O novato", 2: "O aprendiz", 3: "O esforçado",
+                    4: "O profissional", 5: "O génio", 6: "O perito", 7: "A lenda"
                 },
                 badges: {
-                    welcome: "Boas-vindas",
-                    survivor: "Sobrevivente",
-                    calculator: "Calculadora",
-                    stylist: "Artista",
-                    detective: "Detetive",
-                    speedy: "Rápido",
-                    streak7: "Habitual",
-                    streak30: "Viciado",
-                    master: "Mestre",
-                    legend: "Lenda"
+                    welcome: "Boas-vindas", survivor: "Sobrevivente", calculator: "Calculadora",
+                    stylist: "Artista", detective: "Detetive", speedy: "Rápido",
+                    streak7: "Habitual", streak30: "Viciado", master: "Mestre", legend: "Lenda"
                 }
             }
         };
@@ -1197,64 +1668,16 @@
         // Messages d'introduction multilingues
         const INTRO_MESSAGES = {
             fr: {
-                1: "Les cellules sont les petites cases d'Excel. Chaque cellule a une adresse unique comme A1, B3, etc. C'est comme une ville avec ses rues !",
-                2: "Sélectionner tout est super utile pour appliquer une mise en forme à tout ton tableau d'un coup. Le raccourci CTRL+A est ton ami !",
-                3: "La somme est l'opération la plus utilisée dans Excel. Avec =SOMME(), tu additionnes tout un groupe de cellules en un clin d'œil.",
-                4: "Pour soustraire, on utilise simplement le signe - entre les cellules. Exemple : =A1-B1 te donne la différence.",
-                5: "La multiplication se fait avec *. C'est comme à l'école, mais en plus rapide ! =A1*A2",
-                6: "La division utilise /. Petit truc : attention à ne pas diviser par zéro ! =A1/B1",
-                7: "La moyenne te donne la valeur centrale d'un groupe. Idéal pour tes notes ! =MOYENNE()",
-                8: "Le minimum trouve la plus petite valeur d'une série. Pratique pour voir ton score le plus bas !",
-                9: "Le maximum fait l'inverse : il trouve la valeur la plus haute.",
-                10: "Les raccourcis claviers sont tes meilleurs amis. CTRL+G pour le gras, CTRL+I pour l'italique... apprends-les un par un !"
+                1: "Les cellules sont les petites cases d'Excel. Chaque cellule a une adresse unique comme A1, B3, etc.",
+                2: "Sélectionner tout est super utile pour appliquer une mise en forme à tout ton tableau d'un coup.",
+                3: "La somme est l'opération la plus utilisée dans Excel. Avec =SOMME(), tu additionnes tout un groupe de cellules.",
+                default: "Prêt pour ce chapitre ?"
             },
             en: {
-                1: "Cells are the little boxes in Excel. Each cell has a unique address like A1, B3, etc. It's like a city with its streets!",
-                2: "Select All is super useful to apply formatting to your entire table at once. The CTRL+A shortcut is your friend!",
-                3: "SUM is the most used operation in Excel. With =SUM(), you add up a whole group of cells in the blink of an eye.",
-                4: "To subtract, simply use the - sign between cells. Example: =A1-B1 gives you the difference.",
-                5: "Multiplication is done with *. It's like school, but faster! =A1*A2",
-                6: "Division uses /. Tip: be careful not to divide by zero! =A1/B1",
-                7: "AVERAGE gives you the central value of a group. Perfect for your grades! =AVERAGE()",
-                8: "MIN finds the smallest value in a series. Handy to see your lowest score!",
-                9: "MAX does the opposite: it finds the highest value.",
-                10: "Keyboard shortcuts are your best friends. CTRL+B for bold, CTRL+I for italic... learn them one by one!"
-            },
-            ar: {
-                1: "الخلايا هي المربعات الصغيرة في إكسل. كل خلية لها عنوان فريد مثل A1، B3، إلخ. إنها مثل مدينة بشوارعها!",
-                2: "تحديد الكل مفيد جداً لتطبيق تنسيق على الجدول بأكمله مرة واحدة. الاختصار CTRL+A هو صديقك!",
-                3: "الجمع هو العملية الأكثر استخداماً في إكسل. مع =SUM()، تجمع مجموعة كاملة من الخلايا في لمح البصر.",
-                4: "للطرح، ببساطة استخدم علامة - بين الخلايا. مثال: =A1-B1 يعطيك الفرق.",
-                5: "الضرب يتم باستخدام *. إنه مثل المدرسة، لكن أسرع! =A1*A2",
-                6: "القسمة تستخدم /. نصيحة: احذر من القسمة على صفر! =A1/B1",
-                7: "المتوسط يعطيك القيمة المركزية لمجموعة. مثالي لدرجاتك! =AVERAGE()",
-                8: "الحد الأدنى يجد أصغر قيمة في سلسلة. مفيد لرؤية أدنى درجة لك!",
-                9: "الحد الأقصى يفعل العكس: يجد أعلى قيمة.",
-                10: "اختصارات لوحة المفاتيح هي أفضل أصدقائك. CTRL+B للخط العريض، CTRL+I للمائل... تعلمها واحداً تلو الآخر!"
-            },
-            es: {
-                1: "Las celdas son las pequeñas casillas de Excel. Cada celda tiene una dirección única como A1, B3, etc. ¡Es como una ciudad con sus calles!",
-                2: "Seleccionar todo es súper útil para aplicar formato a toda tu tabla de una vez. ¡El atajo CTRL+A es tu amigo!",
-                3: "La suma es la operación más utilizada en Excel. Con =SUMA(), sumas todo un grupo de celdas en un abrir y cerrar de ojos.",
-                4: "Para restar, simplemente usa el signo - entre celdas. Ejemplo: =A1-B1 te da la diferencia.",
-                5: "La multiplicación se hace con *. ¡Es como en la escuela, pero más rápido! =A1*A2",
-                6: "La división usa /. Consejo: ¡cuidado con dividir por cero! =A1/B1",
-                7: "El promedio te da el valor central de un grupo. ¡Ideal para tus notas! =PROMEDIO()",
-                8: "El mínimo encuentra el valor más pequeño de una serie. ¡Práctico para ver tu puntuación más baja!",
-                9: "El máximo hace lo contrario: encuentra el valor más alto.",
-                10: "Los atajos de teclado son tus mejores amigos. CTRL+N para negrita, CTRL+K para cursiva... ¡apréndelos uno por uno!"
-            },
-            pt: {
-                1: "As células são as pequenas caixas do Excel. Cada célula tem um endereço único como A1, B3, etc. É como uma cidade com suas ruas!",
-                2: "Selecionar tudo é super útil para aplicar formatação a toda a tabela de uma vez. O atalho CTRL+A é seu amigo!",
-                3: "A soma é a operação mais usada no Excel. Com =SOMA(), você soma um grupo inteiro de células num piscar de olhos.",
-                4: "Para subtrair, simplesmente use o sinal - entre células. Exemplo: =A1-B1 dá a diferença.",
-                5: "A multiplicação é feita com *. É como na escola, mas mais rápido! =A1*A2",
-                6: "A divisão usa /. Dica: cuidado para não dividir por zero! =A1/B1",
-                7: "A média dá o valor central de um grupo. Ideal para suas notas! =MÉDIA()",
-                8: "O mínimo encontra o menor valor de uma série. Prático para ver sua pontuação mais baixa!",
-                9: "O máximo faz o oposto: encontra o valor mais alto.",
-                10: "Os atalhos de teclado são seus melhores amigos. CTRL+N para negrito, CTRL+I para itálico... aprenda-os um por um!"
+                1: "Cells are the little boxes in Excel. Each cell has a unique address like A1, B3, etc.",
+                2: "Select All is super useful to apply formatting to your entire table at once.",
+                3: "SUM is the most used operation in Excel. With =SUM(), you add up a whole group of cells.",
+                default: "Ready for this chapter?"
             }
         };
 
@@ -1264,176 +1687,128 @@
                 "Excel peut traiter plus d'un million de lignes !",
                 "La première version d'Excel date de 1985",
                 "Il existe plus de 400 fonctions dans Excel",
-                "Le ruban a été introduit en 2007",
-                "CTRL+Z peut sauver des vies (en tout cas des fichiers)",
-                "Un tableau croisé dynamique peut analyser des données en 3 secondes",
-                "Les macros VBA permettent d'automatiser presque tout",
-                "Excel est utilisé par plus de 750 millions de personnes",
-                "La fonction RECHERCHEV est la plus recherchée sur Google",
-                "Power Query peut nettoyer des données en un clic"
+                "CTRL+Z peut sauver des vies (ou des fichiers)"
             ],
             en: [
                 "Excel can process over a million rows!",
                 "The first version of Excel dates back to 1985",
                 "There are over 400 functions in Excel",
-                "The ribbon was introduced in 2007",
-                "CTRL+Z can save lives (or at least files)",
-                "A pivot table can analyze data in 3 seconds",
-                "VBA macros can automate almost anything",
-                "Excel is used by over 750 million people",
-                "VLOOKUP is the most searched Excel function on Google",
-                "Power Query can clean data in one click"
-            ],
-            ar: [
-                "يمكن لبرنامج إكسل معالجة أكثر من مليون صف!",
-                "يعود الإصدار الأول من إكسل إلى عام 1985",
-                "يوجد أكثر من 400 دالة في إكسل",
-                "تم تقديم الشريط في عام 2007",
-                "يمكن لـ CTRL+Z إنقاذ الأرواح (أو على الأقل الملفات)",
-                "يمكن للجدول المحوري تحليل البيانات في 3 ثوانٍ",
-                "يمكن لوحدات ماكرو VBA أتمتة أي شيء تقريباً",
-                "يستخدم إكسل أكثر من 750 مليون شخص",
-                "VLOOKUP هي الدالة الأكثر بحثاً في إكسل على جوجل",
-                "يمكن لـ Power Query تنظيف البيانات بنقرة واحدة"
-            ],
-            es: [
-                "¡Excel puede procesar más de un millón de filas!",
-                "La primera versión de Excel data de 1985",
-                "Hay más de 400 funciones en Excel",
-                "La cinta se introdujo en 2007",
-                "CTRL+Z puede salvar vidas (o al menos archivos)",
-                "Una tabla dinámica puede analizar datos en 3 segundos",
-                "Las macros VBA pueden automatizar casi cualquier cosa",
-                "Excel es usado por más de 750 millones de personas",
-                "BUSCARV es la función más buscada en Google sobre Excel",
-                "Power Query puede limpiar datos en un clic"
-            ],
-            pt: [
-                "O Excel pode processar mais de um milhão de linhas!",
-                "A primeira versão do Excel data de 1985",
-                "Existem mais de 400 funções no Excel",
-                "O friso foi introduzido em 2007",
-                "CTRL+Z pode salvar vidas (ou pelo menos arquivos)",
-                "Uma tabela dinâmica pode analisar dados em 3 segundos",
-                "As macros VBA podem automatizar quase tudo",
-                "O Excel é usado por mais de 750 milhões de pessoas",
-                "PROCV é a função mais pesquisada no Google sobre Excel",
-                "Power Query pode limpar dados num clique"
+                "CTRL+Z can save lives (or at least files)"
             ]
         };
 
-        // ============================================
-        // CONFIGURATION & DONNÉES
-        // ============================================
-        
-        const MASTER_KEY = "EXCEL-MASTER-2026";
-        
-        let currentLang = localStorage.getItem('excelLang') || 'fr';
-        let isPremium = localStorage.getItem('excelPremium') === 'true';
-        let userName = localStorage.getItem('userName') || "Apprenant";
-        let userLevel = parseInt(localStorage.getItem('userLevel') || '1');
-        let userXp = parseInt(localStorage.getItem('userXp') || '0');
-        let userBadges = JSON.parse(localStorage.getItem('userBadges') || '["welcome"]');
-        let completedChapters = new Set(JSON.parse(localStorage.getItem('excelProgress') || '[]'));
-        let streakDays = parseInt(localStorage.getItem('streakDays') || '0');
-        let lastLogin = localStorage.getItem('lastLogin');
-
-        // 100 leçons complètes
-        const CHAPTERS = {
-            1: { title: "Les Cellules", question: "Une cellule est l'adresse de vos données. Exemple : A1. Tapez OK pour commencer.", answer: "OK" },
-            2: { title: "Sélectionner Tout", question: "Quel raccourci clavier permet de tout sélectionner dans un tableau ?", answer: "CTRL+A" },
-            3: { title: "La Somme rapide", question: "Écrivez la formule pour additionner de A1 à A10.", answer: "=SOMME(A1:A10)" },
-            4: { title: "Soustraction", question: "Calculer A1 moins B1 ?", answer: "=A1-B1" },
-            5: { title: "Multiplication", question: "Quel signe utilise-t-on pour multiplier (A1 fois A2) ?", answer: "=A1*A2" },
-            6: { title: "Division", question: "Quel signe utilise-t-on pour diviser (A1 par B1) ?", answer: "=A1/B1" },
-            7: { title: "La Moyenne", question: "Formule pour la moyenne de B1 à B5 ?", answer: "=MOYENNE(B1:B5)" },
-            8: { title: "Le Minimum", question: "Trouver la plus petite valeur entre A1 et A20 ?", answer: "=MIN(A1:A20)" },
-            9: { title: "Le Maximum", question: "Trouver la plus grande valeur entre A1 et A20 ?", answer: "=MAX(A1:A20)" },
-            10: { title: "Le Format Gras", question: "Quel raccourci pour mettre en gras ?", answer: "CTRL+G" },
-            // ... (toutes les 100 leçons)
-        };
-
-        // Compléter les 100 leçons (pour la concision, je mets juste un extrait ici)
-        for (let i = 11; i <= 100; i++) {
-            if (!CHAPTERS[i]) {
-                CHAPTERS[i] = {
-                    title: `Leçon ${i}`,
-                    question: `Question pour la leçon ${i}`,
-                    answer: "OK"
-                };
-            }
+        // 100 leçons par défaut
+        const CHAPTERS = {};
+        for (let i = 1; i <= 100; i++) {
+            CHAPTERS[i] = {
+                title: i <= 10 ? `Leçon ${i}` : `Chapitre avancé ${i}`,
+                question: i <= 10 ? `Question pour la leçon ${i}` : `Question avancée ${i}`,
+                answer: i === 1 ? "OK" : "REPONSE"
+            };
         }
 
         // ============================================
-        // FONCTIONS MULTILINGUES
+        // FONCTIONS API SIMULÉES
         // ============================================
         
+        const API = {
+            // Utilisateurs
+            getUsers: () => Promise.resolve([
+                { id: 1, name: "Marie D.", email: "marie@email.com", progress: 45, lastActive: "2024-03-15" },
+                { id: 2, name: "Paul T.", email: "paul@email.com", progress: 67, lastActive: "2024-03-12" }
+            ]),
+            
+            // Cours
+            getCourses: () => Promise.resolve(courses),
+            getCourse: (id) => Promise.resolve(courses.find(c => c.id === id)),
+            createCourse: (data) => {
+                const newCourse = { id: courses.length + 1, ...data, students: 0, completion: 0 };
+                courses.push(newCourse);
+                return Promise.resolve(newCourse);
+            },
+            updateCourse: (id, data) => {
+                const index = courses.findIndex(c => c.id === id);
+                if (index !== -1) courses[index] = { ...courses[index], ...data };
+                return Promise.resolve(courses[index]);
+            },
+            deleteCourse: (id) => {
+                courses = courses.filter(c => c.id !== id);
+                return Promise.resolve({ success: true });
+            },
+            
+            // Leçons
+            getLessons: (courseId) => Promise.resolve(lessons.filter(l => l.courseId === courseId)),
+            createLesson: (data) => {
+                const newLesson = { id: lessons.length + 1, ...data };
+                lessons.push(newLesson);
+                return Promise.resolve(newLesson);
+            },
+            
+            // Statistiques
+            getStats: () => Promise.resolve({
+                totalStudents: 234,
+                activeStudents: 189,
+                totalCourses: courses.length,
+                completionRate: 0.72,
+                weakPoints: [
+                    { topic: "RECHERCHEV", rate: 0.67 },
+                    { topic: "Tableaux croisés", rate: 0.54 }
+                ]
+            })
+        };
+
+        // ============================================
+        // FONCTIONS UTILITAIRES
+        // ============================================
+        
+        function t(key) {
+            const keys = key.split('.');
+            let value = translations[currentLang];
+            for (const k of keys) {
+                if (!value) return key;
+                value = value[k];
+            }
+            return value || key;
+        }
+
         function changeLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('excelLang', lang);
             
             // Gestion RTL pour l'arabe
-            if (lang === 'ar') {
-                document.documentElement.setAttribute('dir', 'rtl');
-            } else {
-                document.documentElement.setAttribute('dir', 'ltr');
-            }
+            document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
             
-            // Mettre à jour les boutons de langue
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(lang)) {
+                    btn.classList.add('active');
+                }
             });
-            event.target.classList.add('active');
             
-            // Mettre à jour l'interface
             updateUITexts();
-            
-            // Recharger la leçon actuelle si elle existe
-            const currentLesson = parseInt(localStorage.getItem('currentLesson'));
-            if (currentLesson) {
-                loadChapter(currentLesson);
+            if (!isAdminMode) {
+                if (currentLesson) loadChapter(currentLesson);
+                else showWelcome();
             } else {
-                showWelcome();
+                showAdminDashboard();
             }
         }
 
         function updateUITexts() {
-            const t = translations[currentLang];
-            
-            document.getElementById('brand-title').textContent = t.brand;
-            document.getElementById('brand-subtitle').textContent = t.brandSub;
-            document.getElementById('level-label').innerHTML = `${t.level} <span id="level-display">${userLevel}</span>`;
-            document.getElementById('chapters-title').textContent = t.chapters;
-            document.getElementById('support-text').textContent = t.support;
-            
-            // Mettre à jour les noms des niveaux
-            const levelNames = t.levelNames;
-            // Mettre à jour l'affichage du niveau si nécessaire
-            
-            // Mettre à jour les noms des badges
-            const badgeNames = t.badges;
+            document.getElementById('brand-title').textContent = t('brand');
+            document.getElementById('brand-subtitle').textContent = t('brandSub');
+            document.getElementById('level-label').innerHTML = `${t('level')} <span id="level-display">${userLevel}</span>`;
+            document.getElementById('chapters-title').textContent = t('chapters');
+            document.getElementById('support-text').textContent = t('support');
         }
 
-        function t(key) {
-            const keys = key.split('.');
-            let value = translations[currentLang];
-            for (const k of keys) {
-                value = value[k];
-                if (!value) return key;
-            }
-            return value;
-        }
-
-        // ============================================
-        // FONCTIONS DE L'APPLICATION
-        // ============================================
-        
         function saveState() {
             localStorage.setItem('excelProgress', JSON.stringify(Array.from(completedChapters)));
             localStorage.setItem('userLevel', userLevel.toString());
             localStorage.setItem('userXp', userXp.toString());
             localStorage.setItem('userBadges', JSON.stringify(userBadges));
             localStorage.setItem('streakDays', streakDays.toString());
+            localStorage.setItem('currentLesson', currentLesson.toString());
         }
 
         function getLevelFromXp(xp) {
@@ -1451,7 +1826,7 @@
             if (newLevel > userLevel) {
                 userLevel = newLevel;
                 checkBadges();
-                showCoachMessage(t('levelUp').replace('{level}', userLevel).replace('{name}', t('levelNames.' + userLevel)));
+                showCoachMessage(`🚀 Niveau ${userLevel} : ${t('levelNames.' + userLevel)} !`);
             }
         }
 
@@ -1461,6 +1836,15 @@
             saveState();
             updateUI();
         }
+
+        const BADGES = [
+            { id: 'welcome', name: 'Bienvenue', icon: '🎉', condition: { type: 'login' } },
+            { id: 'survivor', name: 'Survivant', icon: '🦊', condition: { type: 'level', level: 1 } },
+            { id: 'calculator', name: 'Calculator', icon: '🧮', condition: { type: 'lessons', count: 10 } },
+            { id: 'streak7', name: 'Habitué', icon: '🔥', condition: { type: 'streak', days: 7 } },
+            { id: 'master', name: 'Maître', icon: '👑', condition: { type: 'level', level: 6 } },
+            { id: 'legend', name: 'Légende', icon: '⭐', condition: { type: 'level', level: 7 } }
+        ];
 
         function checkBadges() {
             BADGES.forEach(badge => {
@@ -1477,6 +1861,8 @@
                     case 'streak':
                         earned = streakDays >= badge.condition.days;
                         break;
+                    default:
+                        earned = true;
                 }
 
                 if (earned) {
@@ -1520,7 +1906,7 @@
                 
                 if (streakDays % 7 === 0) {
                     addXp(50);
-                    showCoachMessage(`🔥 ${streakDays} ${t('days')} ! +50 XP !`);
+                    showCoachMessage(`🔥 ${streakDays} jours ! +50 XP !`);
                 }
                 
                 checkBadges();
@@ -1603,9 +1989,9 @@
                 </div>
 
                 <div class="badges-section">
-                    <div class="badge earned" data-name="${t('badges.welcome')}">🎉</div>
-                    <div class="badge" data-name="${t('badges.survivor')}">🦊</div>
-                    <div class="badge" data-name="${t('badges.master')}">👑</div>
+                    <div class="badge earned">🎉</div>
+                    <div class="badge">🦊</div>
+                    <div class="badge">👑</div>
                 </div>
 
                 <button onclick="startJourney()">${t('start')}</button>
@@ -1613,11 +1999,14 @@
         }
 
         function startJourney() {
+            currentLesson = 1;
+            localStorage.setItem('currentLesson', '1');
             loadChapter(1);
         }
 
         function loadChapter(i) {
-            localStorage.setItem('currentLesson', i);
+            currentLesson = i;
+            localStorage.setItem('currentLesson', i.toString());
             
             if (i > 100) {
                 showCertificate();
@@ -1630,17 +2019,16 @@
             }
 
             const chapter = CHAPTERS[i];
-            const introMessage = INTRO_MESSAGES[currentLang] && INTRO_MESSAGES[currentLang][i] 
-                ? INTRO_MESSAGES[currentLang][i] 
-                : INTRO_MESSAGES.fr[i] || "Prêt pour ce chapitre ?";
+            const introMessage = (INTRO_MESSAGES[currentLang] && INTRO_MESSAGES[currentLang][i]) || 
+                                 INTRO_MESSAGES[currentLang]?.default || 
+                                 "Prêt pour ce chapitre ?";
             
-            const funFact = FUN_FACTS[currentLang][Math.floor(Math.random() * FUN_FACTS[currentLang].length)];
+            const funFact = (FUN_FACTS[currentLang] || FUN_FACTS.fr)[Math.floor(Math.random() * (FUN_FACTS[currentLang] || FUN_FACTS.fr).length)];
             
             document.getElementById('lesson-content').innerHTML = `
-                <!-- Bande défilante d'introduction -->
                 <div class="intro-ticker">
                     <div class="ticker-content">
-                        ${Array(5).fill(0).map(() => `
+                        ${Array(3).fill(0).map(() => `
                             <div class="ticker-item">
                                 <span>⭐</span>
                                 <span>${funFact}</span>
@@ -1650,21 +2038,16 @@
                     </div>
                 </div>
 
-                <!-- Carte d'introduction du coach -->
                 <div class="coach-intro-card">
-                    <div class="coach-intro-avatar">
-                        🦊
-                    </div>
+                    <div class="coach-intro-avatar">🦊</div>
                     <div class="coach-intro-text">
                         <h4>Coach Excelix</h4>
                         <p>${introMessage}</p>
-                        <div class="fun-fact">
-                            <i>💡</i> ${funFact}
-                        </div>
+                        <div class="fun-fact">💡 ${funFact}</div>
                     </div>
                 </div>
 
-                <span class="lesson-number">${t('chapter')} ${i}/100</span>
+                <span class="lesson-number">Chapitre ${i}/100</span>
                 <h2>${chapter.title}</h2>
                 
                 <div class="coach-box">
@@ -1680,38 +2063,33 @@
                 <div id="feedback" class="feedback"></div>
             `;
 
-            document.getElementById('answer-input').focus();
+            document.getElementById('answer-input')?.focus();
             showCoachMessage(introMessage);
         }
 
         function checkAnswer(i) {
-            const answer = document.getElementById('answer-input').value.trim().toUpperCase().replace(/,/g, ';');
-            const correct = CHAPTERS[i].answer.toUpperCase().replace(/,/g, ';');
+            const answer = document.getElementById('answer-input')?.value.trim().toUpperCase() || '';
+            const correct = CHAPTERS[i].answer.toUpperCase();
             const feedback = document.getElementById('feedback');
 
             if (answer === correct) {
                 if (!completedChapters.has(i)) {
                     completedChapters.add(i);
                     
-                    let xpGain = 10;
-                    if (i <= 10) xpGain = 10;
-                    else if (i <= 20) xpGain = 15;
-                    else if (i <= 50) xpGain = 20;
-                    else xpGain = 30;
-                    
+                    let xpGain = i <= 10 ? 10 : i <= 20 ? 15 : i <= 50 ? 20 : 30;
                     addXp(xpGain);
                     
                     feedback.className = 'feedback success';
                     feedback.innerHTML = `✅ ${t('correct')} +${xpGain} XP`;
                     
-                    showCoachMessage(t('success_message'));
+                    showCoachMessage("BOOM ! T'assures grave !");
                     
                     if (i === 10) {
-                        showCoachMessage(t('premium_unlock_message'));
+                        showCoachMessage("🔥 Tu débloques l'accès premium !");
                     }
                 } else {
                     feedback.className = 'feedback success';
-                    feedback.innerHTML = `✅ ${t('already_validated')}`;
+                    feedback.innerHTML = `✅ Déjà validé !`;
                 }
 
                 setTimeout(() => {
@@ -1724,7 +2102,7 @@
             } else {
                 feedback.className = 'feedback error';
                 feedback.innerHTML = `❌ ${t('incorrect')} ${CHAPTERS[i].answer}`;
-                showCoachMessage(t('error_message'));
+                showCoachMessage("Oups ! Pas grave, on recommence ?");
             }
         }
 
@@ -1740,7 +2118,6 @@
                     <div class="badge earned">🔥</div>
                     <div class="badge earned">📊</div>
                     <div class="badge">👑</div>
-                    <div class="badge">🚀</div>
                 </div>
                 
                 <div class="unlock-section">
@@ -1756,8 +2133,8 @@
                     <div style="margin-top: 30px;">
                         <p style="color: var(--text-muted); margin-bottom: 10px;">${t('getKey')}</p>
                         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                            <a href="https://wa.me/237677051062?text=Clé%20Excel%20pour%20${userName}" class="whatsapp-btn wa-1" target="_blank">📱 ${t('line1')}</a>
-                            <a href="https://wa.me/237659718567?text=Clé%20Excel%20pour%20${userName}" class="whatsapp-btn wa-2" target="_blank">📱 ${t('line2')}</a>
+                            <a href="https://wa.me/237677051062?text=Clé%20Excel%20pour%20${userName}" class="whatsapp-btn wa-1" target="_blank">📱 Ligne 1</a>
+                            <a href="https://wa.me/237659718567?text=Clé%20Excel%20pour%20${userName}" class="whatsapp-btn wa-2" target="_blank">📱 Ligne 2</a>
                         </div>
                     </div>
                 </div>
@@ -1769,24 +2146,23 @@
         }
 
         function unlockPremium() {
-            const name = document.getElementById('unlock-name').value.trim().toUpperCase();
-            const key = document.getElementById('unlock-key').value.trim().toUpperCase();
+            const name = document.getElementById('unlock-name')?.value.trim().toUpperCase() || userName.toUpperCase();
+            const key = document.getElementById('unlock-key')?.value.trim().toUpperCase() || '';
             
             const generatedKey = `EXL-${name}-2026`;
             
             if (key === generatedKey || key === MASTER_KEY) {
                 isPremium = true;
                 localStorage.setItem('excelPremium', 'true');
-                localStorage.setItem('userName', name || userName);
-                userName = name || userName;
+                localStorage.setItem('userName', name);
+                userName = name;
                 
                 if (!userBadges.includes('premium')) {
                     userBadges.push('premium');
                 }
                 
                 saveState();
-                
-                showCoachMessage(t('premium_success'));
+                showCoachMessage("🎉 FÉLICITATIONS ! Tu es maintenant membre PREMIUM !");
                 
                 let nextChapter = 11;
                 for (let i = 11; i <= 100; i++) {
@@ -1797,15 +2173,13 @@
                 }
                 loadChapter(nextChapter);
             } else {
-                alert(t('invalid_key'));
+                alert("❌ Clé invalide. Contacte-nous sur WhatsApp pour obtenir ta clé.");
             }
         }
 
         function showCertificate() {
             const today = new Date().toLocaleDateString(currentLang === 'fr' ? 'fr-FR' : 'en-US', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
+                day: 'numeric', month: 'long', year: 'numeric'
             });
             
             document.getElementById('lesson-content').innerHTML = `
@@ -1821,20 +2195,19 @@
                     </div>
                     
                     <div style="display: flex; justify-content: center; gap: 10px; margin: 30px 0;">
-                        <div class="badge earned" data-name="${t('badges.legend')}">⭐</div>
-                        <div class="badge earned" data-name="${t('badges.master')}">👑</div>
-                        <div class="badge earned" data-name="${t('badges.survivor')}">🦊</div>
+                        <div class="badge earned">⭐</div>
+                        <div class="badge earned">👑</div>
+                        <div class="badge earned">🦊</div>
                     </div>
                     
                     <div style="margin: 30px 0; font-size: 0.9rem;">
-                        ${t('level_reached')} <strong>${t('levelNames.' + userLevel)}</strong><br>
-                        ${t('total_xp')} <strong>${userXp}</strong><br>
-                        ${t('badges_count')} <strong>${userBadges.length}</strong>
+                        ${t('level')} <strong>${t('levelNames.' + userLevel)}</strong><br>
+                        XP total: <strong>${userXp}</strong>
                     </div>
                     
                     <div class="certificate-footer">
-                        <div>${t('issued_in')} Douala, ${today}</div>
-                        <div style="margin-top: 20px;">${t('certificate_number')} #${Math.random().toString(36).substring(2, 10).toUpperCase()}</div>
+                        <div>Douala, ${today}</div>
+                        <div style="margin-top: 20px;">#${Math.random().toString(36).substring(2, 10).toUpperCase()}</div>
                     </div>
                     
                     <button class="print-btn" onclick="window.print()">${t('print')}</button>
@@ -1845,39 +2218,384 @@
                 userBadges.push('legend');
                 saveState();
             }
+        }
+
+        // ============================================
+        // FONCTIONS ADMIN
+        // ============================================
+        
+        function toggleAdminMode() {
+            if (!isAdminMode) {
+                openModal('adminPasswordModal');
+            } else {
+                isAdminMode = false;
+                document.getElementById('sidebar').classList.remove('admin-mode');
+                document.getElementById('main').classList.remove('admin-mode');
+                showWelcome();
+            }
+        }
+
+        function checkAdminPassword() {
+            const password = document.getElementById('admin-password').value;
+            if (password === ADMIN_PASSWORD) {
+                isAdminMode = true;
+                document.getElementById('sidebar').classList.add('admin-mode');
+                document.getElementById('main').classList.add('admin-mode');
+                closeModal('adminPasswordModal');
+                showAdminDashboard();
+            } else {
+                alert("Mot de passe incorrect");
+            }
+        }
+
+        function showAdminDashboard() {
+            API.getStats().then(stats => {
+                API.getCourses().then(courses => {
+                    API.getUsers().then(users => {
+                        document.getElementById('lesson-content').innerHTML = `
+                            <div class="admin-dashboard">
+                                <h2 style="color: var(--primary); margin-bottom: 20px;">🔧 Administration</h2>
+                                
+                                <div class="admin-tabs">
+                                    <button class="admin-tab active" onclick="showAdminTab('dashboard')">📊 Dashboard</button>
+                                    <button class="admin-tab" onclick="showAdminTab('courses')">📚 Cours</button>
+                                    <button class="admin-tab" onclick="showAdminTab('create')">➕ Nouveau cours</button>
+                                    <button class="admin-tab" onclick="showAdminTab('students')">👥 Élèves</button>
+                                    <button class="admin-tab" onclick="showAdminTab('analytics')">📈 Analytics</button>
+                                    <button class="admin-tab" onclick="showAdminTab('api')">🔌 API</button>
+                                </div>
+                                
+                                <div id="admin-content">
+                                    ${renderAdminDashboard(stats, courses, users)}
+                                </div>
+                            </div>
+                        `;
+                    });
+                });
+            });
+        }
+
+        function renderAdminDashboard(stats, courses, users) {
+            return `
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Élèves</h3>
+                        <div class="value">${stats.totalStudents}</div>
+                        <small>${stats.activeStudents} actifs</small>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Cours</h3>
+                        <div class="value">${stats.totalCourses}</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Taux réussite</h3>
+                        <div class="value">${Math.round(stats.completionRate * 100)}%</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>API Status</h3>
+                        <div class="value" style="color: var(--success);">✓ Online</div>
+                    </div>
+                </div>
+                
+                <div class="courses-grid">
+                    ${courses.map(course => `
+                        <div class="course-card">
+                            <div class="course-header">
+                                <span class="course-icon">${course.icon}</span>
+                                <span class="course-status status-${course.status}">${course.status}</span>
+                            </div>
+                            <div class="course-title">${course.title}</div>
+                            <div class="course-stats">
+                                <span>👥 ${course.students}</span>
+                                <span>📖 ${course.lessons}</span>
+                                <span>📊 ${course.completion}%</span>
+                            </div>
+                            <div class="course-actions">
+                                <button class="small" onclick="editCourse(${course.id})">✏️</button>
+                                <button class="small secondary" onclick="viewCourse(${course.id})">👁️</button>
+                                <button class="small danger" onclick="deleteCourse(${course.id})">🗑️</button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <h3 style="color: var(--primary);">Points bloquants</h3>
+                    <div style="display: flex; gap: 20px;">
+                        ${stats.weakPoints.map(wp => `
+                            <div style="background: rgba(255,75,92,0.1); padding: 10px; border-radius: 5px;">
+                                ${wp.topic}: ${Math.round(wp.rate * 100)}% échec
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <h3 style="color: var(--primary);">Derniers élèves</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Progression</th>
+                                <th>Dernière activité</th>
+                            </tr>
+                            ${users.slice(0, 3).map(user => `
+                                <tr>
+                                    <td>${user.name}</td>
+                                    <td>${user.progress}%</td>
+                                    <td>${user.lastActive}</td>
+                                </tr>
+                            `).join('')}
+                        </table>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showAdminTab(tab) {
+            document.querySelectorAll('.admin-tab').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
             
-            showCoachMessage(t('congrats_message'));
+            const content = document.getElementById('admin-content');
+            
+            switch(tab) {
+                case 'dashboard':
+                    API.getStats().then(stats => {
+                        API.getCourses().then(courses => {
+                            API.getUsers().then(users => {
+                                content.innerHTML = renderAdminDashboard(stats, courses, users);
+                            });
+                        });
+                    });
+                    break;
+                    
+                case 'courses':
+                    API.getCourses().then(courses => {
+                        content.innerHTML = `
+                            <h3 style="color: var(--primary);">Liste des cours</h3>
+                            <div class="courses-grid">
+                                ${courses.map(course => `
+                                    <div class="course-card">
+                                        <div class="course-header">
+                                            <span class="course-icon">${course.icon}</span>
+                                            <span class="course-status status-${course.status}">${course.status}</span>
+                                        </div>
+                                        <div class="course-title">${course.title}</div>
+                                        <div class="course-stats">
+                                            <span>👥 ${course.students}</span>
+                                            <span>📖 ${course.lessons}</span>
+                                            <span>📊 ${course.completion}%</span>
+                                        </div>
+                                        <div class="course-actions">
+                                            <button class="small" onclick="editCourse(${course.id})">✏️ Éditer</button>
+                                            <button class="small secondary" onclick="viewCourse(${course.id})">👁️ Voir</button>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    });
+                    break;
+                    
+                case 'create':
+                    content.innerHTML = `
+                        <div class="editor-section">
+                            <h3>Créer un nouveau cours</h3>
+                            
+                            <div class="form-group">
+                                <label>Titre</label>
+                                <input type="text" id="new-course-title" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea id="new-course-desc" class="form-control"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Icône</label>
+                                <select id="new-course-icon" class="form-control">
+                                    <option>📊 Excel</option>
+                                    <option>🇬🇧 Anglais</option>
+                                    <option>💻 Code</option>
+                                </select>
+                            </div>
+                            
+                            <button onclick="createNewCourse()">Créer le cours</button>
+                        </div>
+                        
+                        <div class="editor-section">
+                            <h3>Leçons récentes</h3>
+                            <div class="lessons-list">
+                                ${lessons.slice(0, 3).map(lesson => `
+                                    <div class="lesson-item">
+                                        <span>${lesson.title}</span>
+                                        <div class="lesson-actions">
+                                            <button class="small">✏️</button>
+                                            <button class="small danger">🗑️</button>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <button class="secondary" onclick="openModal('lessonModal')">+ Nouvelle leçon</button>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'students':
+                    API.getUsers().then(users => {
+                        content.innerHTML = `
+                            <h3 style="color: var(--primary);">Liste des élèves</h3>
+                            <div class="table-responsive">
+                                <table>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Email</th>
+                                        <th>Progression</th>
+                                        <th>Dernière activité</th>
+                                    </tr>
+                                    ${users.map(user => `
+                                        <tr>
+                                            <td>${user.id}</td>
+                                            <td>${user.name}</td>
+                                            <td>${user.email}</td>
+                                            <td>${user.progress}%</td>
+                                            <td>${user.lastActive}</td>
+                                        </tr>
+                                    `).join('')}
+                                </table>
+                            </div>
+                        `;
+                    });
+                    break;
+                    
+                case 'analytics':
+                    API.getStats().then(stats => {
+                        content.innerHTML = `
+                            <h3 style="color: var(--primary);">Statistiques avancées</h3>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <h3>API Calls</h3>
+                                    <div class="value">1,234</div>
+                                </div>
+                                <div class="stat-card">
+                                    <h3>Base de données</h3>
+                                    <div class="value">PostgreSQL</div>
+                                </div>
+                            </div>
+                            <button class="secondary" onclick="openModal('statsModal')">Voir détails</button>
+                        `;
+                    });
+                    break;
+                    
+                case 'api':
+                    content.innerHTML = `
+                        <h3 style="color: var(--primary);">Documentation API</h3>
+                        <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 5px;">
+GET /api/users - Liste des utilisateurs
+GET /api/courses - Liste des cours
+POST /api/courses - Créer un cours
+GET /api/stats - Statistiques
+                        </pre>
+                        <div class="form-group">
+                            <label>API Key</label>
+                            <input type="text" value="sk_live_${Math.random().toString(36).substring(2, 10)}" readonly>
+                        </div>
+                    `;
+                    break;
+            }
+        }
+
+        function createNewCourse() {
+            const title = document.getElementById('new-course-title')?.value;
+            const desc = document.getElementById('new-course-desc')?.value;
+            const icon = document.getElementById('new-course-icon')?.value.split(' ')[0] || '📊';
+            
+            if (title) {
+                API.createCourse({
+                    title,
+                    description: desc,
+                    icon,
+                    lessons: 0,
+                    students: 0,
+                    completion: 0,
+                    status: 'draft'
+                }).then(() => {
+                    alert('Cours créé !');
+                    showAdminTab('courses');
+                });
+            }
+        }
+
+        function editCourse(id) {
+            alert(`Édition du cours ${id} (simulé)`);
+        }
+
+        function viewCourse(id) {
+            API.getCourse(id).then(course => {
+                alert(`Cours: ${course.title}\nLeçons: ${course.lessons}\nÉlèves: ${course.students}`);
+            });
+        }
+
+        function deleteCourse(id) {
+            if (confirm('Supprimer ce cours ?')) {
+                API.deleteCourse(id).then(() => {
+                    showAdminTab('courses');
+                });
+            }
+        }
+
+        function saveLesson() {
+            const title = document.getElementById('lesson-title')?.value;
+            const content = document.getElementById('lesson-content-input')?.value;
+            const xp = document.getElementById('lesson-xp')?.value;
+            
+            if (title) {
+                API.createLesson({
+                    courseId: 1,
+                    title,
+                    content,
+                    xp: parseInt(xp) || 10
+                }).then(() => {
+                    closeModal('lessonModal');
+                    alert('Leçon créée !');
+                });
+            }
+        }
+
+        // ============================================
+        // MODALS
+        // ============================================
+        
+        function openModal(modalId) {
+            document.getElementById(modalId)?.classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId)?.classList.remove('active');
         }
 
         // ============================================
         // INITIALISATION
         // ============================================
         
-        const BADGES = [
-            { id: 'welcome', name: 'Bienvenue', icon: '🎉', condition: { type: 'login' } },
-            { id: 'survivor', name: 'Survivant', icon: '🦊', condition: { type: 'level', level: 1 } },
-            { id: 'calculator', name: 'Calculator', icon: '🧮', condition: { type: 'lessons', count: 10 } },
-            { id: 'stylist', name: 'Artiste', icon: '🎨', condition: { type: 'lessons', count: 20 } },
-            { id: 'detective', name: 'Détective', icon: '🔍', condition: { type: 'challenges', count: 5 } },
-            { id: 'speedy', name: 'L\'éclair', icon: '⚡', condition: { type: 'speed' } },
-            { id: 'streak7', name: 'Habitué', icon: '🔥', condition: { type: 'streak', days: 7 } },
-            { id: 'streak30', name: 'Accro', icon: '💫', condition: { type: 'streak', days: 30 } },
-            { id: 'master', name: 'Maître', icon: '👑', condition: { type: 'level', level: 6 } },
-            { id: 'legend', name: 'Légende', icon: '⭐', condition: { type: 'level', level: 7 } }
-        ];
-
-        // Initialisation
-        checkStreak();
-        
-        // Appliquer la langue initiale
-        if (currentLang === 'ar') {
-            document.documentElement.setAttribute('dir', 'rtl');
-        }
-        updateUITexts();
-        updateUI();
-        
-        // Afficher l'écran d'accueil
-        showWelcome();
+        window.onload = function() {
+            checkStreak();
+            changeLanguage(currentLang);
+            updateUI();
+            
+            if (completedChapters.size > 0) {
+                let lastCompleted = Math.max(...Array.from(completedChapters));
+                if (lastCompleted < 100) {
+                    loadChapter(lastCompleted + 1);
+                } else {
+                    showCertificate();
+                }
+            } else {
+                showWelcome();
+            }
+        };
     </script>
 </body>
 </html>
