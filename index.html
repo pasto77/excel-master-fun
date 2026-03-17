@@ -3,222 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excel Master Fun | Solutions Techniques</title>
+    <title>Excel Master Fun | Formation Interactive</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #ffd700; --bg-dark: #1a1a2e; --card-bg: #16213e; --text: #e9ecef; --accent: #4ecca3; --danger: #ff4b5c; }
         body { font-family: 'Poppins', sans-serif; background-color: var(--bg-dark); color: var(--text); margin: 0; display: flex; height: 100vh; overflow: hidden; }
         
-        /* SIDEBAR */
-        #sidebar { width: 320px; background: var(--card-bg); border-right: 1px solid rgba(255,215,0,0.2); display: flex; flex-direction: column; box-shadow: 10px 0 20px rgba(0,0,0,0.3); z-index: 10; }
+        #sidebar { width: 320px; background: var(--card-bg); border-right: 1px solid rgba(255,215,0,0.2); display: flex; flex-direction: column; z-index: 10; }
         .brand { padding: 25px; text-align: center; border-bottom: 1px solid rgba(255,215,0,0.1); }
-        .brand h1 { font-size: 1.4rem; color: var(--primary); margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        .brand h1 { font-size: 1.2rem; color: var(--primary); margin: 0; text-transform: uppercase; letter-spacing: 1px; }
         #chapters-list { list-style: none; padding: 0; margin: 0; overflow-y: auto; flex-grow: 1; }
-        #chapters-list li { padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; display: flex; justify-content: space-between; font-size: 0.85rem; transition: 0.3s; }
+        #chapters-list li { padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; display: flex; justify-content: space-between; font-size: 0.8rem; transition: 0.3s; }
         #chapters-list li:hover { background: rgba(255,215,0,0.1); }
-        #chapters-list li.locked { opacity: 0.4; cursor: not-allowed; }
+        #chapters-list li.locked { opacity: 0.4; filter: grayscale(1); }
         #chapters-list li.completed { border-left: 5px solid var(--primary); background: rgba(78, 204, 163, 0.1); }
         
-        /* MAIN CONTENT */
         #main { flex-grow: 1; padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; background: radial-gradient(circle at center, #1b1b3a 0%, #1a1a2e 100%); }
-        .progress-container { position: absolute; top: 30px; width: 70%; background: rgba(255,255,255,0.1); height: 10px; border-radius: 5px; overflow: hidden; }
+        .progress-container { position: absolute; top: 30px; width: 70%; background: rgba(255,255,255,0.1); height: 8px; border-radius: 4px; overflow: hidden; }
         #progress-bar { height: 100%; background: var(--primary); width: 0%; transition: width 0.4s; }
-        .card { background: var(--card-bg); padding: 40px; border-radius: 24px; width: 100%; max-width: 600px; box-shadow: 0 25px 50px rgba(0,0,0,0.4); text-align: center; border: 1px solid rgba(255,255,255,0.05); }
-        .coach-box { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 16px; margin: 25px 0; font-style: italic; border-left: 4px solid var(--primary); line-height: 1.6; font-size: 1.1rem; }
-        input { width: 80%; padding: 12px; background: #0a0a1a; border: 2px solid rgba(255,215,0,0.2); border-radius: 8px; color: white; margin-bottom: 15px; text-align: center; font-size: 1.1rem; }
-        button { background: var(--primary); color: #000; border: none; padding: 14px 30px; font-weight: 700; border-radius: 10px; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
-        button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,215,0,0.3); }
         
-        .lang-switch { position: absolute; top: 25px; right: 30px; }
-        .lang-switch button { background: none; color: var(--primary); border: 1px solid var(--primary); padding: 5px 10px; margin-left: 5px; font-size: 0.7rem; }
+        .card { background: var(--card-bg); padding: 35px; border-radius: 20px; width: 100%; max-width: 550px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); text-align: center; border: 1px solid rgba(255,215,0,0.1); }
+        .coach-box { background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; margin: 20px 0; font-style: italic; border-left: 4px solid var(--primary); line-height: 1.5; font-size: 1rem; }
         
-        .whatsapp-btn { display: block; text-decoration: none; color: white; padding: 12px; border-radius: 8px; margin-top: 10px; font-weight: bold; font-size: 0.9rem; transition: 0.3s; }
-        .wa-1 { background: #25D366; }
-        .wa-2 { background: #075E54; }
+        input { width: 85%; padding: 12px; background: #0a0a1a; border: 2px solid rgba(255,215,0,0.3); border-radius: 8px; color: white; margin-bottom: 15px; text-align: center; font-size: 1rem; font-weight: bold; }
+        button { background: var(--primary); color: #000; border: none; padding: 12px 25px; font-weight: 700; border-radius: 8px; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+        button:hover { transform: scale(1.05); }
+        
+        .whatsapp-btn { display: block; text-decoration: none; color: white; padding: 10px; border-radius: 6px; margin-top: 8px; font-size: 0.8rem; font-weight: bold; }
+        .wa-1 { background: #25D366; } .wa-2 { background: #075E54; }
 
-        .certificate { background: white; color: #333; padding: 50px; border: 15px double var(--primary); text-align: center; }
+        .certificate { background: white; color: #333; padding: 40px; border: 12px double var(--primary); text-align: center; border-radius: 0; }
         @media print { body * { visibility: hidden; } .certificate, .certificate * { visibility: visible; } .certificate { position: absolute; left: 0; top: 0; width: 100%; border: none; } }
     </style>
 </head>
 <body>
 
     <div id="sidebar">
-        <div class="brand"><h1>Excel Master</h1><small>Solutions Interactives</small></div>
+        <div class="brand"><h1>Excel Master Fun</h1><small>Solution Interactive</small></div>
         <ul id="chapters-list"></ul>
-        <div style="padding:20px; border-top:1px solid rgba(255,215,0,0.1); margin-top:auto; text-align:center;">
-            <p style="font-size:0.7rem; opacity:0.6; margin-bottom:5px;">Assistance Technique :</p>
-            <p style="font-size:0.8rem; color:var(--primary); font-weight:bold; margin:2px 0;">677 05 10 62</p>
-            <p style="font-size:0.8rem; color:var(--primary); font-weight:bold; margin:2px 0;">659 71 85 67</p>
+        <div style="padding:15px; border-top:1px solid rgba(255,215,0,0.1); text-align:center;">
+            <p style="font-size:0.6rem; opacity:0.6; margin:0;">Contact Support :</p>
+            <p style="font-size:0.75rem; color:var(--primary); font-weight:bold; margin:0;">677 05 10 62 / 659 71 85 67</p>
         </div>
     </div>
 
     <div id="main">
-        <div class="lang-switch">
-            <button onclick="changeLanguage('fr')">FR</button>
-            <button onclick="changeLanguage('en')">EN</button>
-        </div>
         <div class="progress-container"><div id="progress-bar"></div></div>
         <div id="lesson-content" class="card">
-            <h2 id="welcome-title">Chargement...</h2>
-            <p id="welcome-desc"></p>
-            <button onclick="loadChapter(1)" id="start-btn">Démarrer</button>
+            <h2>Bienvenue !</h2>
+            <p>Prêt à transformer Excel en jeu d'enfant ?</p>
+            <button onclick="loadChapter(1)">Commencer l'aventure</button>
         </div>
     </div>
 
     <script>
         const list = document.getElementById('chapters-list');
         const display = document.getElementById('lesson-content');
-
-        // --- SÉCURITÉ : CLÉ MAÎTRE (PLAN B) ---
         const MASTER_KEY_PLAN_B = "EXCEL-PRO-99"; 
         
-        let currentLang = localStorage.getItem('excelLang') || 'fr';
         let isPremium = localStorage.getItem('excelPremium') === 'true';
         let userName = localStorage.getItem('userName') || "Apprenant";
         let completedChapters = new Set(JSON.parse(localStorage.getItem('excelProgress') || '[]'));
 
-        const translations = {
-            fr: {
-                welcome: "Atteignez l'Excellence",
-                desc: "50 étapes interactives pour maîtriser Excel de A à Z.",
-                start: "Commencer le parcours",
-                unlockTitle: "🔓 Version Premium",
-                unlockDesc: "Entrez votre nom et votre clé pour débloquer les modules 11 à 50.",
-                btnActivate: "Activer l'accès",
-                hint: "Indice : ",
-                certTitle: "CERTIFICAT DE MAÎTRISE",
-                certMsg: "Décerné pour la validation complète des 50 paliers techniques.",
-                chapters: {
-                    1: { t: "Les Fondations", c: "Une cellule est l'adresse de vos données (ex: A1).", r: "C'est parti !" },
-                    6: { t: "Défi : La Moyenne", c: "Formule pour la moyenne de A1 à A10 ?", quiz: true, ans: "=MOYENNE(A1:A10)", r: "Parfait !" },
-                    11: { t: "RECHERCHEV (Premium)", c: "Cherche A1 dans D1:E10, colonne 2, correspondance exacte ?", quiz: true, ans: "=RECHERCHEV(A1;D1:E10;2;0)", r: "Expert !" },
-                    50: { t: "Étape Finale", c: "Raccourci clavier universel pour Sauvegarder ?", quiz: true, ans: "CTRL+S", r: "FÉLICITATIONS MAÎTRE !" }
-                }
-            },
-            en: {
-                welcome: "Reach Excellence",
-                desc: "50 interactive steps to master Excel from A to Z.",
-                start: "Start Journey",
-                unlockTitle: "🔓 Premium Version",
-                unlockDesc: "Enter your name and key to unlock modules 11 to 50.",
-                btnActivate: "Activate Access",
-                hint: "Hint: ",
-                certTitle: "CERTIFICATE OF MASTERY",
-                certMsg: "Awarded for the complete validation of 50 technical levels.",
-                chapters: {
-                    1: { t: "Foundations", c: "A cell is your data's address (e.g., A1).", r: "Let's go!" },
-                    6: { t: "Challenge: Average", c: "Formula for average of A1 to A10 ?", quiz: true, ans: "=AVERAGE(A1:A10)", r: "Perfect!" },
-                    50: { t: "Final Step", c: "Universal keyboard shortcut to Save ?", quiz: true, ans: "CTRL+S", r: "CONGRATULATIONS MASTER!" }
-                }
-            }
+        const chaptersData = {
+            1: { t: "Les Cellules", c: "Une cellule est l'adresse de vos données (ex: A1). Tapez OK pour commencer.", ans: "OK" },
+            2: { t: "Sélectionner Tout", c: "Quel raccourci clavier permet de tout sélectionner dans un tableau ?", ans: "CTRL+A" },
+            3: { t: "La Somme rapide", c: "Écrivez la formule pour additionner de A1 à A10.", ans: "=SOMME(A1:A10)" },
+            4: { t: "Soustraction", c: "Calculer A1 moins B1 ?", ans: "=A1-B1" },
+            5: { t: "Multiplication", c: "Quel signe utilise-t-on pour multiplier (A1 fois A2) ?", ans: "=A1*A2" },
+            6: { t: "Division", c: "Quel signe utilise-t-on pour diviser (A1 par B1) ?", ans: "=A1/B1" },
+            7: { t: "La Moyenne", c: "Formule pour la moyenne de B1 à B5 ?", ans: "=MOYENNE(B1:B5)" },
+            8: { t: "Le Minimum", c: "Trouver la plus petite valeur entre A1 et A20 ?", ans: "=MIN(A1:A20)" },
+            9: { t: "Le Maximum", c: "Trouver la plus grande valeur entre A1 et A20 ?", ans: "=MAX(A1:A20)" },
+            10: { t: "Le Format Gras", c: "Quel raccourci pour mettre en gras ?", ans: "CTRL+G" },
+            
+            // PREMIUM
+            11: { t: "RECHERCHEV", c: "Chercher A1 dans D1:E10, colonne 2, correspondance exacte ?", ans: "=RECHERCHEV(A1;D1:E10;2;0)" },
+            12: { t: "La Fonction SI", c: "Si A1 > 10, afficher 'OK', sinon 'NO' ?", ans: '=SI(A1>10;"OK";"NO")' },
+            13: { t: "Nb.Si", c: "Compter combien de cellules entre A1 et A10 contiennent 'OUI' ?", ans: '=NB.SI(A1:A10;"OUI")' },
+            14: { t: "Somme.Si", c: "Additionner A1:A10 si B1:B10 égale 'Vente' ?", ans: '=SOMME.SI(B1:B10;"Vente";A1:A10)' },
+            15: { t: "Figer les Volets", c: "Reste-t-on sur l'onglet 'Affichage' pour figer ? (OUI/NON)", ans: "OUI" },
+            16: { t: "Concaténer", c: "Lier le texte de A1 et B1 avec un signe ?", ans: "=A1&B1" },
+            17: { t: "MAJUSCULE", c: "Mettre le texte de A1 tout en majuscules ?", ans: "=MAJUSCULE(A1)" },
+            18: { t: "MINUSCULE", c: "Mettre le texte de A1 tout en minuscules ?", ans: "=MINUSCULE(A1)" },
+            19: { t: "NOMPROPRE", c: "Mettre la première lettre de A1 en majuscule ?", ans: "=NOMPROPRE(A1)" },
+            20: { t: "NBCAR", c: "Compter le nombre de caractères dans A1 ?", ans: "=NBCAR(A1)" },
+            21: { t: "GAUCHE", c: "Extraire les 3 premiers caractères de A1 ?", ans: "=GAUCHE(A1;3)" },
+            22: { t: "DROITE", c: "Extraire les 3 derniers caractères de A1 ?", ans: "=DROITE(A1;3)" },
+            23: { t: "AUJOURDHUI", c: "Afficher la date du jour automatiquement ?", ans: "=AUJOURDHUI()" },
+            24: { t: "Maintenant", c: "Afficher la date ET l'heure actuelle ?", ans: "=MAINTENANT()" },
+            25: { t: "Filtre rapide", c: "Quel raccourci pour activer les filtres ?", ans: "CTRL+MAJ+L" },
+            26: { t: "Supprimer Doublons", c: "Onglet où se trouve 'Supprimer les doublons' ?", ans: "DONNEES" },
+            27: { t: "Validation de Données", c: "Créer une liste déroulante se trouve dans quel onglet ?", ans: "DONNEES" },
+            28: { t: "Tableau Croisé Dyn.", c: "Quel onglet pour insérer un TCD ?", ans: "INSERER" },
+            29: { t: "SIERREUR", c: "Si A1/B1 fait erreur, afficher 0 ?", ans: "=SIERREUR(A1/B1;0)" },
+            30: { t: "ESTVIDE", c: "Vérifier si la cellule A1 est vide ?", ans: "=ESTVIDE(A1)" },
+            31: { t: "ARRONDI", c: "Arrondir A1 à 2 chiffres après la virgule ?", ans: "=ARRONDI(A1;2)" },
+            32: { t: "ENT", c: "Garder uniquement la partie entière de A1 ?", ans: "=ENT(A1)" },
+            33: { t: "Remplissage instantané", c: "Raccourci pour le remplissage éclair ?", ans: "CTRL+E" },
+            34: { t: "Nouvelle Feuille", c: "Raccourci pour créer une feuille (Shift + F?) ?", ans: "F11" },
+            35: { t: "Commentaire", c: "Raccourci pour insérer un commentaire (Shift + F?) ?", ans: "F2" },
+            36: { t: "Rechercher", c: "Raccourci pour Rechercher un mot ?", ans: "CTRL+F" },
+            37: { t: "Remplacer", c: "Raccourci pour Remplacer un mot ?", ans: "CTRL+H" },
+            38: { t: "Format Date", c: "Raccourci pour format Date (Ctrl+Maj+#) ? Tapez OK", ans: "OK" },
+            39: { t: "Mise en Forme Cond.", c: "Changer la couleur selon la valeur ? (Tapez MFC)", ans: "MFC" },
+            40: { t: "Graphique Rapide", c: "Touche pour créer un graphique instantané ?", ans: "F11" },
+            41: { t: "INDIRECT", c: "Transformer du texte en référence de cellule ?", ans: "=INDIRECT(A1)" },
+            42: { t: "NB.VIDE", c: "Compter les cellules vides entre A1 et A10 ?", ans: "=NB.VIDE(A1:A10)" },
+            43: { t: "ANNEE", c: "Extraire l'année d'une date en A1 ?", ans: "=ANNEE(A1)" },
+            44: { t: "MOIS", c: "Extraire le numéro du mois d'une date en A1 ?", ans: "=MOIS(A1)" },
+            45: { t: "JOUR", c: "Extraire le jour d'une date en A1 ?", ans: "=JOUR(A1)" },
+            46: { t: "CHOISIR", c: "Choisir la 2ème valeur d'une liste ?", ans: "=CHOISIR(2;A1;A2;A3)" },
+            47: { t: "TRANSPOSE", c: "Basculer lignes et colonnes ? (Tapez OK)", ans: "OK" },
+            48: { t: "Protéger Feuille", c: "Onglet pour verrouiller la feuille ?", ans: "REVISION" },
+            49: { t: "Macro (Développeur)", c: "Langage utilisé pour les Macros ?", ans: "VBA" },
+            50: { t: "SAUVEGARDE", c: "Dernier test : Raccourci pour Sauvegarder ?", ans: "CTRL+S" }
         };
-
-        function changeLanguage(l) { localStorage.setItem('excelLang', l); location.reload(); }
 
         function unlockPremium() {
             const n = document.getElementById('name-input').value.trim().toUpperCase();
             const k = document.getElementById('key-input').value.trim().toUpperCase();
-            const planA = "EXL-" + n + "-2026";
-
-            if (k === planA && n !== "") { activate(n); } 
-            else if (k === MASTER_KEY_PLAN_B) { activate(n || "Expert"); } 
-            else { alert("Clé ou nom incorrect."); }
-        }
-
-        function activate(name) {
-            localStorage.setItem('excelPremium', 'true');
-            localStorage.setItem('userName', name);
-            alert("Accès Premium activé !");
-            location.reload();
+            if (k === "EXL-" + n + "-2026" || k === MASTER_KEY_PLAN_B) {
+                localStorage.setItem('excelPremium', 'true');
+                localStorage.setItem('userName', n || "Expert");
+                location.reload();
+            } else { alert("Clé invalide."); }
         }
 
         function showUnlockScreen() {
-            const lang = translations[currentLang];
             display.innerHTML = `
                 <div class="card">
-                    <h2>${lang.unlockTitle}</h2>
-                    <p>${lang.unlockDesc}</p>
+                    <h2>🔓 Accès Premium</h2>
+                    <p>Débloquez les 50 modules et obtenez votre certificat.</p>
                     <input type="text" id="name-input" placeholder="VOTRE NOM">
                     <input type="text" id="key-input" placeholder="CLÉ D'ACTIVATION">
-                    <br><button onclick="unlockPremium()">${lang.btnActivate}</button>
-                    
-                    <div style="margin-top:25px; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px;">
-                        <p style="font-size:0.8rem; margin-bottom:15px;">Obtenir une clé via WhatsApp :</p>
-                        <a href="https://wa.me/237677051062?text=Bonjour,%20je%20souhaite%20une%20cl%C3%A9%20Excel%20Master" class="whatsapp-btn wa-1" target="_blank">WhatsApp Ligne 1</a>
-                        <a href="https://wa.me/237659718567?text=Bonjour,%20je%20souhaite%20une%20cl%C3%A9%20Excel%20Master" class="whatsapp-btn wa-2" target="_blank">WhatsApp Ligne 2</a>
+                    <br><button onclick="unlockPremium()">Activer</button>
+                    <div style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.1); padding-top:15px;">
+                        <p style="font-size:0.75rem;">Obtenir une clé via WhatsApp :</p>
+                        <a href="https://wa.me/237677051062?text=Clé%20Excel" class="whatsapp-btn wa-1" target="_blank">Ligne 1 (677051062)</a>
+                        <a href="https://wa.me/237659718567?text=Clé%20Excel" class="whatsapp-btn wa-2" target="_blank">Ligne 2 (659718567)</a>
                     </div>
                 </div>
             `;
         }
 
         function loadChapter(i) {
-            const lang = translations[currentLang];
             if (i > 10 && !isPremium) { showUnlockScreen(); return; }
             if (i > 50) { showDiploma(); return; }
-
-            const ch = lang.chapters[i] || { t: `Module ${i}`, c: "Analyse d'une fonction technique avancée...", quiz: true, ans: "OK", r: "Étape validée" };
+            const ch = chaptersData[i];
+            display.innerHTML = `<h2>${i}. ${ch.t}</h2><div class="coach-box">${ch.c}</div>
+                <input type="text" id="q-in" autofocus placeholder="Réponse..."><br>
+                <button id="q-bt">Vérifier</button><p id="fb"></p>`;
             
-            display.innerHTML = `<h2>${ch.t}</h2><div class="coach-box">${ch.c}</div>`;
-            
-            if (ch.quiz) {
-                display.innerHTML += `<input type="text" id="q-in" autofocus placeholder="Réponse ici..."><br><button id="q-bt">Vérifier</button><p id="fb"></p>`;
-                document.getElementById('q-bt').onclick = () => {
-                    const val = document.getElementById('q-in').value.trim().toUpperCase().replace(/,/g, ';');
-                    const ans = ch.ans.toUpperCase().replace(/,/g, ';');
-                    if (val === ans || ch.ans === "OK") {
-                        completedChapters.add(i); updateUI();
-                        document.getElementById('fb').innerHTML = `<span style="color:var(--accent)">${ch.r}</span>`;
-                        setTimeout(() => loadChapter(i+1), 1200);
-                    } else {
-                        document.getElementById('fb').innerHTML = `<span style="color:var(--danger)">${lang.hint} ${ch.ans}</span>`;
-                    }
-                };
-            } else {
-                display.innerHTML += `<button onclick="markDone(${i})">Continuer</button>`;
-            }
+            document.getElementById('q-bt').onclick = () => {
+                const val = document.getElementById('q-in').value.trim().toUpperCase().replace(/,/g, ';');
+                if (val === ch.ans.toUpperCase().replace(/,/g, ';')) {
+                    completedChapters.add(i); updateUI();
+                    document.getElementById('fb').innerHTML = `<span style="color:var(--accent)">Excellent !</span>`;
+                    setTimeout(() => loadChapter(i+1), 800);
+                } else {
+                    document.getElementById('fb').innerHTML = `<span style="color:var(--danger)">Indice: ${ch.ans}</span>`;
+                }
+            };
         }
 
-        function markDone(i) { completedChapters.add(i); updateUI(); loadChapter(i+1); }
-
         function showDiploma() {
-            const lang = translations[currentLang];
-            display.innerHTML = `
-                <div class="certificate">
-                    <h1 style="color:goldenrod">🏆</h1>
-                    <h2>${lang.certTitle}</h2>
-                    <p>${lang.certMsg}</p>
-                    <h3 style="border-bottom: 2px solid #333; display: inline-block; padding: 10px 40px;">${userName}</h3>
-                    <br><br><button onclick="window.print()">Imprimer mon Certificat</button>
-                </div>
-            `;
+            display.innerHTML = `<div class="certificate"><h1>🏆</h1><h2>CERTIFICAT DE MAÎTRISE</h2>
+                <p>Décerné à :</p><h3 style="border-bottom:2px solid #333; display:inline-block; padding:0 30px;">${userName}</h3>
+                <p>Pour avoir validé les 50 paliers techniques Excel Master.</p>
+                <button onclick="window.print()">Imprimer</button></div>`;
         }
 
         function updateUI() {
-            const prog = (completedChapters.size / 50) * 100;
-            document.getElementById('progress-bar').style.width = prog + "%";
+            document.getElementById('progress-bar').style.width = (completedChapters.size / 50 * 100) + "%";
             localStorage.setItem('excelProgress', JSON.stringify(Array.from(completedChapters)));
             renderList();
         }
 
         function renderList() {
-            const lang = translations[currentLang];
             list.innerHTML = "";
             for (let i = 1; i <= 50; i++) {
                 const locked = i > 10 && !isPremium;
-                const ch = lang.chapters[i] || { t: `Module ${i}` };
                 const li = document.createElement('li');
-                li.innerHTML = `<span>${i}. ${ch.t}</span> <span>${locked ? '🔒' : ''}</span>`;
+                li.innerHTML = `<span>${i}. ${chaptersData[i].t}</span> <span>${locked ? '🔒' : ''}</span>`;
                 if (locked) li.className = "locked";
                 if (completedChapters.has(i)) li.className = "completed";
                 li.onclick = () => loadChapter(i);
                 list.appendChild(li);
             }
         }
-
-        const langInit = translations[currentLang];
-        document.getElementById('welcome-title').innerText = langInit.welcome;
-        document.getElementById('welcome-desc').innerText = langInit.desc;
-        document.getElementById('start-btn').innerText = langInit.start;
         updateUI();
     </script>
 </body>
