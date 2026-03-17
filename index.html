@@ -32,7 +32,6 @@
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        /* Styles RTL pour arabe */
         html[dir="rtl"] {
             text-align: right;
         }
@@ -40,54 +39,6 @@
         html[dir="rtl"] .coach-bubble::after {
             right: auto;
             left: 20px;
-        }
-
-        html[dir="rtl"] .chapter-number {
-            margin-right: 0;
-            margin-left: 10px;
-        }
-
-        html[dir="rtl"] #sidebar {
-            border-right: none;
-            border-left: 2px solid var(--border);
-        }
-
-        html[dir="rtl"] #chapters-list li.completed {
-            border-left: none;
-            border-right: 4px solid var(--secondary);
-        }
-
-        html[dir="rtl"] .language-selector {
-            right: auto;
-            left: 20px;
-        }
-
-        html[dir="rtl"] .coach-container {
-            right: auto;
-            left: 30px;
-        }
-
-        html[dir="rtl"] .coach-bubble {
-            border-radius: 20px 20px 20px 5px;
-        }
-
-        html[dir="rtl"] .coach-bubble::after {
-            right: auto;
-            left: 20px;
-        }
-
-        html[dir="rtl"] .coach-avatar {
-            justify-content: flex-start;
-        }
-
-        html[dir="rtl"] .coach-box {
-            border-left: none;
-            border-right: 5px solid var(--primary);
-        }
-
-        html[dir="rtl"] .coach-box::before {
-            left: auto;
-            right: 15px;
         }
 
         body {
@@ -113,48 +64,18 @@
             position: relative;
         }
 
-        /* Mode Admin Toggle (secret) */
-        .admin-toggle {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,215,0,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-            border: 1px solid var(--border);
-            transition: 0.3s;
-        }
-
-        .admin-toggle:hover {
-            background: var(--primary);
-            color: #000;
-        }
-
-        html[dir="rtl"] .admin-toggle {
-            right: auto;
-            left: 10px;
-        }
-
-        /* Sidebar */
         #sidebar {
             width: 320px;
             background: linear-gradient(180deg, var(--bg-card) 0%, #0f1a2f 100%);
             border-right: 2px solid var(--border);
             display: flex;
             flex-direction: column;
-            position: relative;
             overflow: hidden;
-            transition: 0.3s;
         }
 
-        #sidebar.admin-mode {
-            filter: hue-rotate(90deg);
+        html[dir="rtl"] #sidebar {
+            border-right: none;
+            border-left: 2px solid var(--border);
         }
 
         .brand {
@@ -177,7 +98,6 @@
         .brand small {
             color: var(--text-muted);
             font-size: 0.8rem;
-            letter-spacing: 1px;
         }
 
         .user-info {
@@ -215,13 +135,6 @@
             background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
             width: 0%;
             transition: width 0.3s ease;
-            border-radius: 4px;
-        }
-
-        .xp-text {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            text-align: right;
         }
 
         .badges-preview {
@@ -241,13 +154,11 @@
             justify-content: center;
             font-size: 0.8rem;
             border: 1px solid var(--border);
-            transition: 0.3s;
         }
 
         .badge-mini.earned {
             background: var(--primary);
             color: #000;
-            border-color: var(--primary);
         }
 
         .chapters-header {
@@ -256,7 +167,6 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border);
-            background: rgba(0, 0, 0, 0.1);
         }
 
         .chapters-header h3 {
@@ -292,17 +202,10 @@
             align-items: center;
             font-size: 0.85rem;
             transition: all 0.2s;
-            position: relative;
         }
 
         #chapters-list li:hover {
             background: rgba(255, 215, 0, 0.1);
-            padding-left: 25px;
-        }
-
-        html[dir="rtl"] #chapters-list li:hover {
-            padding-left: 20px;
-            padding-right: 25px;
         }
 
         #chapters-list li.completed {
@@ -310,89 +213,11 @@
             border-left: 4px solid var(--secondary);
         }
 
-        #chapters-list li.locked {
-            opacity: 0.4;
-            filter: grayscale(0.8);
-            pointer-events: none;
+        html[dir="rtl"] #chapters-list li.completed {
+            border-left: none;
+            border-right: 4px solid var(--secondary);
         }
 
-        .chapter-number {
-            font-weight: 600;
-            color: var(--primary);
-            margin-right: 10px;
-        }
-
-        .chapter-title {
-            flex: 1;
-        }
-
-        .chapter-status {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-        }
-
-        .chapter-status.completed {
-            background: var(--secondary);
-            color: #000;
-        }
-
-        .sidebar-footer {
-            padding: 15px;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        .contact-text {
-            font-size: 0.6rem;
-            opacity: 0.6;
-        }
-
-        .contact-phone {
-            font-size: 0.8rem;
-            color: var(--primary);
-            font-weight: 700;
-            margin: 3px 0;
-        }
-
-        /* Language selector */
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 70px;
-            z-index: 1000;
-            display: flex;
-            gap: 5px;
-        }
-
-        .lang-btn {
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .lang-btn.active {
-            background: var(--primary);
-            color: #000;
-            border-color: var(--primary);
-        }
-
-        .lang-btn:hover {
-            background: rgba(255, 215, 0, 0.3);
-        }
-
-        /* Main content */
         #main {
             flex-grow: 1;
             padding: 30px;
@@ -405,10 +230,6 @@
                         radial-gradient(circle at 70% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
                         var(--bg-dark);
             overflow-y: auto;
-        }
-
-        #main.admin-mode {
-            filter: hue-rotate(90deg);
         }
 
         .progress-container {
@@ -427,121 +248,37 @@
             background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
             width: 0%;
             transition: width 0.4s ease;
-            border-radius: 4px;
-            position: relative;
         }
 
-        #progress-bar::after {
-            content: '';
+        .language-selector {
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 10px;
-            height: 100%;
-            background: white;
-            filter: blur(5px);
-            animation: scan 2s infinite;
-        }
-
-        @keyframes scan {
-            0% { right: 0; opacity: 0; }
-            50% { opacity: 1; }
-            100% { right: 100%; opacity: 0; }
-        }
-
-        /* Bande défilante d'introduction */
-        .intro-ticker {
-            width: 100%;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-            color: #000;
-            padding: 12px 0;
-            border-radius: 50px;
-            margin-bottom: 25px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-        }
-
-        .ticker-content {
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
             display: flex;
-            animation: ticker 15s linear infinite;
-            white-space: nowrap;
+            gap: 5px;
         }
 
-        .ticker-item {
-            display: inline-flex;
-            align-items: center;
-            padding: 0 30px;
-            font-weight: 600;
-            font-size: 1rem;
+        html[dir="rtl"] .language-selector {
+            right: auto;
+            left: 20px;
         }
 
-        .ticker-item span {
-            margin: 0 10px;
-        }
-
-        @keyframes ticker {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Cartes d'introduction du coach */
-        .coach-intro-card {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(78, 204, 163, 0.1) 100%);
-            border: 2px solid var(--primary);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            animation: slideIn 0.5s;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(-20px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        .coach-intro-avatar {
-            width: 80px;
-            height: 80px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            border: 3px solid var(--secondary);
-            box-shadow: 0 0 20px var(--primary);
-        }
-
-        .coach-intro-text {
-            flex: 1;
-        }
-
-        .coach-intro-text h4 {
-            color: var(--primary);
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-        }
-
-        .coach-intro-text p {
+        .lang-btn {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--border);
             color: var(--text);
-            font-size: 1rem;
-            line-height: 1.5;
-            font-style: italic;
-        }
-
-        .fun-fact {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: var(--secondary);
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
             font-weight: 600;
+            transition: 0.3s;
         }
 
-        .fun-fact i {
-            margin-right: 5px;
+        .lang-btn.active {
+            background: var(--primary);
+            color: #000;
         }
 
         .coach-container {
@@ -549,6 +286,11 @@
             bottom: 30px;
             right: 30px;
             z-index: 100;
+        }
+
+        html[dir="rtl"] .coach-container {
+            right: auto;
+            left: 30px;
         }
 
         .coach-bubble {
@@ -561,6 +303,10 @@
             margin-bottom: 10px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             animation: float 3s infinite ease-in-out;
+        }
+
+        html[dir="rtl"] .coach-bubble {
+            border-radius: 20px 20px 20px 5px;
         }
 
         @keyframes float {
@@ -580,10 +326,9 @@
             border-top: 10px solid var(--primary);
         }
 
-        .coach-message {
-            font-size: 0.9rem;
-            color: var(--text);
-            font-style: italic;
+        html[dir="rtl"] .coach-bubble::after {
+            right: auto;
+            left: 20px;
         }
 
         .coach-avatar {
@@ -591,12 +336,15 @@
             justify-content: flex-end;
         }
 
+        html[dir="rtl"] .coach-avatar {
+            justify-content: flex-start;
+        }
+
         .coach-avatar img {
             width: 60px;
             height: 60px;
             border-radius: 50%;
             border: 3px solid var(--primary);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
             cursor: pointer;
             transition: 0.3s;
         }
@@ -637,15 +385,64 @@
             text-align: center;
         }
 
-        .lesson-number {
-            display: inline-block;
-            background: var(--primary);
+        .intro-ticker {
+            width: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
             color: #000;
-            padding: 5px 15px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+            padding: 12px 0;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .ticker-content {
+            display: flex;
+            animation: ticker 15s linear infinite;
+            white-space: nowrap;
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 30px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .coach-intro-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(78, 204, 163, 0.1) 100%);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            animation: slideIn 0.5s;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .coach-intro-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            border: 3px solid var(--secondary);
         }
 
         .coach-box {
@@ -659,6 +456,11 @@
             position: relative;
         }
 
+        html[dir="rtl"] .coach-box {
+            border-left: none;
+            border-right: 5px solid var(--primary);
+        }
+
         .coach-box::before {
             content: '"';
             position: absolute;
@@ -667,14 +469,14 @@
             font-size: 4rem;
             color: var(--primary);
             opacity: 0.3;
-            font-family: serif;
         }
 
-        .input-group {
-            margin: 20px 0;
+        html[dir="rtl"] .coach-box::before {
+            left: auto;
+            right: 15px;
         }
 
-        input, textarea, select {
+        input, select, textarea {
             width: 100%;
             padding: 15px;
             background: rgba(10, 10, 26, 0.8);
@@ -682,21 +484,11 @@
             border-radius: 12px;
             color: white;
             font-size: 1rem;
-            font-weight: 500;
             transition: 0.3s;
+            margin-bottom: 15px;
         }
 
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        select option {
-            background: var(--bg-card);
-            color: var(--text);
-        }
-
-        input:focus, textarea:focus, select:focus {
+        input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
@@ -716,6 +508,7 @@
             width: 100%;
             font-size: 1rem;
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            margin: 5px 0;
         }
 
         button:hover {
@@ -723,37 +516,51 @@
             box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
         }
 
-        button:active {
-            transform: translateY(0);
-        }
-
         button.secondary {
             background: var(--secondary);
             box-shadow: 0 5px 15px rgba(78, 204, 163, 0.3);
         }
 
-        button.danger {
-            background: var(--danger);
-            box-shadow: 0 5px 15px rgba(255, 75, 92, 0.3);
+        .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
-        button.small {
-            padding: 8px 15px;
-            font-size: 0.8rem;
-            width: auto;
+        .auth-tab {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--text);
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            flex: 1;
+            font-weight: 600;
         }
 
-        .hint-text {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: var(--warning);
-            font-style: italic;
-            animation: pulse 2s infinite;
+        .auth-tab.active {
+            background: var(--primary);
+            color: #000;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+        .question-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .question-card label {
+            display: block;
+            margin: 8px 0;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .question-card label:hover {
+            background: rgba(255, 215, 0, 0.1);
         }
 
         .feedback {
@@ -762,7 +569,6 @@
             border-radius: 8px;
             text-align: center;
             font-weight: 600;
-            transition: 0.3s;
         }
 
         .feedback.success {
@@ -775,55 +581,6 @@
             background: rgba(255, 75, 92, 0.2);
             color: var(--danger);
             border: 1px solid var(--danger);
-        }
-
-        .badges-section {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .badge {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            transition: 0.3s;
-        }
-
-        .badge.earned {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: #000;
-            transform: scale(1.1);
-            box-shadow: 0 0 20px var(--primary);
-        }
-
-        .badge-tooltip {
-            position: relative;
-        }
-
-        .badge-tooltip:hover::after {
-            content: attr(data-name);
-            position: absolute;
-            bottom: 70px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--bg-card);
-            color: var(--text);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.7rem;
-            white-space: nowrap;
-            border: 1px solid var(--border);
-            z-index: 10;
         }
 
         .unlock-section {
@@ -849,18 +606,12 @@
         .wa-1 { background: #25D366; }
         .wa-2 { background: #075E54; }
 
-        .whatsapp-btn:hover {
-            transform: translateY(-3px);
-            filter: brightness(1.1);
-        }
-
         .certificate {
             background: white;
             color: #333;
             padding: 40px;
             border: 15px double var(--primary);
             text-align: center;
-            border-radius: 0;
             max-width: 800px;
             margin: 0 auto;
         }
@@ -888,12 +639,6 @@
             text-transform: uppercase;
         }
 
-        .certificate-footer {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
         .print-btn {
             background: var(--primary);
             color: #000;
@@ -905,365 +650,21 @@
             margin-top: 20px;
         }
 
-        /* Admin Dashboard Styles */
-        .admin-dashboard {
-            width: 100%;
-            overflow-y: auto;
-            max-height: 100%;
-            padding: 10px;
-        }
-
-        .admin-tabs {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .admin-tab {
-            padding: 8px 15px;
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: 0.3s;
-        }
-
-        .admin-tab.active {
-            background: var(--primary);
-            color: #000;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 10px;
-            padding: 15px;
-            border: 1px solid var(--border);
-        }
-
-        .stat-card h3 {
-            color: var(--primary);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-
-        .stat-card .value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text);
-        }
-
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .course-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 10px;
-            padding: 15px;
-            border: 1px solid var(--border);
-        }
-
-        .course-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .course-icon {
-            font-size: 2rem;
-        }
-
-        .course-status {
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            background: var(--warning);
-            color: #000;
-        }
-
-        .status-published {
-            background: var(--success);
-        }
-
-        .course-title {
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-
-        .course-stats {
-            display: flex;
-            gap: 10px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-
-        .course-actions {
-            display: flex;
-            gap: 5px;
-        }
-
-        .editor-section {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid var(--border);
-        }
-
-        .editor-section h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        .lessons-list {
-            margin: 15px 0;
-        }
-
-        .lesson-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 6px;
-            margin-bottom: 5px;
-        }
-
-        .lesson-actions {
-            display: flex;
-            gap: 5px;
-        }
-
-        .question-builder {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 8px;
-            padding: 10px;
-            margin: 10px 0;
-        }
-
-        .question-type {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 10px;
-        }
-
-        .type-option {
-            padding: 5px 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            font-size: 0.8rem;
-            cursor: pointer;
-        }
-
-        .type-option.selected {
-            background: var(--primary);
-            color: #000;
-        }
-
-        .options-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 5px;
-            margin: 10px 0;
-        }
-
-        .option-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 5px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 4px;
-        }
-
-        .media-uploader {
-            border: 2px dashed var(--border);
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .media-uploader:hover {
-            border-color: var(--primary);
-        }
-
-        .media-preview {
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-
-        .media-thumb {
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .table-responsive {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            text-align: left;
-            padding: 12px;
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        td {
-            padding: 12px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .badge-success {
-            background: var(--success);
-            color: #000;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-        }
-
-        .badge-warning {
-            background: var(--warning);
-            color: #000;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
-            border: 1px solid var(--primary);
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .modal-close {
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--text-muted);
-        }
-
-        .flex-row {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
         @media print {
             body * { visibility: hidden; }
             .certificate, .certificate * { visibility: visible; }
-            .certificate { position: absolute; left: 0; top: 0; width: 100%; border: none; background: white; }
+            .certificate { position: absolute; left: 0; top: 0; width: 100%; }
         }
 
         @media (max-width: 768px) {
-            #app {
-                flex-direction: column;
-                height: auto;
-                min-height: 90vh;
-            }
-
-            #sidebar {
-                width: 100%;
-                max-height: 300px;
-            }
-
-            .progress-container {
-                left: 20px;
-                right: 20px;
-            }
-
-            .card {
-                padding: 20px;
-                margin: 20px 0;
-            }
-
-            .coach-container {
-                bottom: 15px;
-                right: 15px;
-            }
-
-            .language-selector {
-                top: 10px;
-                right: 60px;
-            }
+            #app { flex-direction: column; height: auto; }
+            #sidebar { width: 100%; max-height: 300px; }
+            .language-selector { top: 10px; right: 10px; }
         }
     </style>
 </head>
 <body>
     <div id="app">
-        <!-- Bouton Admin secret -->
-        <div class="admin-toggle" onclick="toggleAdminMode()" title="Mode Admin (double-clic pour code secret)">
-            🔧
-        </div>
-
         <!-- Sélecteur de langue -->
         <div class="language-selector">
             <button class="lang-btn active" onclick="changeLanguage('fr')">FR</button>
@@ -1280,7 +681,7 @@
                 <small id="brand-subtitle">De zéro à héros</small>
             </div>
 
-            <div class="user-info">
+            <div class="user-info" id="user-info" style="display: none;">
                 <div class="user-name" id="display-name">Apprenant</div>
                 <div class="level-info">
                     <span id="level-label">Niveau <span id="level-display">1</span></span>
@@ -1289,202 +690,57 @@
                 <div class="xp-bar-container">
                     <div class="xp-bar-fill" id="xp-bar" style="width: 0%"></div>
                 </div>
-                <div class="xp-text" id="xp-text">0 XP</div>
-                
                 <div class="badges-preview" id="badges-preview"></div>
             </div>
 
-            <div class="chapters-header">
+            <div class="chapters-header" id="chapters-header" style="display: none;">
                 <h3 id="chapters-title">📚 CHAPITRES</h3>
                 <span class="filter-badge" id="completed-counter">0/100</span>
             </div>
 
             <ul id="chapters-list"></ul>
-
-            <div class="sidebar-footer">
-                <div class="contact-text" id="support-text">Support WhatsApp</div>
-                <div class="contact-phone">677 05 10 62</div>
-                <div class="contact-phone">659 71 85 67</div>
-            </div>
         </div>
 
         <!-- Contenu principal -->
         <div id="main">
-            <div class="progress-container">
+            <div class="progress-container" id="progress-container" style="display: none;">
                 <div id="progress-bar"></div>
             </div>
 
-            <!-- Coach Excelix -->
-            <div class="coach-container">
+                <div class="coach-container" id="coach-container" style="display: none;">
                 <div class="coach-bubble" id="coach-bubble">
                     <div class="coach-message" id="coach-message">Salut ! Prêt à dompter Excel ?</div>
                 </div>
                 <div class="coach-avatar">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23FFD700'/%3E%3Ccircle cx='35' cy='40' r='5' fill='%23000'/%3E%3Ccircle cx='65' cy='40' r='5' fill='%23000'/%3E%3Cpath d='M35 65 Q50 80 65 65' stroke='%23000' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Crect x='40' y='20' width='20' height='10' rx='5' fill='%23fff'/%3E%3C/svg%3E" 
-                         alt="Excelix" id="coach-avatar">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23FFD700'/%3E%3Ccircle cx='35' cy='40' r='5' fill='%23000'/%3E%3Ccircle cx='65' cy='40' r='5' fill='%23000'/%3E%3Cpath d='M35 65 Q50 80 65 65' stroke='%23000' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Crect x='40' y='20' width='20' height='10' rx='5' fill='%23fff'/%3E%3C/svg%3E" alt="Excelix">
                 </div>
             </div>
 
-            <!-- Zone de contenu dynamique -->
-            <div id="lesson-content" class="card">
-                <!-- Le contenu sera injecté dynamiquement -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Modals -->
-    <div class="modal" id="adminPasswordModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 style="color: var(--primary);">Accès Administrateur</h2>
-                <span class="modal-close" onclick="closeModal('adminPasswordModal')">✕</span>
-            </div>
-            <div class="form-group">
-                <label>Mot de passe</label>
-                <input type="password" id="admin-password" placeholder="Entrez le code secret...">
-            </div>
-            <div style="display: flex; gap: 10px;">
-                <button onclick="checkAdminPassword()">Valider</button>
-                <button class="secondary" onclick="closeModal('adminPasswordModal')">Annuler</button>
-            </div>
-            <p style="margin-top: 10px; font-size: 0.8rem; color: var(--text-muted);">Indice : admin123</p>
-        </div>
-    </div>
-
-    <div class="modal" id="lessonModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 style="color: var(--primary);">Nouvelle leçon</h2>
-                <span class="modal-close" onclick="closeModal('lessonModal')">✕</span>
-            </div>
-            
-            <div class="form-group">
-                <label>Titre de la leçon</label>
-                <input type="text" class="form-control" id="lesson-title" placeholder="ex: Introduction aux cellules">
-            </div>
-            
-            <div class="form-group">
-                <label>Type de leçon</label>
-                <select class="form-control" id="lesson-type">
-                    <option>Texte + Image</option>
-                    <option>Vidéo</option>
-                    <option>Quiz</option>
-                    <option>Exercice pratique</option>
-                    <option>Simulation</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label>Contenu</label>
-                <textarea class="form-control" id="lesson-content-input" rows="5" placeholder="Contenu de la leçon..."></textarea>
-            </div>
-            
-            <div class="form-group">
-                <label>XP à gagner</label>
-                <input type="number" class="form-control" id="lesson-xp" value="10" min="5" max="100">
-            </div>
-            
-            <div style="display: flex; gap: 10px;">
-                <button onclick="saveLesson()">Créer la leçon</button>
-                <button class="secondary" onclick="closeModal('lessonModal')">Annuler</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="statsModal">
-        <div class="modal-content" style="max-width: 700px;">
-            <div class="modal-header">
-                <h2 style="color: var(--primary);">Statistiques détaillées</h2>
-                <span class="modal-close" onclick="closeModal('statsModal')">✕</span>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div>
-                    <h3>Progression</h3>
-                    <div style="height: 200px; background: rgba(255,255,255,0.05); border-radius: 10px; padding: 10px;">
-                        <div style="display: flex; gap: 5px; height: 100%; align-items: flex-end;">
-                            <div style="width: 30px; height: 80%; background: var(--primary); border-radius: 4px;"></div>
-                            <div style="width: 30px; height: 95%; background: var(--primary); border-radius: 4px;"></div>
-                            <div style="width: 30px; height: 60%; background: var(--primary); border-radius: 4px;"></div>
-                            <div style="width: 30px; height: 45%; background: var(--primary); border-radius: 4px;"></div>
-                            <div style="width: 30px; height: 70%; background: var(--primary); border-radius: 4px;"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3>Points bloquants</h3>
-                    <ul style="list-style: none;">
-                        <li style="padding: 8px; background: rgba(255,75,92,0.1); margin: 5px 0;">RECHERCHEV - 67% échouent</li>
-                        <li style="padding: 8px; background: rgba(255,75,92,0.1); margin: 5px 0;">Tableaux croisés - 54% échouent</li>
-                        <li style="padding: 8px; background: rgba(78,204,163,0.1); margin: 5px 0;">Somme - 98% réussissent</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div style="margin-top: 20px;">
-                <h3>Élèves en difficulté</h3>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Progression</th>
-                            <th>Dernière activité</th>
-                        </tr>
-                        <tr>
-                            <td>Marie D.</td>
-                            <td>45%</td>
-                            <td>Il y a 3 jours</td>
-                        </tr>
-                        <tr>
-                            <td>Paul T.</td>
-                            <td>67%</td>
-                            <td>Il y a 5 jours</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+            <div id="lesson-content" class="card"></div>
         </div>
     </div>
 
     <script>
         // ============================================
-        // CONFIGURATION GLOBALE
+        // CONFIGURATION
         // ============================================
         
+        const API_BASE_URL = 'https://excel-master-backend.up.railway.app/api';
+        const MASTER_KEY = "EXCEL-MASTER-2026";
+        
         // État de l'application
-        let isAdminMode = false;
         let currentLang = localStorage.getItem('excelLang') || 'fr';
-        let isPremium = localStorage.getItem('excelPremium') === 'true';
-        let userName = localStorage.getItem('userName') || "Apprenant";
+        let authToken = localStorage.getItem('token');
+        let userName = localStorage.getItem('userName') || '';
         let userLevel = parseInt(localStorage.getItem('userLevel') || '1');
         let userXp = parseInt(localStorage.getItem('userXp') || '0');
-        let userBadges = JSON.parse(localStorage.getItem('userBadges') || '["welcome"]');
+        let userBadges = JSON.parse(localStorage.getItem('userBadges') || '[]');
         let completedChapters = new Set(JSON.parse(localStorage.getItem('excelProgress') || '[]'));
-        let streakDays = parseInt(localStorage.getItem('streakDays') || '0');
-        let lastLogin = localStorage.getItem('lastLogin');
+        let isPremium = localStorage.getItem('excelPremium') === 'true';
         let currentLesson = parseInt(localStorage.getItem('currentLesson') || '1');
 
-        // Données simulées
-        const MASTER_KEY = "EXCEL-MASTER-2026";
-        const ADMIN_PASSWORD = "admin123";
-
-        // Cours disponibles (dynamiques)
-        let courses = [
-            { id: 1, title: "Excel - Les bases", icon: "📊", students: 145, lessons: 20, completion: 78, status: "published" },
-            { id: 2, title: "Excel - Avancé", icon: "📈", students: 89, lessons: 25, completion: 62, status: "published" },
-            { id: 3, title: "Power BI", icon: "📉", students: 34, lessons: 15, completion: 41, status: "draft" }
-        ];
-
-        // Leçons simulées
-        let lessons = [
-            { id: 1, courseId: 1, title: "Introduction", content: "Bienvenue dans Excel", xp: 10 },
-            { id: 2, courseId: 1, title: "Les cellules", content: "Comment utiliser les cellules", xp: 15 },
-            { id: 3, courseId: 1, title: "Les formules", content: "Les bases des formules", xp: 20 }
-        ];
-
         // ============================================
-        // TRADUCTIONS MULTILINGUES
+        // TRADUCTIONS
         // ============================================
         
         const translations = {
@@ -1494,33 +750,27 @@
                 level: "Niveau",
                 xp: "XP",
                 chapters: "📚 CHAPITRES",
-                support: "Support WhatsApp",
-                start: "COMMENCER L'AVENTURE",
                 welcome: "Bienvenue dans Excel Master Fun !",
                 welcomeDesc: "La formation interactive qui rend Excel addictif",
-                coachIntro: "Avec moi, Excelix, tu vas passer de zéro à héros sans t'en rendre compte. Prêt pour l'aventure ?",
+                coachIntro: "Avec moi, Excelix, tu vas passer de zéro à héros sans t'en rendre compte.",
                 answer: "Ta réponse...",
                 validate: "VALIDER",
                 correct: "BRAVO !",
                 incorrect: "Presque ! Essaie encore.",
-                unlock: "🔓 Accès Premium",
-                unlockDesc: "Excellent travail ! Tu as terminé les 10 premiers chapitres.",
-                unlockName: "TON NOM",
-                unlockKey: "CLÉ D'ACTIVATION",
-                unlockBtn: "DÉBLOQUER",
-                getKey: "Obtenir une clé via WhatsApp :",
-                price: "Prix : 5000 FCFA ou 10€",
+                login: "Connexion",
+                register: "Inscription",
+                email: "Email",
+                password: "Mot de passe",
+                name: "Nom complet",
+                loginBtn: "Se connecter",
+                registerBtn: "S'inscrire",
+                logout: "Déconnexion",
+                profile: "Mon profil",
                 certificate: "CERTIFICAT DE MAÎTRISE",
-                awarded: "A validé avec succès les 100 chapitres",
                 print: "🖨️ IMPRIMER",
                 levelNames: {
                     1: "L'abruti", 2: "L'apprenti", 3: "Le débrouillard",
                     4: "Le pro", 5: "Le génie", 6: "L'expert", 7: "La légende"
-                },
-                badges: {
-                    welcome: "Bienvenue", survivor: "Survivant", calculator: "Calculator",
-                    stylist: "Artiste", detective: "Détective", speedy: "L'éclair",
-                    streak7: "Habitué", streak30: "Accro", master: "Maître", legend: "Légende"
                 }
             },
             en: {
@@ -1529,8 +779,6 @@
                 level: "Level",
                 xp: "XP",
                 chapters: "📚 CHAPTERS",
-                support: "WhatsApp Support",
-                start: "START THE ADVENTURE",
                 welcome: "Welcome to Excel Master Fun!",
                 welcomeDesc: "The interactive training that makes Excel addictive",
                 coachIntro: "With me, Excelix, you'll go from zero to hero without even realizing it.",
@@ -1538,24 +786,20 @@
                 validate: "VALIDATE",
                 correct: "WELL DONE!",
                 incorrect: "Almost! Try again.",
-                unlock: "🔓 Premium Access",
-                unlockDesc: "Great job! You've completed the first 10 chapters.",
-                unlockName: "YOUR NAME",
-                unlockKey: "ACTIVATION KEY",
-                unlockBtn: "UNLOCK",
-                getKey: "Get a key via WhatsApp:",
-                price: "Price: 5000 FCFA or €10",
+                login: "Login",
+                register: "Register",
+                email: "Email",
+                password: "Password",
+                name: "Full name",
+                loginBtn: "Login",
+                registerBtn: "Register",
+                logout: "Logout",
+                profile: "My profile",
                 certificate: "MASTERY CERTIFICATE",
-                awarded: "Successfully completed all 100 chapters",
                 print: "🖨️ PRINT",
                 levelNames: {
                     1: "The Noob", 2: "The Apprentice", 3: "The Hustler",
                     4: "The Pro", 5: "The Genius", 6: "The Expert", 7: "The Legend"
-                },
-                badges: {
-                    welcome: "Welcome", survivor: "Survivor", calculator: "Calculator",
-                    stylist: "Stylist", detective: "Detective", speedy: "Speedy",
-                    streak7: "Regular", streak30: "Addict", master: "Master", legend: "Legend"
                 }
             },
             ar: {
@@ -1564,8 +808,6 @@
                 level: "المستوى",
                 xp: "نقاط",
                 chapters: "📚 الدروس",
-                support: "دعم واتساب",
-                start: "ابدأ المغامرة",
                 welcome: "مرحباً بك في إتقان إكسل للمتعة!",
                 welcomeDesc: "التدريب التفاعلي الذي يجعل إكسل مسبباً للإدمان",
                 coachIntro: "معي، إكسليز، ستنتقل من صفر إلى بطل دون أن تدرك ذلك.",
@@ -1573,24 +815,20 @@
                 validate: "تحقق",
                 correct: "أحسنت!",
                 incorrect: "تقريباً! حاول مرة أخرى.",
-                unlock: "🔓 وصول مميز",
-                unlockDesc: "عمل رائع! لقد أكملت أول 10 دروس.",
-                unlockName: "اسمك",
-                unlockKey: "مفتاح التفعيل",
-                unlockBtn: "فتح",
-                getKey: "احصل على مفتاح عبر واتساب:",
-                price: "السعر: 5000 فرنك أو 10 يورو",
+                login: "تسجيل الدخول",
+                register: "إنشاء حساب",
+                email: "البريد الإلكتروني",
+                password: "كلمة المرور",
+                name: "الاسم الكامل",
+                loginBtn: "دخول",
+                registerBtn: "تسجيل",
+                logout: "تسجيل الخروج",
+                profile: "ملفي",
                 certificate: "شهادة إتقان",
-                awarded: "أكمل بنجاح جميع الدروس المئة",
                 print: "🖨️ طباعة",
                 levelNames: {
                     1: "المبتدئ", 2: "المتدرب", 3: "المجتهد",
                     4: "المحترف", 5: "العبقري", 6: "الخبير", 7: "الأسطورة"
-                },
-                badges: {
-                    welcome: "ترحيب", survivor: "ناجٍ", calculator: "آلة حاسبة",
-                    stylist: "فنان", detective: "محقق", speedy: "سريع",
-                    streak7: "منتظم", streak30: "مدمن", master: "أستاذ", legend: "أسطورة"
                 }
             },
             es: {
@@ -1599,8 +837,6 @@
                 level: "Nivel",
                 xp: "XP",
                 chapters: "📚 CAPÍTULOS",
-                support: "Soporte WhatsApp",
-                start: "COMENZAR LA AVENTURA",
                 welcome: "¡Bienvenido a Excel Master Fun!",
                 welcomeDesc: "La formación interactiva que hace adictivo Excel",
                 coachIntro: "Conmigo, Excelix, pasarás de cero a héroe sin darte cuenta.",
@@ -1608,24 +844,20 @@
                 validate: "VALIDAR",
                 correct: "¡BIEN HECHO!",
                 incorrect: "¡Casi! Inténtalo de nuevo.",
-                unlock: "🔓 Acceso Premium",
-                unlockDesc: "¡Gran trabajo! Has completado los primeros 10 capítulos.",
-                unlockName: "TU NOMBRE",
-                unlockKey: "CLAVE DE ACTIVACIÓN",
-                unlockBtn: "DESBLOQUEAR",
-                getKey: "Obtén una clave vía WhatsApp:",
-                price: "Precio: 5000 FCFA o 10€",
+                login: "Iniciar sesión",
+                register: "Registrarse",
+                email: "Email",
+                password: "Contraseña",
+                name: "Nombre completo",
+                loginBtn: "Entrar",
+                registerBtn: "Registrar",
+                logout: "Cerrar sesión",
+                profile: "Mi perfil",
                 certificate: "CERTIFICADO DE DOMINIO",
-                awarded: "Ha completado con éxito los 100 capítulos",
                 print: "🖨️ IMPRIMIR",
                 levelNames: {
                     1: "El novato", 2: "El aprendiz", 3: "El luchador",
                     4: "El profesional", 5: "El genio", 6: "El experto", 7: "La leyenda"
-                },
-                badges: {
-                    welcome: "Bienvenida", survivor: "Superviviente", calculator: "Calculadora",
-                    stylist: "Artista", detective: "Detective", speedy: "Rápido",
-                    streak7: "Habitual", streak30: "Adicto", master: "Maestro", legend: "Leyenda"
                 }
             },
             pt: {
@@ -1634,8 +866,6 @@
                 level: "Nível",
                 xp: "XP",
                 chapters: "📚 CAPÍTULOS",
-                support: "Suporte WhatsApp",
-                start: "COMEÇAR A AVENTURA",
                 welcome: "Bem-vindo ao Excel Master Fun!",
                 welcomeDesc: "O treinamento interativo que torna o Excel viciante",
                 coachIntro: "Comigo, Excelix, você vai passar de zero a herói sem perceber.",
@@ -1643,61 +873,25 @@
                 validate: "VALIDAR",
                 correct: "MUITO BEM!",
                 incorrect: "Quase! Tente novamente.",
-                unlock: "🔓 Acesso Premium",
-                unlockDesc: "Ótimo trabalho! Você completou os primeiros 10 capítulos.",
-                unlockName: "SEU NOME",
-                unlockKey: "CHAVE DE ATIVAÇÃO",
-                unlockBtn: "DESBLOQUEAR",
-                getKey: "Obtenha uma chave via WhatsApp:",
-                price: "Preço: 5000 FCFA ou 10€",
+                login: "Entrar",
+                register: "Registrar",
+                email: "Email",
+                password: "Senha",
+                name: "Nome completo",
+                loginBtn: "Entrar",
+                registerBtn: "Registrar",
+                logout: "Sair",
+                profile: "Meu perfil",
                 certificate: "CERTIFICADO DE DOMÍNIO",
-                awarded: "Concluiu com sucesso todos os 100 capítulos",
                 print: "🖨️ IMPRIMIR",
                 levelNames: {
                     1: "O novato", 2: "O aprendiz", 3: "O esforçado",
                     4: "O profissional", 5: "O génio", 6: "O perito", 7: "A lenda"
-                },
-                badges: {
-                    welcome: "Boas-vindas", survivor: "Sobrevivente", calculator: "Calculadora",
-                    stylist: "Artista", detective: "Detetive", speedy: "Rápido",
-                    streak7: "Habitual", streak30: "Viciado", master: "Mestre", legend: "Lenda"
                 }
             }
         };
 
-        // Messages d'introduction multilingues
-        const INTRO_MESSAGES = {
-            fr: {
-                1: "Les cellules sont les petites cases d'Excel. Chaque cellule a une adresse unique comme A1, B3, etc.",
-                2: "Sélectionner tout est super utile pour appliquer une mise en forme à tout ton tableau d'un coup.",
-                3: "La somme est l'opération la plus utilisée dans Excel. Avec =SOMME(), tu additionnes tout un groupe de cellules.",
-                default: "Prêt pour ce chapitre ?"
-            },
-            en: {
-                1: "Cells are the little boxes in Excel. Each cell has a unique address like A1, B3, etc.",
-                2: "Select All is super useful to apply formatting to your entire table at once.",
-                3: "SUM is the most used operation in Excel. With =SUM(), you add up a whole group of cells.",
-                default: "Ready for this chapter?"
-            }
-        };
-
-        // Fun facts multilingues
-        const FUN_FACTS = {
-            fr: [
-                "Excel peut traiter plus d'un million de lignes !",
-                "La première version d'Excel date de 1985",
-                "Il existe plus de 400 fonctions dans Excel",
-                "CTRL+Z peut sauver des vies (ou des fichiers)"
-            ],
-            en: [
-                "Excel can process over a million rows!",
-                "The first version of Excel dates back to 1985",
-                "There are over 400 functions in Excel",
-                "CTRL+Z can save lives (or at least files)"
-            ]
-        };
-
-        // 100 leçons par défaut
+        // Leçons simulées (fallback)
         const CHAPTERS = {};
         for (let i = 1; i <= 100; i++) {
             CHAPTERS[i] = {
@@ -1707,58 +901,111 @@
             };
         }
 
-        // ============================================
-        // FONCTIONS API SIMULÉES
-        // ============================================
-        
-        const API = {
-            // Utilisateurs
-            getUsers: () => Promise.resolve([
-                { id: 1, name: "Marie D.", email: "marie@email.com", progress: 45, lastActive: "2024-03-15" },
-                { id: 2, name: "Paul T.", email: "paul@email.com", progress: 67, lastActive: "2024-03-12" }
-            ]),
-            
-            // Cours
-            getCourses: () => Promise.resolve(courses),
-            getCourse: (id) => Promise.resolve(courses.find(c => c.id === id)),
-            createCourse: (data) => {
-                const newCourse = { id: courses.length + 1, ...data, students: 0, completion: 0 };
-                courses.push(newCourse);
-                return Promise.resolve(newCourse);
-            },
-            updateCourse: (id, data) => {
-                const index = courses.findIndex(c => c.id === id);
-                if (index !== -1) courses[index] = { ...courses[index], ...data };
-                return Promise.resolve(courses[index]);
-            },
-            deleteCourse: (id) => {
-                courses = courses.filter(c => c.id !== id);
-                return Promise.resolve({ success: true });
-            },
-            
-            // Leçons
-            getLessons: (courseId) => Promise.resolve(lessons.filter(l => l.courseId === courseId)),
-            createLesson: (data) => {
-                const newLesson = { id: lessons.length + 1, ...data };
-                lessons.push(newLesson);
-                return Promise.resolve(newLesson);
-            },
-            
-            // Statistiques
-            getStats: () => Promise.resolve({
-                totalStudents: 234,
-                activeStudents: 189,
-                totalCourses: courses.length,
-                completionRate: 0.72,
-                weakPoints: [
-                    { topic: "RECHERCHEV", rate: 0.67 },
-                    { topic: "Tableaux croisés", rate: 0.54 }
-                ]
-            })
+        const FUN_FACTS = {
+            fr: [
+                "Excel peut traiter plus d'un million de lignes !",
+                "La première version d'Excel date de 1985",
+                "Il existe plus de 400 fonctions dans Excel"
+            ],
+            en: [
+                "Excel can process over a million rows!",
+                "The first version of Excel dates back to 1985",
+                "There are over 400 functions in Excel"
+            ]
         };
 
         // ============================================
-        // FONCTIONS UTILITAIRES
+        // FONCTIONS API
+        // ============================================
+        
+        async function apiCall(endpoint, options = {}) {
+            const url = `${API_BASE_URL}${endpoint}`;
+            const headers = {
+                'Content-Type': 'application/json',
+                ...options.headers
+            };
+            
+            if (authToken) {
+                headers['Authorization'] = `Bearer ${authToken}`;
+            }
+            
+            try {
+                const response = await fetch(url, {
+                    ...options,
+                    headers
+                });
+                
+                if (response.status === 204) {
+                    return null;
+                }
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || 'Erreur API');
+                }
+                
+                return data;
+            } catch (error) {
+                console.error('API Error:', error);
+                throw error;
+            }
+        }
+
+        async function register(email, password, name) {
+            try {
+                const data = await apiCall('/auth/register', {
+                    method: 'POST',
+                    body: JSON.stringify({ email, password, full_name: name })
+                });
+                
+                authToken = data.token;
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('userName', data.user.name);
+                
+                return data.user;
+            } catch (error) {
+                alert("Erreur d'inscription: " + error.message);
+                return null;
+            }
+        }
+
+        async function login(email, password) {
+            try {
+                const data = await apiCall('/auth/login', {
+                    method: 'POST',
+                    body: JSON.stringify({ email, password })
+                });
+                
+                authToken = data.token;
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('userName', data.user.name);
+                localStorage.setItem('userLevel', data.user.level);
+                localStorage.setItem('userXp', data.user.xp);
+                
+                userLevel = data.user.level;
+                userXp = data.user.xp;
+                userName = data.user.name;
+                
+                return data.user;
+            } catch (error) {
+                alert("Erreur de connexion: " + error.message);
+                return null;
+            }
+        }
+
+        function logout() {
+            authToken = null;
+            localStorage.removeItem('token');
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userLevel');
+            localStorage.removeItem('userXp');
+            localStorage.removeItem('excelProgress');
+            location.reload();
+        }
+
+        // ============================================
+        // FONCTIONS UI
         // ============================================
         
         function t(key) {
@@ -1774,8 +1021,6 @@
         function changeLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('excelLang', lang);
-            
-            // Gestion RTL pour l'arabe
             document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
             
             document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -1786,134 +1031,106 @@
             });
             
             updateUITexts();
-            if (!isAdminMode) {
-                if (currentLesson) loadChapter(currentLesson);
-                else showWelcome();
+            if (authToken) {
+                showDashboard();
             } else {
-                showAdminDashboard();
+                showAuthScreen();
             }
         }
 
         function updateUITexts() {
             document.getElementById('brand-title').textContent = t('brand');
             document.getElementById('brand-subtitle').textContent = t('brandSub');
-            document.getElementById('level-label').innerHTML = `${t('level')} <span id="level-display">${userLevel}</span>`;
-            document.getElementById('chapters-title').textContent = t('chapters');
-            document.getElementById('support-text').textContent = t('support');
         }
 
-        function saveState() {
-            localStorage.setItem('excelProgress', JSON.stringify(Array.from(completedChapters)));
-            localStorage.setItem('userLevel', userLevel.toString());
-            localStorage.setItem('userXp', userXp.toString());
-            localStorage.setItem('userBadges', JSON.stringify(userBadges));
-            localStorage.setItem('streakDays', streakDays.toString());
-            localStorage.setItem('currentLesson', currentLesson.toString());
-        }
-
-        function getLevelFromXp(xp) {
-            if (xp >= 2700) return 7;
-            if (xp >= 2000) return 6;
-            if (xp >= 1400) return 5;
-            if (xp >= 900) return 4;
-            if (xp >= 500) return 3;
-            if (xp >= 200) return 2;
-            return 1;
-        }
-
-        function updateLevel() {
-            const newLevel = getLevelFromXp(userXp);
-            if (newLevel > userLevel) {
-                userLevel = newLevel;
-                checkBadges();
-                showCoachMessage(`🚀 Niveau ${userLevel} : ${t('levelNames.' + userLevel)} !`);
-            }
-        }
-
-        function addXp(amount) {
-            userXp += amount;
-            updateLevel();
-            saveState();
-            updateUI();
-        }
-
-        const BADGES = [
-            { id: 'welcome', name: 'Bienvenue', icon: '🎉', condition: { type: 'login' } },
-            { id: 'survivor', name: 'Survivant', icon: '🦊', condition: { type: 'level', level: 1 } },
-            { id: 'calculator', name: 'Calculator', icon: '🧮', condition: { type: 'lessons', count: 10 } },
-            { id: 'streak7', name: 'Habitué', icon: '🔥', condition: { type: 'streak', days: 7 } },
-            { id: 'master', name: 'Maître', icon: '👑', condition: { type: 'level', level: 6 } },
-            { id: 'legend', name: 'Légende', icon: '⭐', condition: { type: 'level', level: 7 } }
-        ];
-
-        function checkBadges() {
-            BADGES.forEach(badge => {
-                if (userBadges.includes(badge.id)) return;
-
-                let earned = false;
-                switch(badge.condition.type) {
-                    case 'level':
-                        earned = userLevel >= badge.condition.level;
-                        break;
-                    case 'lessons':
-                        earned = completedChapters.size >= badge.condition.count;
-                        break;
-                    case 'streak':
-                        earned = streakDays >= badge.condition.days;
-                        break;
-                    default:
-                        earned = true;
-                }
-
-                if (earned) {
-                    userBadges.push(badge.id);
-                    showCoachMessage(`🏆 ${t('badges.' + badge.id)} !`);
-                }
-            });
-            saveState();
-        }
-
-        function showCoachMessage(message, duration = 3000) {
-            const bubble = document.getElementById('coach-message');
-            bubble.textContent = message;
-            bubble.style.animation = 'none';
-            bubble.offsetHeight;
-            bubble.style.animation = 'pulse 0.5s';
+        function showAuthScreen() {
+            document.getElementById('user-info').style.display = 'none';
+            document.getElementById('chapters-header').style.display = 'none';
+            document.getElementById('progress-container').style.display = 'none';
+            document.getElementById('coach-container').style.display = 'none';
+            document.getElementById('chapters-list').innerHTML = '';
             
-            setTimeout(() => {
-                bubble.style.animation = '';
-            }, 500);
+            document.getElementById('lesson-content').innerHTML = `
+                <h2>${t('welcome')}</h2>
+                <h3>${t('welcomeDesc')}</h3>
+                
+                <div class="auth-tabs">
+                    <div class="auth-tab active" onclick="showLoginForm()">${t('login')}</div>
+                    <div class="auth-tab" onclick="showRegisterForm()">${t('register')}</div>
+                </div>
+                
+                <div id="auth-form">
+                    ${getLoginForm()}
+                </div>
+            `;
         }
 
-        function checkStreak() {
-            const today = new Date().toDateString();
-            if (lastLogin !== today) {
-                if (lastLogin) {
-                    const last = new Date(lastLogin);
-                    const yesterday = new Date();
-                    yesterday.setDate(yesterday.getDate() - 1);
-                    
-                    if (last.toDateString() === yesterday.toDateString()) {
-                        streakDays++;
-                    } else {
-                        streakDays = 1;
-                    }
-                } else {
-                    streakDays = 1;
-                }
-                lastLogin = today;
-                localStorage.setItem('lastLogin', lastLogin);
-                
-                if (streakDays % 7 === 0) {
-                    addXp(50);
-                    showCoachMessage(`🔥 ${streakDays} jours ! +50 XP !`);
-                }
-                
-                checkBadges();
+        function getLoginForm() {
+            return `
+                <input type="email" id="login-email" placeholder="${t('email')}">
+                <input type="password" id="login-password" placeholder="${t('password')}">
+                <button onclick="handleLogin()">${t('loginBtn')}</button>
+            `;
+        }
+
+        function getRegisterForm() {
+            return `
+                <input type="text" id="register-name" placeholder="${t('name')}">
+                <input type="email" id="register-email" placeholder="${t('email')}">
+                <input type="password" id="register-password" placeholder="${t('password')}">
+                <button onclick="handleRegister()">${t('registerBtn')}</button>
+            `;
+        }
+
+        function showLoginForm() {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('auth-form').innerHTML = getLoginForm();
+        }
+
+        function showRegisterForm() {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('auth-form').innerHTML = getRegisterForm();
+        }
+
+        async function handleLogin() {
+            const email = document.getElementById('login-email')?.value;
+            const password = document.getElementById('login-password')?.value;
+            
+            if (!email || !password) {
+                alert('Veuillez remplir tous les champs');
+                return;
+            }
+            
+            const user = await login(email, password);
+            if (user) {
+                showDashboard();
             }
         }
 
-        function updateUI() {
+        async function handleRegister() {
+            const name = document.getElementById('register-name')?.value;
+            const email = document.getElementById('register-email')?.value;
+            const password = document.getElementById('register-password')?.value;
+            
+            if (!name || !email || !password) {
+                alert('Veuillez remplir tous les champs');
+                return;
+            }
+            
+            const user = await register(email, password, name);
+            if (user) {
+                showDashboard();
+            }
+        }
+
+        function showDashboard() {
+            document.getElementById('user-info').style.display = 'block';
+            document.getElementById('chapters-header').style.display = 'flex';
+            document.getElementById('progress-container').style.display = 'block';
+            document.getElementById('coach-container').style.display = 'block';
+            
             document.getElementById('display-name').textContent = userName;
             document.getElementById('level-display').textContent = userLevel;
             
@@ -1925,13 +1142,21 @@
             
             document.getElementById('xp-bar').style.width = progressPercent + '%';
             document.getElementById('xp-display').textContent = `${xpInLevel}/${xpNeeded} ${t('xp')}`;
-            document.getElementById('xp-text').textContent = `${userXp} ${t('xp')}`;
-            
             document.getElementById('completed-counter').textContent = `${completedChapters.size}/100`;
             document.getElementById('progress-bar').style.width = (completedChapters.size / 100 * 100) + '%';
             
             renderChaptersList();
-            renderBadges();
+            
+            if (completedChapters.size > 0) {
+                let lastCompleted = Math.max(...Array.from(completedChapters));
+                if (lastCompleted < 100) {
+                    loadChapter(lastCompleted + 1);
+                } else {
+                    showCertificate();
+                }
+            } else {
+                loadChapter(1);
+            }
         }
 
         function renderChaptersList() {
@@ -1939,21 +1164,15 @@
             list.innerHTML = '';
 
             for (let i = 1; i <= 100; i++) {
-                const chapter = CHAPTERS[i];
                 const isCompleted = completedChapters.has(i);
                 const isLocked = i > 10 && !isPremium && !isCompleted;
                 
                 const li = document.createElement('li');
                 li.className = `${isCompleted ? 'completed' : ''} ${isLocked ? 'locked' : ''}`;
-                
                 li.innerHTML = `
-                    <div style="display: flex; align-items: center; width: 100%;">
-                        <span class="chapter-number">${i}</span>
-                        <span class="chapter-title">${chapter.title}</span>
-                        <span class="chapter-status ${isCompleted ? 'completed' : ''}">
-                            ${isCompleted ? '✓' : (isLocked ? '🔒' : '')}
-                        </span>
-                    </div>
+                    <span class="chapter-number">${i}</span>
+                    <span class="chapter-title">${CHAPTERS[i].title}</span>
+                    <span class="chapter-status ${isCompleted ? 'completed' : ''}">${isCompleted ? '✓' : (isLocked ? '🔒' : '')}</span>
                 `;
                 
                 if (!isLocked) {
@@ -1964,49 +1183,9 @@
             }
         }
 
-        function renderBadges() {
-            const container = document.getElementById('badges-preview');
-            container.innerHTML = '';
-            
-            const displayedBadges = BADGES.slice(0, 5);
-            displayedBadges.forEach(badge => {
-                const earned = userBadges.includes(badge.id);
-                const div = document.createElement('div');
-                div.className = `badge-mini ${earned ? 'earned' : ''}`;
-                div.setAttribute('data-name', t('badges.' + badge.id));
-                div.textContent = badge.icon;
-                container.appendChild(div);
-            });
-        }
-
-        function showWelcome() {
-            document.getElementById('lesson-content').innerHTML = `
-                <h2>${t('welcome')}</h2>
-                <h3>${t('welcomeDesc')}</h3>
-                
-                <div class="coach-box">
-                    ${t('coachIntro')}
-                </div>
-
-                <div class="badges-section">
-                    <div class="badge earned">🎉</div>
-                    <div class="badge">🦊</div>
-                    <div class="badge">👑</div>
-                </div>
-
-                <button onclick="startJourney()">${t('start')}</button>
-            `;
-        }
-
-        function startJourney() {
-            currentLesson = 1;
-            localStorage.setItem('currentLesson', '1');
-            loadChapter(1);
-        }
-
         function loadChapter(i) {
             currentLesson = i;
-            localStorage.setItem('currentLesson', i.toString());
+            localStorage.setItem('currentLesson', i);
             
             if (i > 100) {
                 showCertificate();
@@ -2019,21 +1198,13 @@
             }
 
             const chapter = CHAPTERS[i];
-            const introMessage = (INTRO_MESSAGES[currentLang] && INTRO_MESSAGES[currentLang][i]) || 
-                                 INTRO_MESSAGES[currentLang]?.default || 
-                                 "Prêt pour ce chapitre ?";
-            
             const funFact = (FUN_FACTS[currentLang] || FUN_FACTS.fr)[Math.floor(Math.random() * (FUN_FACTS[currentLang] || FUN_FACTS.fr).length)];
             
             document.getElementById('lesson-content').innerHTML = `
                 <div class="intro-ticker">
                     <div class="ticker-content">
                         ${Array(3).fill(0).map(() => `
-                            <div class="ticker-item">
-                                <span>⭐</span>
-                                <span>${funFact}</span>
-                                <span>⭐</span>
-                            </div>
+                            <div class="ticker-item"><span>⭐</span><span>${funFact}</span><span>⭐</span></div>
                         `).join('')}
                     </div>
                 </div>
@@ -2042,7 +1213,7 @@
                     <div class="coach-intro-avatar">🦊</div>
                     <div class="coach-intro-text">
                         <h4>Coach Excelix</h4>
-                        <p>${introMessage}</p>
+                        <p>${t('coachIntro')}</p>
                         <div class="fun-fact">💡 ${funFact}</div>
                     </div>
                 </div>
@@ -2050,21 +1221,15 @@
                 <span class="lesson-number">Chapitre ${i}/100</span>
                 <h2>${chapter.title}</h2>
                 
-                <div class="coach-box">
-                    ${chapter.question}
-                </div>
+                <div class="coach-box">${chapter.question}</div>
                 
-                <div class="input-group">
-                    <input type="text" id="answer-input" placeholder="${t('answer')}" autofocus>
-                </div>
-                
+                <input type="text" id="answer-input" placeholder="${t('answer')}" autofocus>
                 <button onclick="checkAnswer(${i})">${t('validate')}</button>
                 
                 <div id="feedback" class="feedback"></div>
             `;
-
+            
             document.getElementById('answer-input')?.focus();
-            showCoachMessage(introMessage);
         }
 
         function checkAnswer(i) {
@@ -2075,17 +1240,18 @@
             if (answer === correct) {
                 if (!completedChapters.has(i)) {
                     completedChapters.add(i);
+                    localStorage.setItem('excelProgress', JSON.stringify(Array.from(completedChapters)));
                     
                     let xpGain = i <= 10 ? 10 : i <= 20 ? 15 : i <= 50 ? 20 : 30;
-                    addXp(xpGain);
+                    userXp += xpGain;
+                    localStorage.setItem('userXp', userXp);
                     
                     feedback.className = 'feedback success';
                     feedback.innerHTML = `✅ ${t('correct')} +${xpGain} XP`;
                     
-                    showCoachMessage("BOOM ! T'assures grave !");
-                    
                     if (i === 10) {
-                        showCoachMessage("🔥 Tu débloques l'accès premium !");
+                        setTimeout(() => showUnlockScreen(), 1000);
+                        return;
                     }
                 } else {
                     feedback.className = 'feedback success';
@@ -2093,55 +1259,33 @@
                 }
 
                 setTimeout(() => {
-                    if (i === 100) {
-                        showCertificate();
-                    } else {
-                        loadChapter(i + 1);
-                    }
+                    if (i === 100) showCertificate();
+                    else loadChapter(i + 1);
                 }, 800);
             } else {
                 feedback.className = 'feedback error';
                 feedback.innerHTML = `❌ ${t('incorrect')} ${CHAPTERS[i].answer}`;
-                showCoachMessage("Oups ! Pas grave, on recommence ?");
             }
         }
 
         function showUnlockScreen() {
             document.getElementById('lesson-content').innerHTML = `
-                <h2>${t('unlock')}</h2>
-                
-                <div class="coach-box">
-                    ${t('unlockDesc')}
-                </div>
-                
-                <div class="badges-section">
-                    <div class="badge earned">🔥</div>
-                    <div class="badge earned">📊</div>
-                    <div class="badge">👑</div>
-                </div>
+                <h2>🔓 Accès Premium</h2>
+                <div class="coach-box">Excellent travail ! Tu as terminé les 10 premiers chapitres.</div>
                 
                 <div class="unlock-section">
-                    <h3 style="color: var(--primary); margin-bottom: 15px;">${t('getKey')}</h3>
+                    <input type="text" id="unlock-name" placeholder="TON NOM" value="${userName}">
+                    <input type="text" id="unlock-key" placeholder="CLÉ D'ACTIVATION">
+                    <button onclick="unlockPremium()">DÉBLOQUER</button>
                     
-                    <div style="margin-bottom: 20px;">
-                        <input type="text" id="unlock-name" placeholder="${t('unlockName')}" value="${userName}">
-                        <input type="text" id="unlock-key" placeholder="${t('unlockKey')}" style="margin-top: 10px;">
-                    </div>
-                    
-                    <button onclick="unlockPremium()">${t('unlockBtn')}</button>
-                    
-                    <div style="margin-top: 30px;">
-                        <p style="color: var(--text-muted); margin-bottom: 10px;">${t('getKey')}</p>
-                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                            <a href="https://wa.me/237677051062?text=Clé%20Excel%20pour%20${userName}" class="whatsapp-btn wa-1" target="_blank">📱 Ligne 1</a>
-                            <a href="https://wa.me/237659718567?text=Clé%20Excel%20pour%20${userName}" class="whatsapp-btn wa-2" target="_blank">📱 Ligne 2</a>
-                        </div>
+                    <div style="margin-top: 20px;">
+                        <p>Obtenir une clé via WhatsApp :</p>
+                        <a href="https://wa.me/237677051062" class="whatsapp-btn wa-1">📱 Ligne 1</a>
+                        <a href="https://wa.me/237659718567" class="whatsapp-btn wa-2">📱 Ligne 2</a>
                     </div>
                 </div>
                 
-                <div style="margin-top: 20px; font-size: 0.9rem; color: var(--text-muted);">
-                    ${t('price')}
-                </div>
+                <button class="secondary" onclick="logout()">${t('logout')}</button>
             `;
         }
 
@@ -2149,31 +1293,14 @@
             const name = document.getElementById('unlock-name')?.value.trim().toUpperCase() || userName.toUpperCase();
             const key = document.getElementById('unlock-key')?.value.trim().toUpperCase() || '';
             
-            const generatedKey = `EXL-${name}-2026`;
-            
-            if (key === generatedKey || key === MASTER_KEY) {
+            if (key === `EXL-${name}-2026` || key === MASTER_KEY) {
                 isPremium = true;
                 localStorage.setItem('excelPremium', 'true');
                 localStorage.setItem('userName', name);
                 userName = name;
-                
-                if (!userBadges.includes('premium')) {
-                    userBadges.push('premium');
-                }
-                
-                saveState();
-                showCoachMessage("🎉 FÉLICITATIONS ! Tu es maintenant membre PREMIUM !");
-                
-                let nextChapter = 11;
-                for (let i = 11; i <= 100; i++) {
-                    if (!completedChapters.has(i)) {
-                        nextChapter = i;
-                        break;
-                    }
-                }
-                loadChapter(nextChapter);
+                showDashboard();
             } else {
-                alert("❌ Clé invalide. Contacte-nous sur WhatsApp pour obtenir ta clé.");
+                alert("❌ Clé invalide");
             }
         }
 
@@ -2186,394 +1313,14 @@
                 <div class="certificate">
                     <h1>🏆</h1>
                     <h2>${t('certificate')}</h2>
-                    
                     <div class="user-name">${userName}</div>
-                    
-                    <div style="font-size: 1.2rem; margin: 30px 0;">
-                        ${t('awarded')}<br>
-                        <strong>Excel Master Fun</strong>
-                    </div>
-                    
-                    <div style="display: flex; justify-content: center; gap: 10px; margin: 30px 0;">
-                        <div class="badge earned">⭐</div>
-                        <div class="badge earned">👑</div>
-                        <div class="badge earned">🦊</div>
-                    </div>
-                    
-                    <div style="margin: 30px 0; font-size: 0.9rem;">
-                        ${t('level')} <strong>${t('levelNames.' + userLevel)}</strong><br>
-                        XP total: <strong>${userXp}</strong>
-                    </div>
-                    
-                    <div class="certificate-footer">
-                        <div>Douala, ${today}</div>
-                        <div style="margin-top: 20px;">#${Math.random().toString(36).substring(2, 10).toUpperCase()}</div>
-                    </div>
-                    
+                    <div>A validé les 100 chapitres<br><strong>Excel Master Fun</strong></div>
+                    <div style="margin: 30px 0;">${t('level')} ${t('levelNames.' + userLevel)}<br>XP: ${userXp}</div>
+                    <div class="certificate-footer">Douala, ${today}</div>
                     <button class="print-btn" onclick="window.print()">${t('print')}</button>
                 </div>
+                <button class="secondary" style="margin-top:20px;" onclick="logout()">${t('logout')}</button>
             `;
-            
-            if (!userBadges.includes('legend')) {
-                userBadges.push('legend');
-                saveState();
-            }
-        }
-
-        // ============================================
-        // FONCTIONS ADMIN
-        // ============================================
-        
-        function toggleAdminMode() {
-            if (!isAdminMode) {
-                openModal('adminPasswordModal');
-            } else {
-                isAdminMode = false;
-                document.getElementById('sidebar').classList.remove('admin-mode');
-                document.getElementById('main').classList.remove('admin-mode');
-                showWelcome();
-            }
-        }
-
-        function checkAdminPassword() {
-            const password = document.getElementById('admin-password').value;
-            if (password === ADMIN_PASSWORD) {
-                isAdminMode = true;
-                document.getElementById('sidebar').classList.add('admin-mode');
-                document.getElementById('main').classList.add('admin-mode');
-                closeModal('adminPasswordModal');
-                showAdminDashboard();
-            } else {
-                alert("Mot de passe incorrect");
-            }
-        }
-
-        function showAdminDashboard() {
-            API.getStats().then(stats => {
-                API.getCourses().then(courses => {
-                    API.getUsers().then(users => {
-                        document.getElementById('lesson-content').innerHTML = `
-                            <div class="admin-dashboard">
-                                <h2 style="color: var(--primary); margin-bottom: 20px;">🔧 Administration</h2>
-                                
-                                <div class="admin-tabs">
-                                    <button class="admin-tab active" onclick="showAdminTab('dashboard')">📊 Dashboard</button>
-                                    <button class="admin-tab" onclick="showAdminTab('courses')">📚 Cours</button>
-                                    <button class="admin-tab" onclick="showAdminTab('create')">➕ Nouveau cours</button>
-                                    <button class="admin-tab" onclick="showAdminTab('students')">👥 Élèves</button>
-                                    <button class="admin-tab" onclick="showAdminTab('analytics')">📈 Analytics</button>
-                                    <button class="admin-tab" onclick="showAdminTab('api')">🔌 API</button>
-                                </div>
-                                
-                                <div id="admin-content">
-                                    ${renderAdminDashboard(stats, courses, users)}
-                                </div>
-                            </div>
-                        `;
-                    });
-                });
-            });
-        }
-
-        function renderAdminDashboard(stats, courses, users) {
-            return `
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3>Élèves</h3>
-                        <div class="value">${stats.totalStudents}</div>
-                        <small>${stats.activeStudents} actifs</small>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Cours</h3>
-                        <div class="value">${stats.totalCourses}</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Taux réussite</h3>
-                        <div class="value">${Math.round(stats.completionRate * 100)}%</div>
-                    </div>
-                    <div class="stat-card">
-                        <h3>API Status</h3>
-                        <div class="value" style="color: var(--success);">✓ Online</div>
-                    </div>
-                </div>
-                
-                <div class="courses-grid">
-                    ${courses.map(course => `
-                        <div class="course-card">
-                            <div class="course-header">
-                                <span class="course-icon">${course.icon}</span>
-                                <span class="course-status status-${course.status}">${course.status}</span>
-                            </div>
-                            <div class="course-title">${course.title}</div>
-                            <div class="course-stats">
-                                <span>👥 ${course.students}</span>
-                                <span>📖 ${course.lessons}</span>
-                                <span>📊 ${course.completion}%</span>
-                            </div>
-                            <div class="course-actions">
-                                <button class="small" onclick="editCourse(${course.id})">✏️</button>
-                                <button class="small secondary" onclick="viewCourse(${course.id})">👁️</button>
-                                <button class="small danger" onclick="deleteCourse(${course.id})">🗑️</button>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-                
-                <div style="margin-top: 20px;">
-                    <h3 style="color: var(--primary);">Points bloquants</h3>
-                    <div style="display: flex; gap: 20px;">
-                        ${stats.weakPoints.map(wp => `
-                            <div style="background: rgba(255,75,92,0.1); padding: 10px; border-radius: 5px;">
-                                ${wp.topic}: ${Math.round(wp.rate * 100)}% échec
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-                
-                <div style="margin-top: 20px;">
-                    <h3 style="color: var(--primary);">Derniers élèves</h3>
-                    <div class="table-responsive">
-                        <table>
-                            <tr>
-                                <th>Nom</th>
-                                <th>Progression</th>
-                                <th>Dernière activité</th>
-                            </tr>
-                            ${users.slice(0, 3).map(user => `
-                                <tr>
-                                    <td>${user.name}</td>
-                                    <td>${user.progress}%</td>
-                                    <td>${user.lastActive}</td>
-                                </tr>
-                            `).join('')}
-                        </table>
-                    </div>
-                </div>
-            `;
-        }
-
-        function showAdminTab(tab) {
-            document.querySelectorAll('.admin-tab').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            const content = document.getElementById('admin-content');
-            
-            switch(tab) {
-                case 'dashboard':
-                    API.getStats().then(stats => {
-                        API.getCourses().then(courses => {
-                            API.getUsers().then(users => {
-                                content.innerHTML = renderAdminDashboard(stats, courses, users);
-                            });
-                        });
-                    });
-                    break;
-                    
-                case 'courses':
-                    API.getCourses().then(courses => {
-                        content.innerHTML = `
-                            <h3 style="color: var(--primary);">Liste des cours</h3>
-                            <div class="courses-grid">
-                                ${courses.map(course => `
-                                    <div class="course-card">
-                                        <div class="course-header">
-                                            <span class="course-icon">${course.icon}</span>
-                                            <span class="course-status status-${course.status}">${course.status}</span>
-                                        </div>
-                                        <div class="course-title">${course.title}</div>
-                                        <div class="course-stats">
-                                            <span>👥 ${course.students}</span>
-                                            <span>📖 ${course.lessons}</span>
-                                            <span>📊 ${course.completion}%</span>
-                                        </div>
-                                        <div class="course-actions">
-                                            <button class="small" onclick="editCourse(${course.id})">✏️ Éditer</button>
-                                            <button class="small secondary" onclick="viewCourse(${course.id})">👁️ Voir</button>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        `;
-                    });
-                    break;
-                    
-                case 'create':
-                    content.innerHTML = `
-                        <div class="editor-section">
-                            <h3>Créer un nouveau cours</h3>
-                            
-                            <div class="form-group">
-                                <label>Titre</label>
-                                <input type="text" id="new-course-title" class="form-control">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea id="new-course-desc" class="form-control"></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Icône</label>
-                                <select id="new-course-icon" class="form-control">
-                                    <option>📊 Excel</option>
-                                    <option>🇬🇧 Anglais</option>
-                                    <option>💻 Code</option>
-                                </select>
-                            </div>
-                            
-                            <button onclick="createNewCourse()">Créer le cours</button>
-                        </div>
-                        
-                        <div class="editor-section">
-                            <h3>Leçons récentes</h3>
-                            <div class="lessons-list">
-                                ${lessons.slice(0, 3).map(lesson => `
-                                    <div class="lesson-item">
-                                        <span>${lesson.title}</span>
-                                        <div class="lesson-actions">
-                                            <button class="small">✏️</button>
-                                            <button class="small danger">🗑️</button>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                            <button class="secondary" onclick="openModal('lessonModal')">+ Nouvelle leçon</button>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'students':
-                    API.getUsers().then(users => {
-                        content.innerHTML = `
-                            <h3 style="color: var(--primary);">Liste des élèves</h3>
-                            <div class="table-responsive">
-                                <table>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nom</th>
-                                        <th>Email</th>
-                                        <th>Progression</th>
-                                        <th>Dernière activité</th>
-                                    </tr>
-                                    ${users.map(user => `
-                                        <tr>
-                                            <td>${user.id}</td>
-                                            <td>${user.name}</td>
-                                            <td>${user.email}</td>
-                                            <td>${user.progress}%</td>
-                                            <td>${user.lastActive}</td>
-                                        </tr>
-                                    `).join('')}
-                                </table>
-                            </div>
-                        `;
-                    });
-                    break;
-                    
-                case 'analytics':
-                    API.getStats().then(stats => {
-                        content.innerHTML = `
-                            <h3 style="color: var(--primary);">Statistiques avancées</h3>
-                            <div class="stats-grid">
-                                <div class="stat-card">
-                                    <h3>API Calls</h3>
-                                    <div class="value">1,234</div>
-                                </div>
-                                <div class="stat-card">
-                                    <h3>Base de données</h3>
-                                    <div class="value">PostgreSQL</div>
-                                </div>
-                            </div>
-                            <button class="secondary" onclick="openModal('statsModal')">Voir détails</button>
-                        `;
-                    });
-                    break;
-                    
-                case 'api':
-                    content.innerHTML = `
-                        <h3 style="color: var(--primary);">Documentation API</h3>
-                        <pre style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 5px;">
-GET /api/users - Liste des utilisateurs
-GET /api/courses - Liste des cours
-POST /api/courses - Créer un cours
-GET /api/stats - Statistiques
-                        </pre>
-                        <div class="form-group">
-                            <label>API Key</label>
-                            <input type="text" value="sk_live_${Math.random().toString(36).substring(2, 10)}" readonly>
-                        </div>
-                    `;
-                    break;
-            }
-        }
-
-        function createNewCourse() {
-            const title = document.getElementById('new-course-title')?.value;
-            const desc = document.getElementById('new-course-desc')?.value;
-            const icon = document.getElementById('new-course-icon')?.value.split(' ')[0] || '📊';
-            
-            if (title) {
-                API.createCourse({
-                    title,
-                    description: desc,
-                    icon,
-                    lessons: 0,
-                    students: 0,
-                    completion: 0,
-                    status: 'draft'
-                }).then(() => {
-                    alert('Cours créé !');
-                    showAdminTab('courses');
-                });
-            }
-        }
-
-        function editCourse(id) {
-            alert(`Édition du cours ${id} (simulé)`);
-        }
-
-        function viewCourse(id) {
-            API.getCourse(id).then(course => {
-                alert(`Cours: ${course.title}\nLeçons: ${course.lessons}\nÉlèves: ${course.students}`);
-            });
-        }
-
-        function deleteCourse(id) {
-            if (confirm('Supprimer ce cours ?')) {
-                API.deleteCourse(id).then(() => {
-                    showAdminTab('courses');
-                });
-            }
-        }
-
-        function saveLesson() {
-            const title = document.getElementById('lesson-title')?.value;
-            const content = document.getElementById('lesson-content-input')?.value;
-            const xp = document.getElementById('lesson-xp')?.value;
-            
-            if (title) {
-                API.createLesson({
-                    courseId: 1,
-                    title,
-                    content,
-                    xp: parseInt(xp) || 10
-                }).then(() => {
-                    closeModal('lessonModal');
-                    alert('Leçon créée !');
-                });
-            }
-        }
-
-        // ============================================
-        // MODALS
-        // ============================================
-        
-        function openModal(modalId) {
-            document.getElementById(modalId)?.classList.add('active');
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId)?.classList.remove('active');
         }
 
         // ============================================
@@ -2581,19 +1328,11 @@ GET /api/stats - Statistiques
         // ============================================
         
         window.onload = function() {
-            checkStreak();
             changeLanguage(currentLang);
-            updateUI();
-            
-            if (completedChapters.size > 0) {
-                let lastCompleted = Math.max(...Array.from(completedChapters));
-                if (lastCompleted < 100) {
-                    loadChapter(lastCompleted + 1);
-                } else {
-                    showCertificate();
-                }
+            if (authToken) {
+                showDashboard();
             } else {
-                showWelcome();
+                showAuthScreen();
             }
         };
     </script>
