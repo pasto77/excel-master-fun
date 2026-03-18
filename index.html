@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>EXCEL MASTER FUN - Édition Universelle</title>
+    <title>Excel Master Fun - Version Autonome</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* ============================================
-           STYLE ULTIME - DESIGN INTEMPOREL
-           ============================================ */
+        /* Tous vos styles existants */
         * {
             margin: 0;
             padding: 0;
@@ -19,30 +17,15 @@
         :root {
             --primary: #FFD700;
             --primary-dark: #FFC107;
-            --primary-light: #FFF9C4;
             --secondary: #4ECCA3;
-            --secondary-dark: #2E8B57;
-            --secondary-light: #A7E9D0;
-            --accent: #FF6B6B;
-            --bg-dark: #0A0A1A;
-            --bg-card: #12122F;
-            --bg-light: #1E1E3F;
-            --text: #FFFFFF;
-            --text-muted: #B0B0B0;
-            --text-dark: #333333;
-            --danger: #FF4757;
-            --success: #00D68F;
-            --warning: #FFA500;
-            --info: #3498DB;
+            --bg-dark: #1a1a2e;
+            --bg-card: #16213e;
+            --text: #e9ecef;
+            --text-muted: #a0a0a0;
+            --danger: #ff4b5c;
+            --success: #4CAF50;
             --border: rgba(255, 215, 0, 0.2);
-            --shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.3);
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            --gradient-reverse: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
-        }
-
-        html[dir="rtl"] {
-            text-align: right;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         body {
@@ -53,333 +36,171 @@
             justify-content: center;
             align-items: center;
             padding: 15px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 30%),
-                        radial-gradient(circle at 80% 70%, rgba(78, 204, 163, 0.1) 0%, transparent 30%);
-            pointer-events: none;
         }
 
         #app {
             width: 100%;
-            max-width: 1600px;
-            height: 95vh;
-            background: rgba(18, 18, 47, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 40px;
+            max-width: 1400px;
+            height: 90vh;
+            background: var(--bg-card);
+            border-radius: 30px;
             box-shadow: var(--shadow);
             display: flex;
             overflow: hidden;
-            border: 2px solid var(--border);
+            border: 1px solid var(--border);
             position: relative;
-            z-index: 10;
         }
 
-        /* ============================================
-           SIDEBAR - LÉGENDAIRE
-           ============================================ */
+        /* Sidebar */
         #sidebar {
-            width: 350px;
-            background: linear-gradient(180deg, var(--bg-card) 0%, #0A0A1F 100%);
+            width: 320px;
+            background: linear-gradient(180deg, var(--bg-card) 0%, #0f1a2f 100%);
             border-right: 2px solid var(--border);
             display: flex;
             flex-direction: column;
-            position: relative;
-            overflow-y: auto;
-            overflow-x: hidden;
         }
 
         .brand {
-            padding: 30px 25px;
+            padding: 25px 20px;
             text-align: center;
             border-bottom: 2px solid var(--border);
-            background: rgba(0, 0, 0, 0.3);
-            position: relative;
         }
 
         .brand h1 {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .brand small {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .user-profile {
-            padding: 25px;
-            background: rgba(255, 215, 0, 0.05);
-            border-bottom: 2px solid var(--border);
-        }
-
-        .user-avatar {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient);
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            border: 4px solid var(--primary);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-        }
-
-        .user-name {
-            font-size: 1.3rem;
-            font-weight: 700;
             color: var(--primary);
-            text-align: center;
+            text-transform: uppercase;
             margin-bottom: 5px;
         }
 
-        .user-title {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+        .user-info {
+            padding: 15px 20px;
+            background: rgba(255, 215, 0, 0.05);
+            border-bottom: 1px solid var(--border);
         }
 
-        .level-container {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 15px;
+        .user-name {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
         }
 
-        .level-header {
+        .level-info {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-        }
-
-        .level-number {
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        .xp-bar {
-            width: 100%;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-            overflow: hidden;
-            margin-bottom: 10px;
-        }
-
-        .xp-fill {
-            height: 100%;
-            background: var(--gradient);
-            width: 0%;
-            transition: width 0.5s ease;
-            border-radius: 5px;
-            position: relative;
-        }
-
-        .xp-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 10px;
-            height: 100%;
-            background: white;
-            filter: blur(5px);
-            animation: scan 2s infinite;
-        }
-
-        .xp-text {
-            text-align: right;
             font-size: 0.8rem;
             color: var(--text-muted);
+            margin-bottom: 8px;
         }
 
-        .badges-container {
+        .xp-bar-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .xp-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .badges-preview {
             display: flex;
-            gap: 10px;
+            gap: 8px;
+            margin-top: 10px;
             flex-wrap: wrap;
-            justify-content: center;
         }
 
-        .badge-item {
-            width: 50px;
-            height: 50px;
+        .badge-mini {
+            width: 30px;
+            height: 30px;
             background: rgba(255, 215, 0, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            border: 2px solid var(--border);
-            transition: 0.3s;
-            cursor: pointer;
-            position: relative;
+            border: 1px solid var(--border);
         }
 
-        .badge-item.earned {
+        .badge-mini.earned {
             background: var(--primary);
-            border-color: var(--primary);
             color: #000;
-            transform: scale(1.1);
-            box-shadow: 0 0 20px var(--primary);
-        }
-
-        .badge-item:hover::after {
-            content: attr(data-name);
-            position: absolute;
-            bottom: 60px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--bg-card);
-            color: var(--text);
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.7rem;
-            white-space: nowrap;
-            border: 1px solid var(--primary);
-            z-index: 1000;
-        }
-
-        .chapters-section {
-            flex: 1;
-            padding: 20px;
         }
 
         .chapters-header {
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
         }
 
         .chapters-header h3 {
             color: var(--primary);
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
-        .progress-badge {
+        .filter-badge {
             background: var(--secondary);
             color: #000;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
         }
 
         #chapters-list {
             list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto;
+            flex-grow: 1;
         }
 
         #chapters-list li {
-            padding: 15px 20px;
-            margin-bottom: 8px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 15px;
-            border: 1px solid var(--border);
+            padding: 12px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
             cursor: pointer;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #chapters-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 4px;
-            background: var(--gradient);
-            opacity: 0;
-            transition: 0.3s;
+            font-size: 0.85rem;
+            transition: 0.2s;
         }
 
         #chapters-list li:hover {
-            transform: translateX(5px);
             background: rgba(255, 215, 0, 0.1);
-        }
-
-        #chapters-list li:hover::before {
-            opacity: 1;
         }
 
         #chapters-list li.completed {
             background: rgba(78, 204, 163, 0.1);
-            border-color: var(--secondary);
+            border-left: 4px solid var(--secondary);
         }
 
-        #chapters-list li.completed::before {
-            background: var(--secondary);
-            opacity: 1;
+        .sidebar-footer {
+            padding: 15px;
+            border-top: 1px solid var(--border);
+            text-align: center;
         }
 
-        #chapters-list li.locked {
-            opacity: 0.5;
-            filter: grayscale(1);
-            cursor: not-allowed;
-        }
-
-        .chapter-number {
-            font-weight: 700;
-            color: var(--primary);
-            margin-right: 15px;
-        }
-
-        .chapter-status {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .chapter-status.completed {
-            background: var(--secondary);
-            color: #000;
-        }
-
-        /* ============================================
-           MAIN CONTENT - ZONE PRINCIPALE
-           ============================================ */
+        /* Main content */
         #main {
-            flex: 1;
-            padding: 40px;
+            flex-grow: 1;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
+            background: radial-gradient(circle at 30% 50%, rgba(78, 204, 163, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
+                        var(--bg-dark);
             overflow-y: auto;
         }
 
-        .global-progress {
+        .progress-container {
             position: absolute;
             top: 20px;
             left: 40px;
@@ -390,32 +211,18 @@
             overflow: hidden;
         }
 
-        #global-progress-bar {
+        #progress-bar {
             height: 100%;
-            background: var(--gradient);
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
             width: 0%;
-            transition: width 0.5s ease;
-            border-radius: 4px;
-            position: relative;
-        }
-
-        #global-progress-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 20px;
-            height: 100%;
-            background: white;
-            filter: blur(10px);
-            animation: scan 2s infinite;
+            transition: width 0.4s;
         }
 
         .language-selector {
             position: absolute;
             top: 20px;
-            right: 40px;
-            z-index: 100;
+            right: 20px;
+            z-index: 1000;
             display: flex;
             gap: 5px;
         }
@@ -424,65 +231,49 @@
             background: rgba(255, 215, 0, 0.1);
             border: 1px solid var(--border);
             color: var(--text);
-            padding: 8px 15px;
-            border-radius: 8px;
+            padding: 5px 10px;
+            border-radius: 5px;
             cursor: pointer;
             font-size: 0.8rem;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .lang-btn:hover {
-            background: rgba(255, 215, 0, 0.3);
         }
 
         .lang-btn.active {
             background: var(--primary);
             color: #000;
-            border-color: var(--primary);
         }
 
+        /* Coach */
         .coach-container {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            z-index: 1000;
-            animation: float 3s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            z-index: 100;
         }
 
         .coach-bubble {
             background: var(--bg-card);
-            border: 3px solid var(--primary);
-            border-radius: 25px 25px 5px 25px;
-            padding: 20px;
-            max-width: 300px;
+            border: 2px solid var(--primary);
+            border-radius: 20px 20px 5px 20px;
+            padding: 15px;
+            max-width: 250px;
             position: relative;
-            margin-bottom: 15px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            margin-bottom: 10px;
+            animation: float 3s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .coach-bubble::after {
             content: '';
             position: absolute;
-            bottom: -15px;
+            bottom: -10px;
             right: 20px;
-            width: 0;
-            height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 15px solid var(--primary);
-        }
-
-        .coach-message {
-            color: var(--text);
-            font-size: 1rem;
-            line-height: 1.5;
-            font-style: italic;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid var(--primary);
         }
 
         .coach-avatar {
@@ -491,31 +282,19 @@
         }
 
         .coach-avatar img {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             border: 3px solid var(--primary);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-            cursor: pointer;
-            transition: 0.3s;
         }
 
-        .coach-avatar img:hover {
-            transform: scale(1.1);
-        }
-
-        /* ============================================
-           CARD PRINCIPALE - CONTENU DYNAMIQUE
-           ============================================ */
-        .main-card {
-            background: rgba(18, 18, 47, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 50px;
-            border-radius: 40px;
+        .card {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 30px;
             width: 100%;
-            max-width: 800px;
-            border: 2px solid var(--border);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            max-width: 650px;
+            border: 1px solid var(--border);
             animation: fadeIn 0.5s;
         }
 
@@ -524,58 +303,34 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .main-card h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .main-card h2 {
+        .card h2 {
             font-size: 2rem;
             color: var(--primary);
+            margin-bottom: 15px;
             text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .main-card h3 {
-            color: var(--text-muted);
-            text-align: center;
-            margin-bottom: 40px;
-            font-weight: 400;
         }
 
         .intro-ticker {
             width: 100%;
-            background: var(--gradient);
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
             color: #000;
-            padding: 15px 0;
+            padding: 12px 0;
             border-radius: 50px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             overflow: hidden;
-            position: relative;
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
         }
 
         .ticker-content {
             display: flex;
-            animation: ticker 20s linear infinite;
+            animation: ticker 15s linear infinite;
             white-space: nowrap;
         }
 
         .ticker-item {
             display: inline-flex;
             align-items: center;
-            padding: 0 40px;
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .ticker-item span {
-            margin: 0 15px;
+            padding: 0 30px;
+            font-weight: 600;
         }
 
         @keyframes ticker {
@@ -583,261 +338,148 @@
             100% { transform: translateX(-50%); }
         }
 
-        .coach-intro {
+        .coach-intro-card {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(78, 204, 163, 0.1) 100%);
             border: 2px solid var(--primary);
-            border-radius: 30px;
-            padding: 30px;
-            margin-bottom: 30px;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 20px;
         }
 
         .coach-intro-avatar {
-            width: 100px;
-            height: 100px;
-            background: var(--gradient);
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            border: 4px solid var(--secondary);
-            box-shadow: 0 0 40px var(--primary);
+            font-size: 2.5rem;
+            border: 3px solid var(--secondary);
         }
 
-        .coach-intro-text {
-            flex: 1;
-        }
-
-        .coach-intro-text h4 {
-            color: var(--primary);
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-
-        .coach-intro-text p {
-            color: var(--text);
-            font-size: 1.1rem;
-            line-height: 1.6;
-            font-style: italic;
-        }
-
-        .fun-fact {
-            margin-top: 15px;
-            padding: 10px 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            color: var(--secondary);
-            font-size: 1rem;
-            border-left: 3px solid var(--secondary);
-        }
-
-        .lesson-number {
-            display: inline-block;
-            background: var(--gradient);
-            color: #000;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 25px;
-        }
-
-        .question-box {
+        .coach-box {
             background: rgba(255, 255, 255, 0.03);
-            padding: 30px;
-            border-radius: 25px;
-            margin: 30px 0;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
             border-left: 5px solid var(--primary);
-            font-size: 1.2rem;
-            line-height: 1.6;
-            position: relative;
         }
 
-        .question-box::before {
-            content: '"';
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            font-size: 5rem;
-            color: var(--primary);
-            opacity: 0.2;
-            font-family: serif;
-        }
-
-        .input-field {
+        input, button {
             width: 100%;
-            padding: 18px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 2px solid var(--border);
-            border-radius: 15px;
-            color: white;
-            font-size: 1.1rem;
-            margin: 15px 0;
-            transition: 0.3s;
-        }
-
-        .input-field:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-        }
-
-        .btn {
-            background: var(--gradient);
-            color: #000;
-            border: none;
-            padding: 18px 30px;
-            font-weight: 700;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            transition: 0.3s;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
-        }
-
-        .btn-secondary {
-            background: var(--secondary);
-            box-shadow: 0 10px 20px rgba(78, 204, 163, 0.3);
-        }
-
-        .btn-danger {
-            background: var(--danger);
-            box-shadow: 0 10px 20px rgba(255, 71, 87, 0.3);
-        }
-
-        .feedback {
-            margin-top: 20px;
             padding: 15px;
             border-radius: 12px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 1.1rem;
-            animation: pulse 0.5s;
+            font-size: 1rem;
+            margin: 5px 0;
         }
 
-        .feedback.success {
-            background: rgba(0, 214, 143, 0.2);
-            color: var(--success);
-            border: 1px solid var(--success);
+        input {
+            background: rgba(10, 10, 26, 0.8);
+            border: 2px solid var(--border);
+            color: white;
         }
 
-        .feedback.error {
-            background: rgba(255, 71, 87, 0.2);
-            color: var(--danger);
-            border: 1px solid var(--danger);
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #000;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
         }
 
         .auth-tabs {
             display: flex;
-            gap: 15px;
-            margin: 30px 0;
+            gap: 10px;
+            margin: 20px 0;
         }
 
         .auth-tab {
             flex: 1;
-            padding: 15px;
+            padding: 10px;
             background: rgba(255, 215, 0, 0.1);
-            border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 8px;
             text-align: center;
             cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .auth-tab:hover {
-            background: rgba(255, 215, 0, 0.2);
         }
 
         .auth-tab.active {
             background: var(--primary);
             color: #000;
-            border-color: var(--primary);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .feedback.success {
+            background: rgba(76, 175, 80, 0.2);
+            color: var(--success);
+        }
+
+        .feedback.error {
+            background: rgba(255, 75, 92, 0.2);
+            color: var(--danger);
         }
 
         .unlock-section {
-            margin: 40px 0;
-            padding: 30px;
+            margin: 30px 0;
+            padding: 20px;
             background: rgba(255, 215, 0, 0.05);
-            border-radius: 20px;
-            border: 2px dashed var(--primary);
-            text-align: center;
+            border-radius: 15px;
+            border: 1px dashed var(--primary);
         }
 
         .whatsapp-btn {
             display: inline-block;
             text-decoration: none;
             color: white;
-            padding: 15px 25px;
-            border-radius: 12px;
+            padding: 12px 20px;
+            border-radius: 10px;
             font-weight: 600;
-            margin: 10px;
-            transition: 0.3s;
+            margin: 5px;
         }
 
         .wa-1 { background: #25D366; }
         .wa-2 { background: #075E54; }
 
-        .whatsapp-btn:hover {
-            transform: translateY(-3px);
-            filter: brightness(1.1);
-        }
-
         .certificate {
             background: white;
             color: #333;
-            padding: 50px;
-            border: 20px double var(--primary);
+            padding: 40px;
+            border: 15px double var(--primary);
             text-align: center;
-            border-radius: 20px;
         }
 
-        .certificate h1 {
-            font-size: 4rem;
-            color: #000;
-            margin-bottom: 30px;
-        }
-
-        .certificate h2 {
-            font-size: 2.2rem;
-            color: #333;
-            border-bottom: 4px solid var(--primary);
-            display: inline-block;
-            padding: 0 40px 15px;
-            margin: 30px 0;
-        }
-
-        .certificate .user-name {
-            font-size: 3rem;
-            color: var(--primary-dark);
-            font-weight: 800;
-            margin: 30px 0;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 768px) {
-            #app { flex-direction: column; }
-            #sidebar { width: 100%; max-height: 40vh; }
-            .main-card { padding: 30px; }
-            .coach-intro { flex-direction: column; text-align: center; }
-            .language-selector { top: 10px; right: 10px; }
-        }
+        .certificate h1 { font-size: 3rem; }
+        .certificate .user-name { font-size: 2.5rem; color: var(--primary-dark); font-weight: 800; }
 
         @media print {
             body * { visibility: hidden; }
             .certificate, .certificate * { visibility: visible; }
-            .certificate { position: absolute; left: 0; top: 0; width: 100%; border: none; background: white; }
+            .certificate { position: absolute; left: 0; top: 0; width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            #app { flex-direction: column; }
+            #sidebar { width: 100%; max-height: 300px; }
+            .language-selector { top: 10px; right: 10px; }
         }
     </style>
 </head>
@@ -847,532 +489,183 @@
         <div class="language-selector">
             <button class="lang-btn active" onclick="changeLanguage('fr')">FR</button>
             <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
-            <button class="lang-btn" onclick="changeLanguage('es')">ES</button>
-            <button class="lang-btn" onclick="changeLanguage('ar')">عربي</button>
         </div>
 
         <!-- Sidebar -->
         <div id="sidebar">
             <div class="brand">
-                <h1>EXCEL MASTER FUN</h1>
-                <small>ÉDITION UNIVERSELLE</small>
+                <h1 id="brand-title">EXCEL MASTER FUN</h1>
+                <small id="brand-subtitle">De zéro à héros</small>
             </div>
 
-            <div class="user-profile" id="user-profile" style="display: none;">
-                <div class="user-avatar" id="user-avatar">👤</div>
-                <div class="user-name" id="user-name">Apprenant</div>
-                <div class="user-title" id="user-title">Niveau 1: L'abruti</div>
-                
-                <div class="level-container">
-                    <div class="level-header">
-                        <span class="level-number" id="level-number">Niveau 1</span>
-                        <span id="xp-counter">0/300 XP</span>
-                    </div>
-                    <div class="xp-bar">
-                        <div class="xp-fill" id="xp-fill" style="width: 0%"></div>
-                    </div>
-                    <div class="xp-text" id="xp-total">0 XP total</div>
+            <div class="user-info" id="user-info" style="display: none;">
+                <div class="user-name" id="display-name">Apprenant</div>
+                <div class="level-info">
+                    <span id="level-label">Niveau <span id="level-display">1</span></span>
+                    <span id="xp-display">0/300 XP</span>
                 </div>
-
-                <div class="badges-container" id="badges-container">
-                    <!-- Badges dynamiques -->
+                <div class="xp-bar-container">
+                    <div class="xp-bar-fill" id="xp-bar" style="width: 0%"></div>
                 </div>
+                <div class="badges-preview" id="badges-preview"></div>
             </div>
 
-            <div class="chapters-section" id="chapters-section" style="display: none;">
-                <div class="chapters-header">
-                    <h3>📚 CHAPITRES</h3>
-                    <span class="progress-badge" id="chapters-progress">0/100</span>
-                </div>
-                <ul id="chapters-list"></ul>
+            <div class="chapters-header" id="chapters-header" style="display: none;">
+                <h3 id="chapters-title">📚 CHAPITRES</h3>
+                <span class="filter-badge" id="completed-counter">0/100</span>
             </div>
 
-            <div style="padding: 20px; text-align: center; border-top: 2px solid var(--border);">
+            <ul id="chapters-list"></ul>
+
+            <div class="sidebar-footer">
                 <small>Support: 677 05 10 62</small>
             </div>
         </div>
 
         <!-- Main Content -->
         <div id="main">
-            <div class="global-progress">
-                <div id="global-progress-bar"></div>
+            <div class="progress-container" id="progress-container" style="display: none;">
+                <div id="progress-bar"></div>
             </div>
 
-            <div class="coach-container">
-                <div class="coach-bubble" id="coach-bubble">
-                    <div class="coach-message" id="coach-message">Salut ! Je suis Excelix, ton coach pour cette aventure !</div>
+            <div class="coach-container" id="coach-container" style="display: none;">
+                <div class="coach-bubble">
+                    <div class="coach-message" id="coach-message">Salut ! Prêt à dompter Excel ?</div>
                 </div>
                 <div class="coach-avatar">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23FFD700'/%3E%3Ccircle cx='35' cy='40' r='5' fill='%23000'/%3E%3Ccircle cx='65' cy='40' r='5' fill='%23000'/%3E%3Cpath d='M35 65 Q50 80 65 65' stroke='%23000' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Crect x='40' y='20' width='20' height='10' rx='5' fill='%23fff'/%3E%3C/svg%3E" alt="Excelix" id="coach-avatar">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23FFD700'/%3E%3Ccircle cx='35' cy='40' r='5' fill='%23000'/%3E%3Ccircle cx='65' cy='40' r='5' fill='%23000'/%3E%3Cpath d='M35 65 Q50 80 65 65' stroke='%23000' stroke-width='4' fill='none'/%3E%3Crect x='40' y='20' width='20' height='10' rx='5' fill='%23fff'/%3E%3C/svg%3E" alt="Excelix">
                 </div>
             </div>
 
-            <div id="content" class="main-card">
-                <!-- Le contenu dynamique sera injecté ici -->
-            </div>
+            <div id="lesson-content" class="card"></div>
         </div>
     </div>
 
     <script>
         // ============================================
-        // CONFIGURATION ULTIME
+        // CONFIGURATION
         // ============================================
         
-        const CONFIG = {
-            API_URL: 'https://excel-master-fun-production.up.railway.app/api',
-            MASTER_KEY: 'EXCEL-MASTER-2026',
-            VERSION: '3.0.0',
-            TOTAL_LESSONS: 100
-        };
-
+        const API_BASE_URL = 'https://excel-master-fun-production.up.railway.app/api';
+        const MASTER_KEY = "EXCEL-MASTER-2026";
+        
         // ============================================
-        // DONNÉES MULTILINGUES COMPLÈTES
+        // TRADUCTIONS
         // ============================================
         
-        const TRANSLATIONS = {
+        const translations = {
             fr: {
-                appName: "EXCEL MASTER FUN",
-                subtitle: "De zéro à héros",
-                welcome: "Bienvenue dans l'aventure Excel !",
-                welcomeDesc: "La formation interactive qui va changer votre vie",
+                brand: "EXCEL MASTER FUN",
+                brandSub: "De zéro à héros",
+                level: "Niveau",
+                xp: "XP",
+                chapters: "📚 CHAPITRES",
+                welcome: "Bienvenue dans Excel Master Fun !",
+                welcomeDesc: "La formation interactive qui rend Excel addictif",
+                coachIntro: "Avec moi, Excelix, tu vas passer de zéro à héros !",
+                answer: "Ta réponse...",
+                validate: "VALIDER",
+                correct: "BRAVO !",
+                incorrect: "Essaie encore.",
                 login: "Connexion",
                 register: "Inscription",
-                email: "Adresse email",
+                email: "Email",
                 password: "Mot de passe",
-                name: "Nom complet",
+                name: "Nom",
                 loginBtn: "Se connecter",
-                registerBtn: "Créer mon compte",
-                logout: "Se déconnecter",
-                validate: "VALIDER",
-                answer: "Votre réponse...",
-                correct: "BRAVO ! 🎉",
-                incorrect: "Essaie encore ! 💪",
-                alreadyDone: "Déjà validé ! ✓",
-                premium: "Accès Premium",
-                premiumDesc: "Débloquez les 90 chapitres restants !",
-                unlock: "DÉBLOQUER",
-                key: "Clé d'activation",
-                getKey: "Obtenir une clé",
+                registerBtn: "S'inscrire",
+                logout: "Déconnexion",
                 certificate: "CERTIFICAT DE MAÎTRISE",
-                print: "IMPRIMER",
-                levelNames: [
-                    "L'abruti", "L'apprenti", "Le débrouillard", 
-                    "Le pro", "Le génie", "L'expert", "La légende"
-                ],
-                coachMessages: [
-                    "Tu vas y arriver, j'ai confiance !",
-                    "Cette leçon est importante, concentre-toi !",
-                    "BOOM ! T'assures grave !",
-                    "Presque ! Essaie encore !",
-                    "Le savais-tu ? Excel peut traiter 1 million de lignes !"
-                ],
-                funFacts: [
-                    "Excel peut traiter plus d'1 million de lignes !",
-                    "La première version d'Excel date de 1985",
-                    "Il existe plus de 400 fonctions Excel",
-                    "CTRL+Z peut sauver des vies !",
-                    "Les tableaux croisés sont magiques"
-                ]
+                print: "🖨️ IMPRIMER",
+                start: "COMMENCER",
+                levelNames: ["L'abruti", "L'apprenti", "Le débrouillard", "Le pro", "Le génie", "L'expert", "La légende"]
             },
             en: {
-                appName: "EXCEL MASTER FUN",
-                subtitle: "From zero to hero",
-                welcome: "Welcome to the Excel adventure!",
-                welcomeDesc: "The interactive training that will change your life",
+                brand: "EXCEL MASTER FUN",
+                brandSub: "From zero to hero",
+                level: "Level",
+                xp: "XP",
+                chapters: "📚 CHAPTERS",
+                welcome: "Welcome to Excel Master Fun!",
+                welcomeDesc: "The interactive training that makes Excel addictive",
+                coachIntro: "With me, Excelix, you'll go from zero to hero!",
+                answer: "Your answer...",
+                validate: "VALIDATE",
+                correct: "WELL DONE!",
+                incorrect: "Try again.",
                 login: "Login",
                 register: "Register",
-                email: "Email address",
+                email: "Email",
                 password: "Password",
-                name: "Full name",
+                name: "Name",
                 loginBtn: "Login",
-                registerBtn: "Create account",
+                registerBtn: "Register",
                 logout: "Logout",
-                validate: "VALIDATE",
-                answer: "Your answer...",
-                correct: "WELL DONE! 🎉",
-                incorrect: "Try again! 💪",
-                alreadyDone: "Already done! ✓",
-                premium: "Premium Access",
-                premiumDesc: "Unlock the remaining 90 chapters!",
-                unlock: "UNLOCK",
-                key: "Activation key",
-                getKey: "Get a key",
                 certificate: "MASTERY CERTIFICATE",
-                print: "PRINT",
-                levelNames: [
-                    "The Noob", "The Apprentice", "The Hustler",
-                    "The Pro", "The Genius", "The Expert", "The Legend"
-                ],
-                coachMessages: [
-                    "You can do it, I believe in you!",
-                    "This lesson is important, focus!",
-                    "BOOM! You're amazing!",
-                    "Almost! Try again!",
-                    "Did you know? Excel can process 1 million rows!"
-                ],
-                funFacts: [
-                    "Excel can process over 1 million rows!",
-                    "First Excel version was in 1985",
-                    "There are over 400 Excel functions",
-                    "CTRL+Z can save lives!",
-                    "Pivot tables are magic"
-                ]
-            },
-            es: {
-                appName: "EXCEL MASTER FUN",
-                subtitle: "De cero a héroe",
-                welcome: "¡Bienvenido a la aventura de Excel!",
-                welcomeDesc: "La formación interactiva que cambiará tu vida",
-                login: "Iniciar sesión",
-                register: "Registrarse",
-                email: "Correo electrónico",
-                password: "Contraseña",
-                name: "Nombre completo",
-                loginBtn: "Entrar",
-                registerBtn: "Crear cuenta",
-                logout: "Cerrar sesión",
-                validate: "VALIDAR",
-                answer: "Tu respuesta...",
-                correct: "¡BIEN HECHO! 🎉",
-                incorrect: "¡Inténtalo de nuevo! 💪",
-                alreadyDone: "¡Ya hecho! ✓",
-                premium: "Acceso Premium",
-                premiumDesc: "¡Desbloquea los 90 capítulos restantes!",
-                unlock: "DESBLOQUEAR",
-                key: "Clave de activación",
-                getKey: "Obtener clave",
-                certificate: "CERTIFICADO DE DOMINIO",
-                print: "IMPRIMIR",
-                levelNames: [
-                    "El novato", "El aprendiz", "El luchador",
-                    "El profesional", "El genio", "El experto", "La leyenda"
-                ],
-                coachMessages: [
-                    "¡Puedes hacerlo, confío en ti!",
-                    "Esta lección es importante, ¡concéntrate!",
-                    "¡BOOM! ¡Eres increíble!",
-                    "¡Casi! ¡Inténtalo de nuevo!",
-                    "¿Sabías que? Excel puede procesar 1 millón de filas"
-                ],
-                funFacts: [
-                    "¡Excel puede procesar más de 1 millón de filas!",
-                    "La primera versión de Excel fue en 1985",
-                    "Hay más de 400 funciones en Excel",
-                    "¡CTRL+Z puede salvar vidas!",
-                    "Las tablas dinámicas son mágicas"
-                ]
-            },
-            ar: {
-                appName: "إتقان إكسل للمتعة",
-                subtitle: "من صفر إلى بطل",
-                welcome: "مرحباً بك في مغامرة إكسل!",
-                welcomeDesc: "التدريب التفاعلي الذي سيغير حياتك",
-                login: "تسجيل الدخول",
-                register: "إنشاء حساب",
-                email: "البريد الإلكتروني",
-                password: "كلمة المرور",
-                name: "الاسم الكامل",
-                loginBtn: "دخول",
-                registerBtn: "إنشاء حساب",
-                logout: "تسجيل الخروج",
-                validate: "تحقق",
-                answer: "إجابتك...",
-                correct: "أحسنت! 🎉",
-                incorrect: "حاول مرة أخرى! 💪",
-                alreadyDone: "تم بالفعل! ✓",
-                premium: "وصول مميز",
-                premiumDesc: "افتح الدروس التسعين المتبقية!",
-                unlock: "فتح",
-                key: "مفتاح التفعيل",
-                getKey: "احصل على مفتاح",
-                certificate: "شهادة إتقان",
-                print: "طباعة",
-                levelNames: [
-                    "المبتدئ", "المتدرب", "المجتهد",
-                    "المحترف", "العبقري", "الخبير", "الأسطورة"
-                ],
-                coachMessages: [
-                    "يمكنك فعلها، أنا أثق بك!",
-                    "هذا الدرس مهم، ركز!",
-                    "رائع! أنت مذهل!",
-                    "تقريباً! حاول مرة أخرى!",
-                    "هل تعلم؟ إكسل يمكنه معالجة مليون صف"
-                ],
-                funFacts: [
-                    "إكسل يمكنه معالجة أكثر من مليون صف!",
-                    "النسخة الأولى من إكسل كانت في 1985",
-                    "هناك أكثر من 400 دالة في إكسل",
-                    "CTRL+Z يمكنه إنقاذ الأرواح!",
-                    "الجداول المحورية سحرية"
-                ]
+                print: "🖨️ PRINT",
+                start: "START",
+                levelNames: ["The Noob", "The Apprentice", "The Hustler", "The Pro", "The Genius", "The Expert", "The Legend"]
             }
         };
 
-        // ============================================
-        // 100 LEÇONS COMPLÈTES
-        // ============================================
-        
-        const LESSONS = {
-            1: { title: "Les cellules", question: "Quel est le nom de la première cellule ? (ex: A1)", answer: "A1", xp: 10 },
-            2: { title: "Sélectionner tout", question: "Quel raccourci pour tout sélectionner ?", answer: "CTRL+A", xp: 10 },
-            3: { title: "La somme", question: "Formule pour additionner A1 à A10 ?", answer: "=SOMME(A1:A10)", xp: 15 },
-            4: { title: "La moyenne", question: "Formule pour la moyenne de B1 à B5 ?", answer: "=MOYENNE(B1:B5)", xp: 15 },
-            5: { title: "Le minimum", question: "Formule pour la plus petite valeur de A1 à A20 ?", answer: "=MIN(A1:A20)", xp: 15 },
-            6: { title: "Le maximum", question: "Formule pour la plus grande valeur de A1 à A20 ?", answer: "=MAX(A1:A20)", xp: 15 },
-            7: { title: "Compter", question: "Formule pour compter les cellules non vides de A1 à A10 ?", answer: "=NB(A1:A10)", xp: 15 },
-            8: { title: "Compter si", question: "Formule pour compter les 'OUI' de A1 à A10 ?", answer: "=NB.SI(A1:A10;\"OUI\")", xp: 20 },
-            9: { title: "Somme si", question: "Formule pour additionner les valeurs >10 de A1 à A10 ?", answer: "=SOMME.SI(A1:A10;\">10\")", xp: 20 },
-            10: { title: "RECHERCHEV", question: "Formule pour chercher A1 dans B1:C10 et retourner colonne 2 ?", answer: "=RECHERCHEV(A1;B1:C10;2;0)", xp: 25 },
-            11: { title: "RECHERCHEX", question: "Formule moderne pour chercher A1 dans B1:B10 et retourner C1:C10 ?", answer: "=RECHERCHEX(A1;B1:B10;C1:C10)", xp: 25 },
-            12: { title: "SI simple", question: "Formule: si A1>10 alors 'OK' sinon 'NON' ?", answer: "=SI(A1>10;\"OK\";\"NON\")", xp: 20 },
-            13: { title: "SI imbriqué", question: "Si A1>10, 'A', si A1>5, 'B', sinon 'C' ?", answer: "=SI(A1>10;\"A\";SI(A1>5;\"B\";\"C\"))", xp: 25 },
-            14: { title: "ET logique", question: "Formule: si A1>10 et B1>10 alors 'OK' ?", answer: "=SI(ET(A1>10;B1>10);\"OK\";\"NON\")", xp: 20 },
-            15: { title: "OU logique", question: "Formule: si A1>10 ou B1>10 alors 'OK' ?", answer: "=SI(OU(A1>10;B1>10);\"OK\";\"NON\")", xp: 20 },
-            16: { title: "INDEX", question: "Formule pour retourner la valeur à ligne 2, colonne 3 de la plage A1:C10 ?", answer: "=INDEX(A1:C10;2;3)", xp: 25 },
-            17: { title: "EQUIV", question: "Formule pour trouver la position de 'X' dans A1:A10 ?", answer: "=EQUIV(\"X\";A1:A10;0)", xp: 25 },
-            18: { title: "INDEX+EQUIV", question: "Combinaison des deux fonctions ?", answer: "=INDEX(B1:B10;EQUIV(\"X\";A1:A10;0))", xp: 30 },
-            19: { title: "INDIRECT", question: "Formule pour référer à la cellule nommée en A1 ?", answer: "=INDIRECT(A1)", xp: 25 },
-            20: { title: "ADRESSE", question: "Formule pour obtenir l'adresse de la ligne 2 colonne 3 ?", answer: "=ADRESSE(2;3)", xp: 20 },
-            21: { title: "COLONNE", question: "Formule pour le numéro de colonne de C5 ?", answer: "=COLONNE(C5)", xp: 15 },
-            22: { title: "LIGNE", question: "Formule pour le numéro de ligne de C5 ?", answer: "=LIGNE(C5)", xp: 15 },
-            23: { title: "AUJOURDHUI", question: "Formule pour la date du jour ?", answer: "=AUJOURDHUI()", xp: 10 },
-            24: { title: "MAINTENANT", question: "Formule pour la date et l'heure actuelles ?", answer: "=MAINTENANT()", xp: 10 },
-            25: { title: "ANNEE", question: "Formule pour extraire l'année d'une date en A1 ?", answer: "=ANNEE(A1)", xp: 15 },
-            26: { title: "MOIS", question: "Formule pour extraire le mois d'une date en A1 ?", answer: "=MOIS(A1)", xp: 15 },
-            27: { title: "JOUR", question: "Formule pour extraire le jour d'une date en A1 ?", answer: "=JOUR(A1)", xp: 15 },
-            28: { title: "DATEDIF", question: "Différence en jours entre A1 et B1 ?", answer: "=DATEDIF(A1;B1;\"d\")", xp: 20 },
-            29: { title: "TEXTE", question: "Formater la date A1 en 'jj/mm/aaaa' ?", answer: "=TEXTE(A1;\"jj/mm/aaaa\")", xp: 20 },
-            30: { title: "GAUCHE", question: "Extraire les 3 premiers caractères de A1 ?", answer: "=GAUCHE(A1;3)", xp: 15 },
-            31: { title: "DROITE", question: "Extraire les 3 derniers caractères de A1 ?", answer: "=DROITE(A1;3)", xp: 15 },
-            32: { title: "STXT", question: "Extraire 2 caractères à partir de la position 3 dans A1 ?", answer: "=STXT(A1;3;2)", xp: 20 },
-            33: { title: "CONCAT", question: "Concaténer A1 et B1 ?", answer: "=CONCAT(A1;B1)", xp: 15 },
-            34: { title: "MAJUSCULE", question: "Mettre A1 en majuscules ?", answer: "=MAJUSCULE(A1)", xp: 10 },
-            35: { title: "MINUSCULE", question: "Mettre A1 en minuscules ?", answer: "=MINUSCULE(A1)", xp: 10 },
-            36: { title: "NOMPROPRE", question: "Mettre la première lettre de chaque mot en majuscule ?", answer: "=NOMPROPRE(A1)", xp: 15 },
-            37: { title: "SUPPRESPACE", question: "Enlever les espaces superflus dans A1 ?", answer: "=SUPPRESPACE(A1)", xp: 15 },
-            38: { title: "NBCAR", question: "Nombre de caractères dans A1 ?", answer: "=NBCAR(A1)", xp: 10 },
-            39: { title: "ESTVIDE", question: "Vérifier si A1 est vide ?", answer: "=ESTVIDE(A1)", xp: 15 },
-            40: { title: "ESTNUM", question: "Vérifier si A1 est un nombre ?", answer: "=ESTNUM(A1)", xp: 15 },
-            41: { title: "ESTTEXTE", question: "Vérifier si A1 est du texte ?", answer: "=ESTTEXTE(A1)", xp: 15 },
-            42: { title: "ESTERREUR", question: "Vérifier si A1 contient une erreur ?", answer: "=ESTERREUR(A1)", xp: 15 },
-            43: { title: "SIERREUR", question: "Si A1/B1 erreur, afficher 0 ?", answer: "=SIERREUR(A1/B1;0)", xp: 20 },
-            44: { title: "ARRONDI", question: "Arrondir A1 à 2 décimales ?", answer: "=ARRONDI(A1;2)", xp: 15 },
-            45: { title: "ARRONDI.INF", question: "Arrondir à l'inférieur à 2 décimales ?", answer: "=ARRONDI.INF(A1;2)", xp: 15 },
-            46: { title: "ARRONDI.SUP", question: "Arrondir au supérieur à 2 décimales ?", answer: "=ARRONDI.SUP(A1;2)", xp: 15 },
-            47: { title: "ENT", question: "Partie entière de A1 ?", answer: "=ENT(A1)", xp: 10 },
-            48: { title: "MOD", question: "Reste de A1 divisé par B1 ?", answer: "=MOD(A1;B1)", xp: 15 },
-            49: { title: "RACINE", question: "Racine carrée de A1 ?", answer: "=RACINE(A1)", xp: 10 },
-            50: { title: "PUISSANCE", question: "A1 à la puissance B1 ?", answer: "=PUISSANCE(A1;B1)", xp: 15 },
-            51: { title: "SOMME.SI.ENS", question: "Somme de A1:A10 si B1:B10='X' et C1:C10>5 ?", answer: "=SOMME.SI.ENS(A1:A10;B1:B10;\"X\";C1:C10;\">5\")", xp: 30 },
-            52: { title: "NB.SI.ENS", question: "Compter si B1:B10='X' et C1:C10>5 ?", answer: "=NB.SI.ENS(B1:B10;\"X\";C1:C10;\">5\")", xp: 25 },
-            53: { title: "MOYENNE.SI", question: "Moyenne des A1:A10 >10 ?", answer: "=MOYENNE.SI(A1:A10;\">10\")", xp: 20 },
-            54: { title: "MEDIANE", question: "Médiane de A1:A10 ?", answer: "=MEDIANE(A1:A10)", xp: 15 },
-            55: { title: "MODE", question: "Mode de A1:A10 ?", answer: "=MODE(A1:A10)", xp: 15 },
-            56: { title: "QUARTILE", question: "Premier quartile de A1:A10 ?", answer: "=QUARTILE(A1:A10;1)", xp: 20 },
-            57: { title: "CENTILE", question: "90ème centile de A1:A10 ?", answer: "=CENTILE(A1:A10;0.9)", xp: 20 },
-            58: { title: "VAR", question: "Variance de A1:A10 ?", answer: "=VAR(A1:A10)", xp: 20 },
-            59: { title: "ECARTYPE", question: "Écart-type de A1:A10 ?", answer: "=ECARTYPE(A1:A10)", xp: 20 },
-            60: { title: "COEFFICIENT.CORRELATION", question: "Corrélation entre A1:A10 et B1:B10 ?", answer: "=COEFFICIENT.CORRELATION(A1:A10;B1:B10)", xp: 25 },
-            61: { title: "TRANSPOSE", question: "Transposer une matrice ?", answer: "=TRANSPOSE(A1:C10)", xp: 20 },
-            62: { title: "PRODUITMAT", question: "Produit matriciel de deux matrices ?", answer: "=PRODUITMAT(A1:C5;D1:F5)", xp: 25 },
-            63: { title: "DETERMAT", question: "Déterminant d'une matrice ?", answer: "=DETERMAT(A1:C3)", xp: 25 },
-            64: { title: "INVERSEMAT", question: "Inverse d'une matrice ?", answer: "=INVERSEMAT(A1:C3)", xp: 25 },
-            65: { title: "SOMME.CARRES", question: "Somme des carrés de A1:A10 ?", answer: "=SOMME.CARRES(A1:A10)", xp: 15 },
-            66: { title: "SOMME.XMY2", question: "Somme des (A1:A10 - B1:B10)² ?", answer: "=SOMME.XMY2(A1:A10;B1:B10)", xp: 20 },
-            67: { title: "FREQUENCE", question: "Distribution de fréquence ?", answer: "=FREQUENCE(A1:A10;B1:B5)", xp: 20 },
-            68: { title: "RANG", question: "Rang de A1 dans A1:A10 ?", answer: "=RANG(A1;A1:A10;0)", xp: 15 },
-            69: { title: "RANG.MOYEN", question: "Rang moyen de A1 dans A1:A10 ?", answer: "=RANG.MOYEN(A1;A1:A10)", xp: 15 },
-            70: { title: "GRANDE.VALEUR", question: "2ème plus grande valeur de A1:A10 ?", answer: "=GRANDE.VALEUR(A1:A10;2)", xp: 15 },
-            71: { title: "PETITE.VALEUR", question: "3ème plus petite valeur de A1:A10 ?", answer: "=PETITE.VALEUR(A1:A10;3)", xp: 15 },
-            72: { title: "NB.JOURS.OUVRES", question: "Jours ouvrés entre deux dates ?", answer: "=NB.JOURS.OUVRES(A1;B1)", xp: 20 },
-            73: { title: "SERIE.JOUR.OUVRE", question: "Date après N jours ouvrés ?", answer: "=SERIE.JOUR.OUVRE(A1;10)", xp: 20 },
-            74: { title: "FIN.MOIS", question: "Dernier jour du mois d'une date ?", answer: "=FIN.MOIS(A1;0)", xp: 15 },
-            75: { title: "MOIS.DECALER", question: "Date décalée de N mois ?", answer: "=MOIS.DECALER(A1;3)", xp: 15 },
-            76: { title: "HEURE", question: "Extraire l'heure d'une date/heure ?", answer: "=HEURE(A1)", xp: 10 },
-            77: { title: "MINUTE", question: "Extraire les minutes d'une date/heure ?", answer: "=MINUTE(A1)", xp: 10 },
-            78: { title: "SECONDE", question: "Extraire les secondes d'une date/heure ?", answer: "=SECONDE(A1)", xp: 10 },
-            79: { title: "TEMPS", question: "Créer une heure (12,30,0) ?", answer: "=TEMPS(12;30;0)", xp: 15 },
-            80: { title: "DATE", question: "Créer une date (2024,12,25) ?", answer: "=DATE(2024;12;25)", xp: 15 },
-            81: { title: "CHOISIR", question: "Choisir le 2ème élément d'une liste ?", answer: "=CHOISIR(2;A1;A2;A3)", xp: 15 },
-            82: { title: "LIEN_HYPERTEXTE", question: "Créer un lien vers un site ?", answer: "=LIEN_HYPERTEXTE(\"https://excel.com\")", xp: 10 },
-            83: { title: "INFO", question: "Obtenir le répertoire courant ?", answer: "=INFO(\"repertoire\")", xp: 10 },
-            84: { title: "TYPE", question: "Type de donnée dans A1 ?", answer: "=TYPE(A1)", xp: 10 },
-            85: { title: "FORMULETEXTE", question: "Afficher la formule d'une cellule ?", answer: "=FORMULETEXTE(A1)", xp: 15 },
-            86: { title: "CELLULE", question: "Informations sur une cellule ?", answer: "=CELLULE(\"adresse\";A1)", xp: 15 },
-            87: { title: "ALEA", question: "Nombre aléatoire entre 0 et 1 ?", answer: "=ALEA()", xp: 10 },
-            88: { title: "ALEA.ENTRE.BORNES", question: "Entier aléatoire entre 1 et 100 ?", answer: "=ALEA.ENTRE.BORNES(1;100)", xp: 15 },
-            89: { title: "SOUS.TOTAL", question: "Sous-total (somme) de A1:A10 ?", answer: "=SOUS.TOTAL(9;A1:A10)", xp: 20 },
-            90: { title: "AGREGAT", question: "Agrégat (somme, ignorer erreurs) de A1:A10 ?", answer: "=AGREGAT(9;6;A1:A10)", xp: 25 },
-            91: { title: "UNIQUE", question: "Valeurs uniques de A1:A10 ?", answer: "=UNIQUE(A1:A10)", xp: 20 },
-            92: { title: "FILTRE", question: "Filtrer A1:A10 où B1:B10='X' ?", answer: "=FILTRE(A1:A10;B1:B10=\"X\")", xp: 25 },
-            93: { title: "TRIER", question: "Trier A1:A10 ?", answer: "=TRIER(A1:A10)", xp: 20 },
-            94: { title: "TRIERPAR", question: "Trier A1:A10 par B1:B10 ?", answer: "=TRIERPAR(A1:A10;B1:B10)", xp: 25 },
-            95: { title: "SEQUENCE", question: "Séquence de 1 à 10 ?", answer: "=SEQUENCE(10)", xp: 15 },
-            96: { title: "BYROW", question: "Somme par ligne de A1:C10 ?", answer: "=BYROW(A1:C10;LAMBDA(r;SOMME(r)))", xp: 30 },
-            97: { title: "BYCOL", question: "Somme par colonne de A1:C10 ?", answer: "=BYCOL(A1:C10;LAMBDA(c;SOMME(c)))", xp: 30 },
-            98: { title: "MAKEARRAY", question: "Créer une matrice 3x3 ?", answer: "=MAKEARRAY(3;3;LAMBDA(r;c;r*c))", xp: 35 },
-            99: { title: "MAP", question: "Appliquer une fonction à chaque cellule ?", answer: "=MAP(A1:A10;LAMBDA(x;x*2))", xp: 30 },
-            100: { title: "REDUCE", question: "Réduire une liste à une valeur ?", answer: "=REDUCE(0;A1:A10;LAMBDA(a;v;a+v))", xp: 35 }
-        };
+        // 100 leçons
+        const CHAPTERS = {};
+        for (let i = 1; i <= 100; i++) {
+            CHAPTERS[i] = {
+                title: i <= 10 ? `Leçon ${i}` : `Chapitre avancé ${i}`,
+                question: i <= 10 ? `Question pour la leçon ${i}` : `Question avancée ${i}`,
+                answer: i === 1 ? "OK" : i === 2 ? "CTRL+A" : i === 3 ? "=SOMME(A1:A10)" : "REPONSE"
+            };
+        }
 
-        // ============================================
-        // BADGES LÉGENDAIRES
-        // ============================================
-        
+        // Badges
         const BADGES = [
-            { id: 'welcome', icon: '🎉', name: 'Bienvenue', condition: { type: 'login' } },
-            { id: 'survivor', icon: '🦊', name: 'Survivant', condition: { type: 'level', level: 1 } },
-            { id: 'scholar', icon: '📚', name: 'Érudit', condition: { type: 'lessons', count: 10 } },
-            { id: 'detective', icon: '🔍', name: 'Détective', condition: { type: 'lessons', count: 25 } },
-            { id: 'wizard', icon: '🧙', name: 'Magicien', condition: { type: 'lessons', count: 50 } },
-            { id: 'master', icon: '👑', name: 'Maître', condition: { type: 'level', level: 6 } },
-            { id: 'legend', icon: '⭐', name: 'Légende', condition: { type: 'level', level: 7 } },
-            { id: 'streak7', icon: '🔥', name: 'Habitué', condition: { type: 'streak', days: 7 } },
-            { id: 'streak30', icon: '💫', name: 'Accro', condition: { type: 'streak', days: 30 } },
-            { id: 'perfect', icon: '💯', name: 'Parfait', condition: { type: 'perfect', count: 10 } }
+            { id: 'welcome', icon: '🎉', name: 'Bienvenue' },
+            { id: 'survivor', icon: '🦊', name: 'Survivant' },
+            { id: 'master', icon: '👑', name: 'Maître' }
         ];
 
         // ============================================
         // ÉTAT DE L'APPLICATION
         // ============================================
         
-        let currentLang = localStorage.getItem('lang') || 'fr';
+        let currentLang = localStorage.getItem('excelLang') || 'fr';
         let token = localStorage.getItem('token');
-        let currentUser = null;
-        let userData = {
-            name: '',
-            level: 1,
-            xp: 0,
-            badges: [],
-            completed: new Set(),
-            streak: 0,
-            lastLogin: null
-        };
+        let userName = localStorage.getItem('userName') || '';
+        let userLevel = parseInt(localStorage.getItem('userLevel') || '1');
+        let userXp = parseInt(localStorage.getItem('userXp') || '0');
+        let userBadges = JSON.parse(localStorage.getItem('userBadges') || '[]');
+        let completedChapters = new Set(JSON.parse(localStorage.getItem('excelProgress') || '[]'));
+        let isPremium = localStorage.getItem('excelPremium') === 'true';
+        let currentLesson = parseInt(localStorage.getItem('currentLesson') || '1');
 
         // ============================================
         // FONCTIONS UTILITAIRES
         // ============================================
         
         function t(key) {
-            const keys = key.split('.');
-            let value = TRANSLATIONS[currentLang];
-            for (const k of keys) {
-                value = value?.[k];
-                if (!value) return key;
+            if (key.includes('levelNames')) {
+                const index = parseInt(key.split('.')[1]);
+                return translations[currentLang].levelNames[index - 1] || key;
             }
-            return value;
+            return translations[currentLang][key] || key;
         }
 
-        function getLevelFromXp(xp) {
-            if (xp >= 2700) return 7;
-            if (xp >= 2000) return 6;
-            if (xp >= 1400) return 5;
-            if (xp >= 900) return 4;
-            if (xp >= 500) return 3;
-            if (xp >= 200) return 2;
-            return 1;
-        }
-
-        function updateUserLevel() {
-            const newLevel = getLevelFromXp(userData.xp);
-            if (newLevel > userData.level) {
-                userData.level = newLevel;
-                checkBadges();
-                showCoachMessage(`🚀 ${t('levelUp')} ${t('levelNames.' + (newLevel-1))} → ${t('levelNames.' + newLevel)}`);
-            }
-            return userData.level;
-        }
-
-        function addXp(amount) {
-            userData.xp += amount;
-            updateUserLevel();
-            saveUserData();
-            updateUI();
-        }
-
-        function checkBadges() {
-            BADGES.forEach(badge => {
-                if (userData.badges.includes(badge.id)) return;
-
-                let earned = false;
-                switch(badge.condition.type) {
-                    case 'level':
-                        earned = userData.level >= badge.condition.level;
-                        break;
-                    case 'lessons':
-                        earned = userData.completed.size >= badge.condition.count;
-                        break;
-                    case 'streak':
-                        earned = userData.streak >= badge.condition.days;
-                        break;
-                    case 'perfect':
-                        earned = checkPerfectLessons(badge.condition.count);
-                        break;
-                }
-
-                if (earned) {
-                    userData.badges.push(badge.id);
-                    showCoachMessage(`🏆 ${t('badgeEarned')} : ${badge.name}`);
-                }
+        function changeLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('excelLang', lang);
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(lang)) btn.classList.add('active');
             });
-            saveUserData();
+            updateUITexts();
+            if (token) showDashboard();
+            else showAuthScreen();
         }
 
-        function checkPerfectLessons(count) {
-            // Implémenter la logique des leçons parfaites
-            return false;
-        }
-
-        function showCoachMessage(message, duration = 4000) {
-            const bubble = document.getElementById('coach-message');
-            if (!bubble) return;
-            
-            bubble.textContent = message;
-            bubble.style.animation = 'none';
-            bubble.offsetHeight;
-            bubble.style.animation = 'pulse 0.5s';
-            
-            setTimeout(() => {
-                bubble.style.animation = '';
-            }, 500);
-        }
-
-        function getFunFact() {
-            const facts = TRANSLATIONS[currentLang].funFacts;
-            return facts[Math.floor(Math.random() * facts.length)];
-        }
-
-        function getRandomCoachMessage() {
-            const messages = TRANSLATIONS[currentLang].coachMessages;
-            return messages[Math.floor(Math.random() * messages.length)];
-        }
-
-        // ============================================
-        // GESTION DES DONNÉES
-        // ============================================
-        
-        function saveUserData() {
-            localStorage.setItem('userData', JSON.stringify({
-                name: userData.name,
-                level: userData.level,
-                xp: userData.xp,
-                badges: userData.badges,
-                completed: Array.from(userData.completed),
-                streak: userData.streak
-            }));
-        }
-
-        function loadUserData() {
-            const saved = localStorage.getItem('userData');
-            if (saved) {
-                const data = JSON.parse(saved);
-                userData.name = data.name || '';
-                userData.level = data.level || 1;
-                userData.xp = data.xp || 0;
-                userData.badges = data.badges || [];
-                userData.completed = new Set(data.completed || []);
-                userData.streak = data.streak || 0;
-            }
+        function updateUITexts() {
+            document.getElementById('brand-title').textContent = t('brand');
+            document.getElementById('brand-subtitle').textContent = t('brandSub');
         }
 
         // ============================================
@@ -1381,24 +674,20 @@
         
         async function apiCall(endpoint, options = {}) {
             try {
-                const response = await fetch(CONFIG.API_URL + endpoint, {
+                const response = await fetch(API_BASE_URL + endpoint, {
                     ...options,
                     headers: {
                         'Content-Type': 'application/json',
-                        ...(token && { 'Authorization': `Bearer ${token}` }),
-                        ...options.headers
+                        ...(token && { 'Authorization': `Bearer ${token}` })
                     }
                 });
                 
                 if (response.status === 204) return null;
-                
                 const data = await response.json();
-                if (!response.ok) throw new Error(data.error || 'API Error');
-                
+                if (!response.ok) throw new Error(data.error || 'Erreur API');
                 return data;
             } catch (error) {
                 console.error('API Error:', error);
-                showCoachMessage('🌐 ' + error.message);
                 return null;
             }
         }
@@ -1407,135 +696,14 @@
         // AUTHENTIFICATION
         // ============================================
         
-        async function handleLogin() {
-            const email = document.getElementById('login-email')?.value;
-            const password = document.getElementById('login-password')?.value;
+        function showAuthScreen() {
+            document.getElementById('user-info').style.display = 'none';
+            document.getElementById('chapters-header').style.display = 'none';
+            document.getElementById('progress-container').style.display = 'none';
+            document.getElementById('coach-container').style.display = 'none';
             
-            if (!email || !password) {
-                showCoachMessage('📧 ' + t('fillAllFields'));
-                return;
-            }
-            
-            const data = await apiCall('/login', {
-                method: 'POST',
-                body: JSON.stringify({ email, password })
-            });
-            
-            if (data?.token) {
-                token = data.token;
-                localStorage.setItem('token', token);
-                currentUser = data.user;
-                userData.name = data.user.name;
-                saveUserData();
-                await loadUserProgress();
-                showDashboard();
-                showCoachMessage('🎉 ' + t('welcomeBack') + ' ' + userData.name + ' !');
-            } else {
-                showCoachMessage('❌ ' + t('loginError'));
-            }
-        }
-
-        async function handleRegister() {
-            const name = document.getElementById('register-name')?.value;
-            const email = document.getElementById('register-email')?.value;
-            const password = document.getElementById('register-password')?.value;
-            
-            if (!name || !email || !password) {
-                showCoachMessage('📧 ' + t('fillAllFields'));
-                return;
-            }
-            
-            const data = await apiCall('/register', {
-                method: 'POST',
-                body: JSON.stringify({ name, email, password })
-            });
-            
-            if (data?.token) {
-                token = data.token;
-                localStorage.setItem('token', token);
-                currentUser = data.user;
-                userData.name = name;
-                
-                // Badge de bienvenue
-                if (!userData.badges.includes('welcome')) {
-                    userData.badges.push('welcome');
-                }
-                
-                saveUserData();
-                showDashboard();
-                showCoachMessage('🎉 ' + t('welcome') + ' ' + name + ' !');
-            } else {
-                showCoachMessage('❌ ' + t('registerError'));
-            }
-        }
-
-        function logout() {
-            token = null;
-            localStorage.removeItem('token');
-            currentUser = null;
-            showAuth();
-            showCoachMessage('👋 ' + t('goodbye'));
-        }
-
-        // ============================================
-        // PROGRESSION
-        // ============================================
-        
-        async function loadUserProgress() {
-            const data = await apiCall('/progress');
-            if (data?.completed) {
-                userData.completed = new Set(data.completed);
-                saveUserData();
-            }
-        }
-
-        async function completeLesson(lessonId, xp) {
-            const data = await apiCall(`/lessons/${lessonId}/complete`, {
-                method: 'POST',
-                body: JSON.stringify({ xp })
-            });
-            
-            if (data?.success) {
-                userData.completed.add(lessonId);
-                addXp(xp);
-                return true;
-            }
-            return false;
-        }
-
-        // ============================================
-        // INTERFACE UTILISATEUR
-        // ============================================
-        
-        function changeLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('lang', lang);
-            
-            // Gestion RTL pour l'arabe
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            
-            // Mettre à jour les boutons
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.textContent.toLowerCase().includes(lang)) {
-                    btn.classList.add('active');
-                }
-            });
-            
-            // Mettre à jour l'interface
-            if (token && currentUser) {
-                showDashboard();
-            } else {
-                showAuth();
-            }
-        }
-
-        function showAuth() {
-            document.getElementById('user-profile').style.display = 'none';
-            document.getElementById('chapters-section').style.display = 'none';
-            
-            document.getElementById('content').innerHTML = `
-                <h1>${t('appName')}</h1>
+            document.getElementById('lesson-content').innerHTML = `
+                <h2>${t('welcome')}</h2>
                 <h3>${t('welcomeDesc')}</h3>
                 
                 <div class="auth-tabs">
@@ -1551,18 +719,18 @@
 
         function getLoginForm() {
             return `
-                <input type="email" id="login-email" class="input-field" placeholder="${t('email')}">
-                <input type="password" id="login-password" class="input-field" placeholder="${t('password')}">
-                <button class="btn" onclick="handleLogin()">${t('loginBtn')}</button>
+                <input type="email" id="login-email" placeholder="${t('email')}">
+                <input type="password" id="login-password" placeholder="${t('password')}">
+                <button onclick="handleLogin()">${t('loginBtn')}</button>
             `;
         }
 
         function getRegisterForm() {
             return `
-                <input type="text" id="register-name" class="input-field" placeholder="${t('name')}">
-                <input type="email" id="register-email" class="input-field" placeholder="${t('email')}">
-                <input type="password" id="register-password" class="input-field" placeholder="${t('password')}">
-                <button class="btn" onclick="handleRegister()">${t('registerBtn')}</button>
+                <input type="text" id="register-name" placeholder="${t('name')}">
+                <input type="email" id="register-email" placeholder="${t('email')}">
+                <input type="password" id="register-password" placeholder="${t('password')}">
+                <button onclick="handleRegister()">${t('registerBtn')}</button>
             `;
         }
 
@@ -1578,275 +746,214 @@
             document.getElementById('auth-form').innerHTML = getRegisterForm();
         }
 
-        function showDashboard() {
-            document.getElementById('user-profile').style.display = 'block';
-            document.getElementById('chapters-section').style.display = 'block';
+        async function handleLogin() {
+            const email = document.getElementById('login-email')?.value;
+            const password = document.getElementById('login-password')?.value;
             
-            updateUI();
-            renderChapters();
-            renderDashboard();
+            const data = await apiCall('/login', {
+                method: 'POST',
+                body: JSON.stringify({ email, password })
+            });
+            
+            if (data?.token) {
+                token = data.token;
+                localStorage.setItem('token', token);
+                userName = data.user.name;
+                localStorage.setItem('userName', userName);
+                showDashboard();
+            } else {
+                alert('Email ou mot de passe incorrect');
+            }
         }
 
-        function updateUI() {
-            // Mettre à jour le profil
-            document.getElementById('user-name').textContent = userData.name || 'Apprenant';
-            document.getElementById('user-title').textContent = `${t('level')} ${userData.level}: ${t('levelNames.' + (userData.level-1))}`;
+        async function handleRegister() {
+            const name = document.getElementById('register-name')?.value;
+            const email = document.getElementById('register-email')?.value;
+            const password = document.getElementById('register-password')?.value;
             
-            // Mettre à jour la barre XP
-            const nextLevelXp = userData.level < 7 ? userData.level * 300 : 2700;
-            const currentLevelXp = userData.level > 1 ? (userData.level - 1) * 300 : 0;
-            const xpInLevel = userData.xp - currentLevelXp;
+            const data = await apiCall('/register', {
+                method: 'POST',
+                body: JSON.stringify({ name, email, password })
+            });
+            
+            if (data?.token) {
+                token = data.token;
+                localStorage.setItem('token', token);
+                userName = name;
+                localStorage.setItem('userName', name);
+                if (!userBadges.includes('welcome')) {
+                    userBadges.push('welcome');
+                    localStorage.setItem('userBadges', JSON.stringify(userBadges));
+                }
+                showDashboard();
+            } else {
+                alert('Email déjà utilisé');
+            }
+        }
+
+        function logout() {
+            token = null;
+            localStorage.removeItem('token');
+            showAuthScreen();
+        }
+
+        // ============================================
+        // DASHBOARD
+        // ============================================
+        
+        function showDashboard() {
+            document.getElementById('user-info').style.display = 'block';
+            document.getElementById('chapters-header').style.display = 'flex';
+            document.getElementById('progress-container').style.display = 'block';
+            document.getElementById('coach-container').style.display = 'block';
+            
+            document.getElementById('display-name').textContent = userName;
+            document.getElementById('level-display').textContent = userLevel;
+            
+            const nextLevelXp = userLevel < 7 ? userLevel * 300 : 2700;
+            const currentLevelXp = userLevel > 1 ? (userLevel - 1) * 300 : 0;
+            const xpInLevel = userXp - currentLevelXp;
             const xpNeeded = nextLevelXp - currentLevelXp;
-            const progress = Math.min(100, (xpInLevel / xpNeeded) * 100);
             
-            document.getElementById('xp-fill').style.width = progress + '%';
-            document.getElementById('xp-counter').textContent = `${xpInLevel}/${xpNeeded} XP`;
-            document.getElementById('xp-total').textContent = `${userData.xp} XP ${t('total')}`;
+            document.getElementById('xp-bar').style.width = (xpInLevel / xpNeeded * 100) + '%';
+            document.getElementById('xp-display').textContent = `${xpInLevel}/${xpNeeded} ${t('xp')}`;
+            document.getElementById('completed-counter').textContent = `${completedChapters.size}/100`;
+            document.getElementById('progress-bar').style.width = (completedChapters.size / 100 * 100) + '%';
             
-            // Mettre à jour la progression globale
-            const completedCount = userData.completed.size;
-            document.getElementById('chapters-progress').textContent = `${completedCount}/${CONFIG.TOTAL_LESSONS}`;
-            document.getElementById('global-progress-bar').style.width = (completedCount / CONFIG.TOTAL_LESSONS * 100) + '%';
-            
-            // Mettre à jour les badges
+            renderChaptersList();
             renderBadges();
+            
+            if (completedChapters.size > 0) {
+                let last = Math.max(...Array.from(completedChapters));
+                loadChapter(last < 100 ? last + 1 : 100);
+            } else {
+                loadChapter(1);
+            }
+        }
+
+        function renderChaptersList() {
+            const list = document.getElementById('chapters-list');
+            list.innerHTML = '';
+            
+            for (let i = 1; i <= 100; i++) {
+                const completed = completedChapters.has(i);
+                const locked = i > 10 && !isPremium && !completed;
+                const li = document.createElement('li');
+                li.className = `${completed ? 'completed' : ''}`;
+                li.innerHTML = `<span>${i}. ${CHAPTERS[i].title}</span> <span>${completed ? '✓' : (locked ? '🔒' : '')}</span>`;
+                if (!locked) li.onclick = () => loadChapter(i);
+                list.appendChild(li);
+            }
         }
 
         function renderBadges() {
-            const container = document.getElementById('badges-container');
+            const container = document.getElementById('badges-preview');
             container.innerHTML = '';
-            
-            BADGES.slice(0, 8).forEach(badge => {
-                const earned = userData.badges.includes(badge.id);
+            BADGES.slice(0, 4).forEach(badge => {
+                const earned = userBadges.includes(badge.id);
                 const div = document.createElement('div');
-                div.className = `badge-item ${earned ? 'earned' : ''}`;
-                div.setAttribute('data-name', badge.name);
+                div.className = `badge-mini ${earned ? 'earned' : ''}`;
                 div.textContent = badge.icon;
                 container.appendChild(div);
             });
         }
 
-        function renderChapters() {
-            const list = document.getElementById('chapters-list');
-            list.innerHTML = '';
+        function loadChapter(i) {
+            currentLesson = i;
+            localStorage.setItem('currentLesson', i);
             
-            for (let i = 1; i <= CONFIG.TOTAL_LESSONS; i++) {
-                const lesson = LESSONS[i];
-                if (!lesson) continue;
-                
-                const completed = userData.completed.has(i);
-                const locked = i > 10 && !currentUser?.premium && !completed;
-                
-                const li = document.createElement('li');
-                li.className = `${completed ? 'completed' : ''} ${locked ? 'locked' : ''}`;
-                
-                li.innerHTML = `
-                    <div style="display: flex; align-items: center; width: 100%;">
-                        <span class="chapter-number">${i}</span>
-                        <span class="chapter-title">${lesson.title}</span>
-                        <span class="chapter-status ${completed ? 'completed' : ''}">
-                            ${completed ? '✓' : (locked ? '🔒' : '')}
-                        </span>
-                    </div>
-                `;
-                
-                if (!locked) {
-                    li.onclick = () => loadLesson(i);
-                }
-                
-                list.appendChild(li);
-            }
-        }
-
-        function renderDashboard() {
-            const completedCount = userData.completed.size;
-            const progress = (completedCount / CONFIG.TOTAL_LESSONS * 100).toFixed(1);
+            if (i > 100) { showCertificate(); return; }
+            if (i > 10 && !isPremium && !completedChapters.has(i)) { showUnlockScreen(); return; }
             
-            document.getElementById('content').innerHTML = `
-                <h2>${t('welcome')}</h2>
-                
-                <div class="coach-intro">
-                    <div class="coach-intro-avatar">🦊</div>
-                    <div class="coach-intro-text">
-                        <h4>Coach Excelix</h4>
-                        <p>${getRandomCoachMessage()}</p>
-                        <div class="fun-fact">
-                            💡 ${getFunFact()}
-                        </div>
-                    </div>
-                </div>
-                
-                <div style="text-align: center; margin: 40px 0;">
-                    <div style="font-size: 3rem; color: var(--primary);">${completedCount}/${CONFIG.TOTAL_LESSONS}</div>
-                    <div style="font-size: 1.2rem;">${t('lessonsCompleted')}</div>
-                    <div style="margin-top: 10px;">${progress}% ${t('complete')}</div>
-                </div>
-                
-                <button class="btn" onclick="continueLearning()">${t('continueLearning')}</button>
-                <button class="btn btn-secondary" onclick="logout()">${t('logout')}</button>
+            const chapter = CHAPTERS[i];
+            document.getElementById('lesson-content').innerHTML = `
+                <span class="lesson-number">Chapitre ${i}/100</span>
+                <h2>${chapter.title}</h2>
+                <div class="coach-box">${chapter.question}</div>
+                <input type="text" id="answer-input" placeholder="${t('answer')}" autofocus>
+                <button onclick="checkAnswer(${i})">${t('validate')}</button>
+                <div id="feedback" class="feedback"></div>
+                <button class="secondary" style="margin-top:20px;" onclick="logout()">${t('logout')}</button>
             `;
+            document.getElementById('answer-input')?.focus();
         }
 
-        function continueLearning() {
-            let nextLesson = 1;
-            for (let i = 1; i <= CONFIG.TOTAL_LESSONS; i++) {
-                if (!userData.completed.has(i)) {
-                    nextLesson = i;
-                    break;
-                }
-            }
-            loadLesson(nextLesson);
-        }
+        function checkAnswer(i) {
+            const answer = document.getElementById('answer-input')?.value.trim().toUpperCase() || '';
+            const correct = CHAPTERS[i].answer.toUpperCase();
+            const feedback = document.getElementById('feedback');
 
-        function loadLesson(chapter) {
-            const lesson = LESSONS[chapter];
-            if (!lesson) return;
-            
-            const isCompleted = userData.completed.has(chapter);
-            
-            document.getElementById('content').innerHTML = `
-                <span class="lesson-number">${t('chapter')} ${chapter}/${CONFIG.TOTAL_LESSONS}</span>
-                <h2>${lesson.title}</h2>
-                
-                <div class="coach-intro">
-                    <div class="coach-intro-avatar">🦊</div>
-                    <div class="coach-intro-text">
-                        <h4>Coach Excelix</h4>
-                        <p>${getRandomCoachMessage()}</p>
-                    </div>
-                </div>
-                
-                <div class="question-box">
-                    ${lesson.question}
-                </div>
-                
-                <input type="text" id="lesson-answer" class="input-field" placeholder="${t('answer')}" ${isCompleted ? 'disabled' : ''} value="${isCompleted ? '✓' : ''}">
-                
-                ${!isCompleted ? `
-                    <button class="btn" onclick="checkAnswer(${chapter})">${t('validate')}</button>
-                ` : ''}
-                
-                <div id="lesson-feedback" class="feedback"></div>
-                
-                <button class="btn btn-secondary" style="margin-top: 20px;" onclick="showDashboard()">
-                    ${t('backToDashboard')}
-                </button>
-            `;
-            
-            document.getElementById('lesson-answer')?.focus();
-        }
-
-        function checkAnswer(chapter) {
-            const answer = document.getElementById('lesson-answer')?.value.trim().toUpperCase();
-            const lesson = LESSONS[chapter];
-            const correct = lesson.answer.toUpperCase();
-            const feedback = document.getElementById('lesson-feedback');
-            
             if (answer === correct) {
-                if (!userData.completed.has(chapter)) {
-                    completeLesson(chapter, lesson.xp).then(success => {
-                        if (success) {
-                            feedback.className = 'feedback success';
-                            feedback.innerHTML = `✅ ${t('correct')} +${lesson.xp} XP`;
-                            
-                            setTimeout(() => {
-                                if (chapter === CONFIG.TOTAL_LESSONS) {
-                                    showCertificate();
-                                } else {
-                                    loadLesson(chapter + 1);
-                                }
-                            }, 1000);
-                        }
-                    });
+                if (!completedChapters.has(i)) {
+                    completedChapters.add(i);
+                    localStorage.setItem('excelProgress', JSON.stringify(Array.from(completedChapters)));
+                    
+                    let xpGain = i <= 10 ? 10 : i <= 20 ? 15 : i <= 50 ? 20 : 30;
+                    userXp += xpGain;
+                    localStorage.setItem('userXp', userXp);
+                    
+                    if (userXp >= userLevel * 300 && userLevel < 7) {
+                        userLevel++;
+                        localStorage.setItem('userLevel', userLevel);
+                        if (userLevel === 6) userBadges.push('master');
+                        if (userLevel === 7) userBadges.push('legend');
+                    }
+                    
+                    feedback.className = 'feedback success';
+                    feedback.innerHTML = `✅ ${t('correct')} +${xpGain} XP`;
+                    
+                    if (i === 10) setTimeout(showUnlockScreen, 800);
+                    else setTimeout(() => loadChapter(i + 1), 800);
+                } else {
+                    feedback.className = 'feedback success';
+                    feedback.innerHTML = '✅ Déjà validé';
+                    setTimeout(() => loadChapter(i + 1), 800);
                 }
             } else {
                 feedback.className = 'feedback error';
                 feedback.innerHTML = `❌ ${t('incorrect')}`;
-                
-                // Donner un indice
-                showCoachMessage(`💡 ${t('hint')}: ${lesson.answer}`);
             }
         }
 
         function showUnlockScreen() {
-            document.getElementById('content').innerHTML = `
-                <h2>🔓 ${t('premium')}</h2>
-                
-                <div class="coach-intro">
-                    <div class="coach-intro-avatar">🦊</div>
-                    <div class="coach-intro-text">
-                        <h4>Coach Excelix</h4>
-                        <p>${t('premiumDesc')}</p>
-                    </div>
-                </div>
-                
+            document.getElementById('lesson-content').innerHTML = `
+                <h2>🔓 Accès Premium</h2>
+                <div class="coach-box">Bravo ! Débloque la suite pour continuer.</div>
                 <div class="unlock-section">
-                    <input type="text" id="unlock-name" class="input-field" placeholder="${t('name')}" value="${userData.name}">
-                    <input type="text" id="unlock-key" class="input-field" placeholder="${t('key')}">
-                    
-                    <button class="btn" onclick="unlockPremium()">${t('unlock')}</button>
-                    
-                    <div style="margin-top: 30px;">
-                        <p>${t('getKey')}</p>
-                        <a href="https://wa.me/237677051062" class="whatsapp-btn wa-1">📱 WhatsApp 1</a>
-                        <a href="https://wa.me/237659718567" class="whatsapp-btn wa-2">📱 WhatsApp 2</a>
-                    </div>
+                    <input type="text" id="unlock-name" placeholder="TON NOM" value="${userName}">
+                    <input type="text" id="unlock-key" placeholder="CLÉ">
+                    <button onclick="unlockPremium()">DÉBLOQUER</button>
+                    <a href="https://wa.me/237677051062" class="whatsapp-btn wa-1">📱 WhatsApp</a>
                 </div>
-                
-                <button class="btn btn-secondary" onclick="showDashboard()">${t('back')}</button>
+                <button onclick="logout()">${t('logout')}</button>
             `;
         }
 
         function unlockPremium() {
-            const name = document.getElementById('unlock-name')?.value.trim().toUpperCase();
-            const key = document.getElementById('unlock-key')?.value.trim().toUpperCase();
+            const name = document.getElementById('unlock-name')?.value.trim().toUpperCase() || userName.toUpperCase();
+            const key = document.getElementById('unlock-key')?.value.trim().toUpperCase() || '';
             
-            if (key === `EXL-${name}-2026` || key === CONFIG.MASTER_KEY) {
-                currentUser.premium = true;
-                showCoachMessage('🎉 ' + t('premiumActivated'));
+            if (key === `EXL-${name}-2026` || key === MASTER_KEY) {
+                isPremium = true;
+                localStorage.setItem('excelPremium', 'true');
+                localStorage.setItem('userName', name);
+                userName = name;
                 showDashboard();
-            } else {
-                showCoachMessage('❌ ' + t('invalidKey'));
-            }
+            } else alert("❌ Clé invalide");
         }
 
         function showCertificate() {
-            const today = new Date().toLocaleDateString(currentLang === 'fr' ? 'fr-FR' : 'en-US', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            });
-            
-            document.getElementById('content').innerHTML = `
+            const today = new Date().toLocaleDateString('fr-FR');
+            document.getElementById('lesson-content').innerHTML = `
                 <div class="certificate">
                     <h1>🏆</h1>
                     <h2>${t('certificate')}</h2>
-                    
-                    <div class="user-name">${userData.name}</div>
-                    
-                    <div style="font-size: 1.4rem; margin: 30px 0;">
-                        ${t('level')} ${userData.level}: ${t('levelNames.' + (userData.level-1))}<br>
-                        XP: ${userData.xp}<br>
-                        ${t('lessonsCompleted')}: ${userData.completed.size}/${CONFIG.TOTAL_LESSONS}
-                    </div>
-                    
-                    <div style="display: flex; gap: 10px; justify-content: center; margin: 30px 0;">
-                        ${userData.badges.slice(0, 5).map(b => {
-                            const badge = BADGES.find(bd => bd.id === b);
-                            return `<div class="badge-item earned" style="width: 60px; height: 60px; font-size: 1.8rem;">${badge?.icon || '🏆'}</div>`;
-                        }).join('')}
-                    </div>
-                    
-                    <div class="certificate-footer">
-                        ${t('issuedAt')} Douala, ${today}
-                    </div>
-                    
+                    <div class="user-name">${userName}</div>
+                    <div>Niveau: ${t('levelNames.' + userLevel)}<br>XP: ${userXp}</div>
+                    <div class="certificate-footer">Douala, ${today}</div>
                     <button class="print-btn" onclick="window.print()">${t('print')}</button>
                 </div>
-                
-                <button class="btn btn-secondary" style="margin-top: 20px;" onclick="showDashboard()">
-                    ${t('backToDashboard')}
-                </button>
+                <button onclick="logout()">${t('logout')}</button>
             `;
         }
 
@@ -1854,27 +961,10 @@
         // INITIALISATION
         // ============================================
         
-        window.onload = async () => {
-            // Charger les données locales
-            loadUserData();
-            
-            // Initialiser la langue
+        window.onload = function() {
             changeLanguage(currentLang);
-            
-            // Vérifier le token
-            if (token) {
-                await loadUserProgress();
-                showDashboard();
-            } else {
-                showAuth();
-            }
-            
-            // Lancer l'animation du coach
-            setInterval(() => {
-                if (currentUser && Math.random() > 0.7) {
-                    showCoachMessage(getRandomCoachMessage());
-                }
-            }, 30000);
+            if (token) showDashboard();
+            else showAuthScreen();
         };
     </script>
 </body>
