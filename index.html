@@ -881,9 +881,11 @@
         // ============================================
         // CONFIGURATION STRIPE
         // ============================================
-        const stripe = Stripe('pk_test_VOTRE_CLE_PUBLIQUE_STRIPE'); // À remplacer par votre vraie clé
+        const stripe = Stripe('pk_test_51TCoeQ2Nd58CJEQANGomFogNsH3C2UMKFJSZxwrP7dhqKMKE12CyrsoFa4SSekw8J7zlcwiEuHHhYkwNJDk62Gje00mP5vhfSa'); // À remplacer par votre vraie clé
         
         let selectedPlan = 'yearly';
+        // Test pour vérifier que Stripe est chargé
+console.log('✅ Stripe chargé, clé :', stripe);
         let cardElement = null;
 
         // Initialisation de Stripe
