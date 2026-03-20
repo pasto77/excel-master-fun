@@ -3,108 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excel Master Fun - Formation Complète</title>
-    <!-- Firebase en premier -->
+    <title>Excel Master Fun | L'Académie Interactive</title>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif}
-        body{background:#0f172a;color:#fff;padding:20px}
-        .app{max-width:1300px;margin:0 auto}
-        .top{background:#1e293b;padding:15px 20px;border-radius:30px;display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-        .logo{color:#fbbf24;font-size:1.5rem;font-weight:bold}
-        .lang{display:flex;gap:5px}
-        .lang button{background:#334155;border:none;color:#fff;padding:5px 12px;border-radius:20px;cursor:pointer}
-        .lang button.active{background:#fbbf24;color:#0f172a}
-        .coach{background:#1e293b;border-radius:30px;padding:20px;margin-bottom:20px;display:flex;gap:20px;align-items:center}
-        .coach-icon{width:70px;height:70px;background:#fbbf24;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.2rem}
-        .coach-text{flex:1;background:#0f172a;padding:15px 20px;border-radius:20px;border-left:4px solid #fbbf24}
-        .coach-name{color:#fbbf24;font-weight:bold;margin-bottom:5px}
-        .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:20px}
-        .stat{background:#1e293b;padding:15px;border-radius:20px;text-align:center}
-        .stat-num{font-size:2rem;font-weight:bold;color:#fbbf24}
-        .lessons{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin:20px 0;max-height:500px;overflow-y:auto;padding:5px}
-        .lesson{background:#1e293b;padding:15px;border-radius:20px;text-align:center;cursor:pointer;transition:0.2s}
-        .lesson:hover{background:#334155}
-        .lesson.done{background:#15803d}
-        .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:1000}
-        .modal.active{display:flex}
-        .modal-card{background:#1e293b;max-width:600px;width:90%;padding:30px;border-radius:30px;max-height:85vh;overflow-y:auto}
-        .modal-card h2{color:#fbbf24;margin-bottom:15px}
-        .demo{background:#0f172a;padding:15px;border-radius:15px;margin:15px 0}
-        input{width:100%;padding:12px;margin:10px 0;border-radius:30px;border:none;background:#0f172a;color:#fff;font-size:1rem}
-        button{background:#fbbf24;color:#0f172a;border:none;padding:12px 24px;border-radius:30px;font-weight:bold;cursor:pointer}
-        .feedback{padding:12px;margin:10px 0;border-radius:15px}
-        .feedback.good{background:rgba(34,197,94,0.2);border-left:4px solid #22c55e}
-        .feedback.bad{background:rgba(239,68,68,0.2);border-left:4px solid #ef4444}
-        .auth-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);display:none;align-items:center;justify-content:center;z-index:1000}
-        .auth-modal.active{display:flex}
-        .auth-card{background:#1e293b;padding:30px;border-radius:30px;max-width:400px;width:90%;text-align:center}
-        .auth-card input{width:100%;margin:10px 0;background:#0f172a;border:none;padding:12px;border-radius:30px;color:#fff}
-        .user-area{display:flex;align-items:center;gap:15px;background:#1e293b;padding:8px 20px;border-radius:50px;margin-bottom:20px}
-        .user-avatar{width:40px;height:40px;background:#fbbf24;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#0f172a}
-        .logout{background:#ef4444;color:#fff;padding:5px 15px;border-radius:30px;cursor:pointer}
-        .footer{text-align:center;margin-top:30px;color:#64748b;font-size:0.8rem}
-        @media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}.coach{flex-direction:column;text-align:center}}
+        :root { --gold: #fbbf24; --bg: #020617; --card: #1e293b; --text: #f8fafc; --success: #22c55e; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); color: var(--text); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        /* Header & Stats */
+        .header { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: var(--card); border-radius: 20px; margin-bottom: 25px; border: 1px solid rgba(251, 191, 36, 0.3); }
+        .logo { font-weight: 800; color: var(--gold); font-size: 1.4rem; }
+        .stats-bar { display: flex; gap: 20px; }
+        .stat-item { text-align: center; }
+        .stat-num { display: block; font-size: 1.2rem; font-weight: bold; color: var(--gold); }
+
+        /* Curriculum Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .module-card { background: var(--card); border-radius: 15px; padding: 20px; cursor: pointer; transition: 0.3s; border-left: 5px solid transparent; position: relative; }
+        .module-card:hover { transform: translateY(-5px); background: #2d3a4f; }
+        .module-card.done { border-left-color: var(--success); }
+        .module-card.locked { opacity: 0.5; filter: grayscale(1); cursor: not-allowed; }
+        .badge { background: var(--gold); color: #000; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; font-weight: bold; position: absolute; top: 15px; right: 15px; }
+
+        /* Modal Immersif */
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); display: none; place-items: center; z-index: 1000; padding: 10px; overflow-y: auto; }
+        .modal.active { display: grid; }
+        .modal-content { background: var(--card); width: 100%; max-width: 800px; border-radius: 25px; overflow: hidden; }
+        .video-container { width: 100%; aspect-ratio: 16/9; background: #000; border-bottom: 3px solid var(--gold); }
+        .content-area { padding: 30px; }
+        .concept-box { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; margin-bottom: 20px; border-left: 4px solid var(--gold); }
+        
+        /* Quiz & Interaction */
+        .quiz-area { background: #0f172a; padding: 20px; border-radius: 15px; margin-top: 20px; }
+        input { width: 100%; padding: 15px; border-radius: 10px; border: 2px solid #334155; background: #000; color: #fff; margin: 15px 0; font-size: 1.1rem; text-align: center; }
+        input:focus { border-color: var(--gold); outline: none; }
+        .btn-check { width: 100%; padding: 15px; border-radius: 10px; border: none; background: var(--gold); color: #000; font-weight: 800; cursor: pointer; text-transform: uppercase; }
+
+        .auth-overlay { position: fixed; inset: 0; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2000; }
     </style>
 </head>
 <body>
-<div class="app">
-    <div class="auth-modal" id="authPopup">
-        <div class="auth-card">
-            <h2 style="color:#fbbf24">🚀 Rejoins l'aventure</h2>
-            <button onclick="googleLogin()" style="background:#334155;color:#fff;width:100%;margin:15px 0">🔐 Google</button>
-            <input type="email" id="authEmail" placeholder="Email">
-            <input type="password" id="authPass" placeholder="Mot de passe">
-            <button onclick="registerUser()">Créer un compte</button>
-            <button onclick="loginUser()" style="background:#334155;color:#fff;margin-top:8px">Se connecter</button>
-            <button onclick="closeAuth()" style="background:#334155;color:#fff;margin-top:12px">Fermer</button>
+
+<div id="authScreen" class="auth-overlay">
+    <h1 style="color:var(--gold); margin-bottom:20px;">EXCEL MASTER FUN</h1>
+    <p style="margin-bottom:30px; opacity:0.8;">L'Académie qui transforme les débutants en Experts.</p>
+    <button onclick="loginGoogle()" class="btn-check" style="width:auto; padding:15px 40px;">Se connecter avec Google</button>
+</div>
+
+<div class="container">
+    <div class="header">
+        <div class="logo">EXCEL ACADEMY</div>
+        <div class="stats-bar">
+            <div class="stat-item"><span class="stat-num" id="st-lv">1</span><small>Niveau</small></div>
+            <div class="stat-item"><span class="stat-num" id="st-xp">0</span><small>XP</small></div>
+            <div class="stat-item"><span class="stat-num" id="st-done">0</span><small>Modules</small></div>
         </div>
     </div>
 
-    <div class="top">
-        <div class="logo">📊 EXCEL MASTER FUN</div>
-        <div class="lang" id="langBtns">
-            <button class="active" onclick="setLang('fr')">FR</button>
-            <button onclick="setLang('en')">EN</button>
-            <button onclick="setLang('es')">ES</button>
-            <button onclick="setLang('ar')">AR</button>
-            <button onclick="setLang('zh')">ZH</button>
-        </div>
-    </div>
-
-    <div id="loginArea"><button onclick="openAuth()" style="background:#fbbf24;margin-bottom:20px">🔐 Connexion</button></div>
-    <div id="profileArea" style="display:none"></div>
-
-    <div class="coach">
-        <div class="coach-icon">🦊</div>
-        <div class="coach-text"><div class="coach-name">Excelix</div><div id="coachMsg">Connecte-toi pour commencer</div></div>
-    </div>
-
-    <div class="stats">
-        <div class="stat"><div class="stat-num" id="levelStat">1</div><div>Niveau</div></div>
-        <div class="stat"><div class="stat-num" id="xpStat">0</div><div>XP</div></div>
-        <div class="stat"><div class="stat-num" id="lessonsStat">0/100</div><div>Leçons</div></div>
-        <div class="stat"><div class="stat-num" id="streakStat">0</div><div>Jours</div></div>
-    </div>
-
-    <h2 style="margin-bottom:10px">📚 Chapitres</h2>
-    <div class="lessons" id="lessonsGrid"></div>
-    <div class="footer">📞 677 05 10 62 | 659 71 85 67</div>
+    <h2 style="margin-bottom:25px;">🎓 Ton Parcours de Transformation</h2>
+    <div class="grid" id="lessonGrid"></div>
 </div>
 
 <div class="modal" id="lessonModal">
-    <div class="modal-card" id="modalContent"></div>
+    <div class="modal-content">
+        <div class="video-container" id="videoBox">
+            </div>
+        <div class="content-area">
+            <h2 id="m-title" style="color:var(--gold); margin-bottom:10px;"></h2>
+            <div class="concept-box" id="m-exp"></div>
+            
+            <div class="quiz-area">
+                <p><b>🎯 Défi Pratique :</b> <span id="m-q"></span></p>
+                <input type="text" id="ansInput" placeholder="Tapez votre réponse ou formule ici...">
+                <button class="btn-check" onclick="verifyAnswer()">Valider l'étape</button>
+            </div>
+            <p onclick="closeModal()" style="text-align:center; margin-top:20px; cursor:pointer; opacity:0.5;">Retour au menu</p>
+        </div>
+    </div>
 </div>
 
 <script>
-    // ========== FIREBASE INIT ==========
+    // --- CONFIG FIREBASE ---
     const firebaseConfig = {
         apiKey: "AIzaSyDtPKWklKh7Ijd_zTev7uq9gmuXcXfoFKQ",
         authDomain: "excel-master-5.firebaseapp.com",
         projectId: "excel-master-5",
-        storageBucket: "excel-master-5.firebasestorage.app",
+        storageBucket: "excel-master-5.appspot.com",
         messagingSenderId: "409433181308",
         appId: "1:409433181308:web:5db60af28ade85f1110df9"
     };
@@ -112,154 +100,109 @@
     const auth = firebase.auth();
     const db = firebase.firestore();
 
-    // ========== TEXTES ==========
-    const txt = {
-        fr:{cor:"Bravo !",err:"Essaie encore",ind:"Indice"},
-        en:{cor:"Well done!",err:"Try again",ind:"Hint"},
-        es:{cor:"¡Bien!",err:"Intenta",ind:"Pista"},
-        ar:{cor:"أحسنت",err:"حاول",ind:"تلميح"},
-        zh:{cor:"做得好",err:"再试",ind:"提示"}
+    let userData = { xp: 0, done: [], premium: false };
+    let currentLesson = null;
+
+    // --- BASE DE DONNÉES ENRICHIE (Vidéos + Démo) ---
+    const lessons = {
+        1: { 
+            t: "L'Interface : Dompter la Grille", 
+            exp: "Avant de calculer, il faut savoir naviguer. Découvrez comment Excel organise ses milliards de données.",
+            vid: "https://www.youtube.com/embed/dQw4w9WgXcQ", // METTRE TES LIENS ICI
+            q: "Quelle est l'adresse de la cellule à l'intersection de la colonne B et de la ligne 5 ?",
+            a: "B5",
+            xp: 20 
+        },
+        2: { 
+            t: "La Formule Magique : SOMME", 
+            exp: "Ne perdez plus de temps à additionner. Laissez Excel faire le travail lourd pour vous.",
+            vid: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            q: "Écrivez la formule pour additionner les cellules de A1 jusqu'à A10.",
+            a: "=SOMME(A1:A10)",
+            xp: 30
+        },
+        // Ajoute ici jusqu'à 100 leçons...
     };
-    let lang = 'fr';
-    let currentUser = null;
-    let progress = { level:1, xp:0, completed:[] };
-    let activeLesson = null;
 
-    function t(k){ return txt[lang][k] || k; }
-
-    // ========== 100 LEÇONS ==========
-    const lessons = {};
-    for(let i=1;i<=100;i++){
-        if(i===1) lessons[i]={ title:"🧩 Les cellules", exp:"Excel = grille. Chaque case = cellule. Adresse = colonne + ligne (A1, B2...)", demo:"La cellule A1 est en haut à gauche.", q:"Quel est le nom de la première cellule ?", ans:"A1", hint:"Colonne A, ligne 1", xp:10 };
-        else if(i===2) lessons[i]={ title:"⌨️ Sélectionner tout", exp:"CTRL+A sélectionne TOUTES les cellules.", demo:"Appuie sur CTRL+A.", q:"Raccourci pour tout sélectionner ?", ans:"CTRL+A", hint:"A comme All", xp:10 };
-        else if(i===3) lessons[i]={ title:"➕ Fonction SOMME", exp:"=SOMME(plage) additionne.", demo:"=SOMME(A1:A5) additionne A1 à A5.", q:"Formule pour additionner A1 à A10 ?", ans:"=SOMME(A1:A10)", hint:"=SOMME(plage)", xp:15 };
-        else if(i===4) lessons[i]={ title:"📊 Fonction MOYENNE", exp:"=MOYENNE(plage) calcule la moyenne.", demo:"=MOYENNE(B1:B5) donne la moyenne.", q:"Formule pour la moyenne de B1 à B5 ?", ans:"=MOYENNE(B1:B5)", hint:"=MOYENNE(plage)", xp:15 };
-        else if(i===5) lessons[i]={ title:"📉 Fonction MIN", exp:"=MIN(plage) donne la plus petite valeur.", demo:"=MIN(A1:A20) donne le minimum.", q:"Formule pour la plus petite valeur de A1 à A20 ?", ans:"=MIN(A1:A20)", hint:"MIN comme Minimum", xp:15 };
-        else lessons[i]={ title:`📘 Leçon ${i}`, exp:"Pratique et progresse !", demo:"Refais les exercices précédents.", q:`Question ${i}`, ans:"REPONSE", hint:"Cherche dans les leçons précédentes", xp:15 };
+    // --- LOGIQUE CORE ---
+    function renderGrid() {
+        const grid = document.getElementById('lessonGrid');
+        grid.innerHTML = "";
+        Object.keys(lessons).forEach(id => {
+            const l = lessons[id];
+            const isDone = userData.done.includes(id);
+            const isLocked = id > 10 && !userData.premium;
+            
+            grid.innerHTML += `
+                <div class="module-card ${isDone?'done':''} ${isLocked?'locked':''}" onclick="openLesson(${id})">
+                    <span class="badge">+${l.xp} XP</span>
+                    <h3 style="margin-bottom:10px;">${id}. ${l.t}</h3>
+                    <p style="font-size:0.8rem; opacity:0.7;">${l.exp.substring(0, 60)}...</p>
+                    <div style="margin-top:15px; font-size:0.9rem; color:var(--gold);">${isLocked ? '🔒 Débloquer' : '▶️ Commencer'}</div>
+                </div>
+            `;
+        });
+        updateStats();
     }
 
-    function updateUI(){
-        document.getElementById('levelStat').innerText = progress.level;
-        document.getElementById('xpStat').innerText = progress.xp;
-        document.getElementById('lessonsStat').innerText = `${progress.completed.length}/100`;
-        renderLessons();
-    }
-
-    async function saveProgress(){
-        if(!currentUser) return;
-        await db.collection('users').doc(currentUser.uid).set({
-            name: currentUser.displayName || currentUser.email.split('@')[0],
-            level: progress.level,
-            xp: progress.xp,
-            completed: progress.completed
-        }, {merge:true});
-    }
-
-    async function loadProgress(){
-        const doc = await db.collection('users').doc(currentUser.uid).get();
-        if(doc.exists){
-            const d = doc.data();
-            progress.level = d.level || 1;
-            progress.xp = d.xp || 0;
-            progress.completed = d.completed || [];
-        } else {
-            progress = { level:1, xp:0, completed:[] };
-            await saveProgress();
+    function openLesson(id) {
+        if (id > 10 && !userData.premium) {
+            alert("🔒 Accès Premium requis. Contactez le 677 05 10 62 pour débloquer tout le parcours.");
+            return;
         }
-        updateUI();
-    }
-
-    function renderLessons(){
-        const grid = document.getElementById('lessonsGrid');
-        grid.innerHTML = '';
-        for(let i=1;i<=100;i++){
-            const done = progress.completed.includes(i);
-            const card = document.createElement('div');
-            card.className = `lesson ${done ? 'done' : ''}`;
-            card.innerHTML = `<div><b>${lessons[i].title}</b></div>`;
-            if(!done) card.onclick = () => openLesson(i);
-            grid.appendChild(card);
-        }
-    }
-
-    function openLesson(id){
-        activeLesson = id;
-        const l = lessons[id];
-        document.getElementById('modalContent').innerHTML = `
-            <h2>${l.title}</h2>
-            <p><strong>📖 Explication :</strong> ${l.exp}</p>
-            <div class="demo"><strong>🎬 Démonstration :</strong><br>${l.demo}</div>
-            <p><strong>✍️ Exercice :</strong> ${l.q}</p>
-            <input type="text" id="lessonAnswer" placeholder="Ta réponse...">
-            <button onclick="checkAnswer()">Vérifier</button>
-            <div id="lessonFeedback"></div>
-            <details><summary style="color:#fbbf24;margin-top:10px">💡 ${t('ind')}</summary><p>${l.hint}</p></details>
-            <button onclick="closeLesson()" style="background:#334155;margin-top:15px">Fermer</button>
-        `;
+        currentLesson = { id, ...lessons[id] };
+        document.getElementById('videoBox').innerHTML = `<iframe width="100%" height="100%" src="${currentLesson.vid}" frameborder="0" allowfullscreen></iframe>`;
+        document.getElementById('m-title').innerText = currentLesson.t;
+        document.getElementById('m-exp').innerHTML = `<p>📖 <b>Le Concept :</b> ${currentLesson.exp}</p>`;
+        document.getElementById('m-q').innerText = currentLesson.q;
         document.getElementById('lessonModal').classList.add('active');
     }
 
-    function closeLesson(){
-        document.getElementById('lessonModal').classList.remove('active');
-    }
-
-    async function checkAnswer(){
-        const answer = document.getElementById('lessonAnswer').value.trim().toUpperCase();
-        const l = lessons[activeLesson];
-        const fb = document.getElementById('lessonFeedback');
-        if(answer === l.ans.toUpperCase()){
-            fb.innerHTML = `<div class="feedback good">✅ ${t('cor')} +${l.xp} XP</div>`;
-            if(!progress.completed.includes(activeLesson)){
-                progress.completed.push(activeLesson);
-                progress.xp += l.xp;
-                progress.level = Math.floor(progress.xp / 300) + 1;
-                await saveProgress();
-                updateUI();
-                closeLesson();
-                document.getElementById('coachMsg').innerHTML = `🦊 Bravo ! +${l.xp} XP !`;
+    function verifyAnswer() {
+        const val = document.getElementById('ansInput').value.trim().toUpperCase();
+        if (val === currentLesson.a.toUpperCase()) {
+            if (!userData.done.includes(currentLesson.id.toString())) {
+                userData.done.push(currentLesson.id.toString());
+                userData.xp += currentLesson.xp;
+                saveData();
             }
+            alert("✅ MAGNIFIQUE ! Vous avez maîtrisé cette étape.");
+            closeModal();
+            renderGrid();
         } else {
-            fb.innerHTML = `<div class="feedback bad">❌ ${t('err')}<br>💡 La bonne réponse : ${l.ans}</div>`;
+            alert("❌ Pas tout à fait... Regardez bien la vidéo et réessayez !");
         }
     }
 
-    // ========== AUTH ==========
-    function openAuth(){ document.getElementById('authPopup').classList.add('active'); }
-    function closeAuth(){ document.getElementById('authPopup').classList.remove('active'); }
-    async function googleLogin(){ try{ await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()); closeAuth(); }catch(e){ alert(e.message); } }
-    async function registerUser(){ const e=document.getElementById('authEmail').value, p=document.getElementById('authPass').value; if(!e||!p) return; try{ await auth.createUserWithEmailAndPassword(e,p); closeAuth(); }catch(e){ alert(e.message); } }
-    async function loginUser(){ const e=document.getElementById('authEmail').value, p=document.getElementById('authPass').value; if(!e||!p) return; try{ await auth.signInWithEmailAndPassword(e,p); closeAuth(); }catch(e){ alert(e.message); } }
-    async function logout(){ await auth.signOut(); location.reload(); }
-
-    function showProfile(u){
-        document.getElementById('loginArea').style.display = 'none';
-        document.getElementById('profileArea').style.display = 'block';
-        document.getElementById('profileArea').innerHTML = `
-            <div class="user-area">
-                <div class="user-avatar">${(u.displayName||u.email)[0].toUpperCase()}</div>
-                <div><b>${u.displayName||u.email.split('@')[0]}</b></div>
-                <div class="logout" onclick="logout()">Déconnexion</div>
-            </div>
-        `;
-        document.getElementById('coachMsg').innerHTML = `🦊 Bienvenue ${u.displayName||u.email.split('@')[0]} !`;
+    function closeModal() {
+        document.getElementById('lessonModal').classList.remove('active');
+        document.getElementById('videoBox').innerHTML = ""; // Stop la vidéo
     }
 
-    function setLang(l){
-        lang = l;
-        document.querySelectorAll('#langBtns button').forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
+    // --- CLOUD SYNC ---
+    async function saveData() {
+        if (auth.currentUser) {
+            await db.collection('users').doc(auth.currentUser.uid).set(userData);
+        }
     }
 
-    // ========== AUTH STATE LISTENER ==========
+    function updateStats() {
+        document.getElementById('st-lv').innerText = Math.floor(userData.xp / 300) + 1;
+        document.getElementById('st-xp').innerText = userData.xp;
+        document.getElementById('st-done').innerText = userData.done.length;
+    }
+
+    async function loginGoogle() {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        await auth.signInWithPopup(provider);
+    }
+
     auth.onAuthStateChanged(async (user) => {
-        if(user){
-            currentUser = user;
-            showProfile(user);
-            await loadProgress();
-        } else {
-            currentUser = null;
-            document.getElementById('loginArea').style.display = 'block';
-            document.getElementById('profileArea').style.display = 'none';
+        if (user) {
+            document.getElementById('authScreen').style.display = 'none';
+            const doc = await db.collection('users').doc(user.uid).get();
+            if (doc.exists) userData = doc.data();
+            renderGrid();
         }
     });
 </script>
