@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Excel Master Fun - Formation Complète</title>
+    <!-- Firebase en premier -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif}
         body{background:#0f172a;color:#fff;padding:20px}
@@ -62,7 +66,11 @@
     <div class="top">
         <div class="logo">📊 EXCEL MASTER FUN</div>
         <div class="lang" id="langBtns">
-            <button class="active" onclick="setLang('fr')">FR</button><button onclick="setLang('en')">EN</button><button onclick="setLang('es')">ES</button><button onclick="setLang('ar')">AR</button><button onclick="setLang('zh')">ZH</button>
+            <button class="active" onclick="setLang('fr')">FR</button>
+            <button onclick="setLang('en')">EN</button>
+            <button onclick="setLang('es')">ES</button>
+            <button onclick="setLang('ar')">AR</button>
+            <button onclick="setLang('zh')">ZH</button>
         </div>
     </div>
 
@@ -91,15 +99,26 @@
 </div>
 
 <script>
-    // FIREBASE
-    const fbConfig = { apiKey:"AIzaSyDtPKWklKh7Ijd_zTev7uq9gmuXcXfoFKQ", authDomain:"excel-master-5.firebaseapp.com", projectId:"excel-master-5", storageBucket:"excel-master-5.firebasestorage.app", messagingSenderId:"409433181308", appId:"1:409433181308:web:5db60af28ade85f1110df9" };
-    firebase.initializeApp(fbConfig);
+    // ========== FIREBASE INIT ==========
+    const firebaseConfig = {
+        apiKey: "AIzaSyDtPKWklKh7Ijd_zTev7uq9gmuXcXfoFKQ",
+        authDomain: "excel-master-5.firebaseapp.com",
+        projectId: "excel-master-5",
+        storageBucket: "excel-master-5.firebasestorage.app",
+        messagingSenderId: "409433181308",
+        appId: "1:409433181308:web:5db60af28ade85f1110df9"
+    };
+    firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
 
-    // TEXTES MULTILANGUES
+    // ========== TEXTES ==========
     const txt = {
-        fr:{cor:"Bravo !",err:"Essaie encore",ind:"Indice"}, en:{cor:"Well done!",err:"Try again",ind:"Hint"}, es:{cor:"¡Bien!",err:"Intenta",ind:"Pista"}, ar:{cor:"أحسنت",err:"حاول",ind:"تلميح"}, zh:{cor:"做得好",err:"再试",ind:"提示"}
+        fr:{cor:"Bravo !",err:"Essaie encore",ind:"Indice"},
+        en:{cor:"Well done!",err:"Try again",ind:"Hint"},
+        es:{cor:"¡Bien!",err:"Intenta",ind:"Pista"},
+        ar:{cor:"أحسنت",err:"حاول",ind:"تلميح"},
+        zh:{cor:"做得好",err:"再试",ind:"提示"}
     };
     let lang = 'fr';
     let currentUser = null;
@@ -108,49 +127,141 @@
 
     function t(k){ return txt[lang][k] || k; }
 
-    // 100 LEÇONS (10 premières réelles, les autres génériques)
+    // ========== 100 LEÇONS ==========
     const lessons = {};
     for(let i=1;i<=100;i++){
-        if(i===1){ lessons[i]={ title:"🧩 Les cellules", exp:"Excel est une grille. Chaque case = cellule. Adresse = colonne + ligne (A1, B2...)", demo:"La cellule A1 est en haut à gauche.", q:"Quel est le nom de la première cellule ?", ans:"A1", hint:"Colonne A, ligne 1", xp:10 } }
-        else if(i===2){ lessons[i]={ title:"⌨️ Sélectionner tout", exp:"CTRL+A sélectionne TOUTES les cellules.", demo:"Appuie sur CTRL+A.", q:"Raccourci pour tout sélectionner ?", ans:"CTRL+A", hint:"A comme All", xp:10 } }
-        else if(i===3){ lessons[i]={ title:"➕ Fonction SOMME", exp:"=SOMME(plage) additionne.", demo:"=SOMME(A1:A5) additionne A1 à A5.", q:"Formule pour additionner A1 à A10 ?", ans:"=SOMME(A1:A10)", hint:"=SOMME(plage)", xp:15 } }
-        else if(i===4){ lessons[i]={ title:"📊 Fonction MOYENNE", exp:"=MOYENNE(plage) calcule la moyenne.", demo:"=MOYENNE(B1:B5) donne la moyenne des 5 notes.", q:"Formule pour la moyenne de B1 à B5 ?", ans:"=MOYENNE(B1:B5)", hint:"=MOYENNE(plage)", xp:15 } }
-        else if(i===5){ lessons[i]={ title:"📉 Fonction MIN", exp:"=MIN(plage) donne la plus petite valeur.", demo:"=MIN(A1:A20) donne le minimum.", q:"Formule pour la plus petite valeur de A1 à A20 ?", ans:"=MIN(A1:A20)", hint:"MIN comme Minimum", xp:15 } }
-        else { lessons[i]={ title:`📘 Leçon ${i}`, exp:"Pratique et progresse !", demo:"Refais les exercices précédents.", q:`Question ${i}`, ans:"REPONSE", hint:"Vérifie dans les leçons précédentes", xp:15 } }
+        if(i===1) lessons[i]={ title:"🧩 Les cellules", exp:"Excel = grille. Chaque case = cellule. Adresse = colonne + ligne (A1, B2...)", demo:"La cellule A1 est en haut à gauche.", q:"Quel est le nom de la première cellule ?", ans:"A1", hint:"Colonne A, ligne 1", xp:10 };
+        else if(i===2) lessons[i]={ title:"⌨️ Sélectionner tout", exp:"CTRL+A sélectionne TOUTES les cellules.", demo:"Appuie sur CTRL+A.", q:"Raccourci pour tout sélectionner ?", ans:"CTRL+A", hint:"A comme All", xp:10 };
+        else if(i===3) lessons[i]={ title:"➕ Fonction SOMME", exp:"=SOMME(plage) additionne.", demo:"=SOMME(A1:A5) additionne A1 à A5.", q:"Formule pour additionner A1 à A10 ?", ans:"=SOMME(A1:A10)", hint:"=SOMME(plage)", xp:15 };
+        else if(i===4) lessons[i]={ title:"📊 Fonction MOYENNE", exp:"=MOYENNE(plage) calcule la moyenne.", demo:"=MOYENNE(B1:B5) donne la moyenne.", q:"Formule pour la moyenne de B1 à B5 ?", ans:"=MOYENNE(B1:B5)", hint:"=MOYENNE(plage)", xp:15 };
+        else if(i===5) lessons[i]={ title:"📉 Fonction MIN", exp:"=MIN(plage) donne la plus petite valeur.", demo:"=MIN(A1:A20) donne le minimum.", q:"Formule pour la plus petite valeur de A1 à A20 ?", ans:"=MIN(A1:A20)", hint:"MIN comme Minimum", xp:15 };
+        else lessons[i]={ title:`📘 Leçon ${i}`, exp:"Pratique et progresse !", demo:"Refais les exercices précédents.", q:`Question ${i}`, ans:"REPONSE", hint:"Cherche dans les leçons précédentes", xp:15 };
     }
 
-    function updateUI(){ document.getElementById('levelStat').innerText=progress.level; document.getElementById('xpStat').innerText=progress.xp; document.getElementById('lessonsStat').innerText=`${progress.completed.length}/100`; renderLessons(); }
-    async function saveProgress(){ if(!currentUser) return; await db.collection('users').doc(currentUser.uid).set({ name:currentUser.displayName||currentUser.email.split('@')[0], level:progress.level, xp:progress.xp, completed:progress.completed },{merge:true}); }
-    async function loadProgress(){ const doc=await db.collection('users').doc(currentUser.uid).get(); if(doc.exists){ const d=doc.data(); progress.level=d.level||1; progress.xp=d.xp||0; progress.completed=d.completed||[]; } else { progress={level:1,xp:0,completed:[]}; await saveProgress(); } updateUI(); }
+    function updateUI(){
+        document.getElementById('levelStat').innerText = progress.level;
+        document.getElementById('xpStat').innerText = progress.xp;
+        document.getElementById('lessonsStat').innerText = `${progress.completed.length}/100`;
+        renderLessons();
+    }
 
-    function renderLessons(){ const grid=document.getElementById('lessonsGrid'); grid.innerHTML=''; for(let i=1;i<=100;i++){ const done=progress.completed.includes(i); const card=document.createElement('div'); card.className=`lesson ${done?'done':''}`; card.innerHTML=`<div><b>${lessons[i].title}</b></div>`; if(!done) card.onclick=()=>openLesson(i); grid.appendChild(card); } }
+    async function saveProgress(){
+        if(!currentUser) return;
+        await db.collection('users').doc(currentUser.uid).set({
+            name: currentUser.displayName || currentUser.email.split('@')[0],
+            level: progress.level,
+            xp: progress.xp,
+            completed: progress.completed
+        }, {merge:true});
+    }
 
-    function openLesson(id){ activeLesson=id; const l=lessons[id]; document.getElementById('modalContent').innerHTML=`
-        <h2>${l.title}</h2>
-        <p><strong>📖 Explication :</strong> ${l.exp}</p>
-        <div class="demo"><strong>🎬 Démonstration :</strong><br>${l.demo}</div>
-        <p><strong>✍️ Exercice :</strong> ${l.q}</p>
-        <input type="text" id="lessonAnswer" placeholder="Ta réponse...">
-        <button onclick="checkAnswer()">Vérifier</button>
-        <div id="lessonFeedback"></div>
-        <details><summary style="color:#fbbf24;margin-top:10px">💡 ${t('ind')}</summary><p>${l.hint}</p></details>
-        <button onclick="closeLesson()" style="background:#334155;margin-top:15px">Fermer</button>
-    `; document.getElementById('lessonModal').classList.add('active'); }
-    function closeLesson(){ document.getElementById('lessonModal').classList.remove('active'); }
-    async function checkAnswer(){ const a=document.getElementById('lessonAnswer').value.trim().toUpperCase(); const l=lessons[activeLesson]; const fb=document.getElementById('lessonFeedback'); if(a===l.ans.toUpperCase()){ fb.innerHTML=`<div class="feedback good">✅ ${t('cor')} +${l.xp} XP</div>`; if(!progress.completed.includes(activeLesson)){ progress.completed.push(activeLesson); progress.xp+=l.xp; progress.level=Math.floor(progress.xp/300)+1; await saveProgress(); updateUI(); closeLesson(); document.getElementById('coachMsg').innerHTML=`🦊 Bravo ! +${l.xp} XP !`; } } else { fb.innerHTML=`<div class="feedback bad">❌ ${t('err')}<br>💡 La bonne réponse : ${l.ans}</div>`; } }
+    async function loadProgress(){
+        const doc = await db.collection('users').doc(currentUser.uid).get();
+        if(doc.exists){
+            const d = doc.data();
+            progress.level = d.level || 1;
+            progress.xp = d.xp || 0;
+            progress.completed = d.completed || [];
+        } else {
+            progress = { level:1, xp:0, completed:[] };
+            await saveProgress();
+        }
+        updateUI();
+    }
 
-    // AUTH
+    function renderLessons(){
+        const grid = document.getElementById('lessonsGrid');
+        grid.innerHTML = '';
+        for(let i=1;i<=100;i++){
+            const done = progress.completed.includes(i);
+            const card = document.createElement('div');
+            card.className = `lesson ${done ? 'done' : ''}`;
+            card.innerHTML = `<div><b>${lessons[i].title}</b></div>`;
+            if(!done) card.onclick = () => openLesson(i);
+            grid.appendChild(card);
+        }
+    }
+
+    function openLesson(id){
+        activeLesson = id;
+        const l = lessons[id];
+        document.getElementById('modalContent').innerHTML = `
+            <h2>${l.title}</h2>
+            <p><strong>📖 Explication :</strong> ${l.exp}</p>
+            <div class="demo"><strong>🎬 Démonstration :</strong><br>${l.demo}</div>
+            <p><strong>✍️ Exercice :</strong> ${l.q}</p>
+            <input type="text" id="lessonAnswer" placeholder="Ta réponse...">
+            <button onclick="checkAnswer()">Vérifier</button>
+            <div id="lessonFeedback"></div>
+            <details><summary style="color:#fbbf24;margin-top:10px">💡 ${t('ind')}</summary><p>${l.hint}</p></details>
+            <button onclick="closeLesson()" style="background:#334155;margin-top:15px">Fermer</button>
+        `;
+        document.getElementById('lessonModal').classList.add('active');
+    }
+
+    function closeLesson(){
+        document.getElementById('lessonModal').classList.remove('active');
+    }
+
+    async function checkAnswer(){
+        const answer = document.getElementById('lessonAnswer').value.trim().toUpperCase();
+        const l = lessons[activeLesson];
+        const fb = document.getElementById('lessonFeedback');
+        if(answer === l.ans.toUpperCase()){
+            fb.innerHTML = `<div class="feedback good">✅ ${t('cor')} +${l.xp} XP</div>`;
+            if(!progress.completed.includes(activeLesson)){
+                progress.completed.push(activeLesson);
+                progress.xp += l.xp;
+                progress.level = Math.floor(progress.xp / 300) + 1;
+                await saveProgress();
+                updateUI();
+                closeLesson();
+                document.getElementById('coachMsg').innerHTML = `🦊 Bravo ! +${l.xp} XP !`;
+            }
+        } else {
+            fb.innerHTML = `<div class="feedback bad">❌ ${t('err')}<br>💡 La bonne réponse : ${l.ans}</div>`;
+        }
+    }
+
+    // ========== AUTH ==========
     function openAuth(){ document.getElementById('authPopup').classList.add('active'); }
     function closeAuth(){ document.getElementById('authPopup').classList.remove('active'); }
     async function googleLogin(){ try{ await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()); closeAuth(); }catch(e){ alert(e.message); } }
     async function registerUser(){ const e=document.getElementById('authEmail').value, p=document.getElementById('authPass').value; if(!e||!p) return; try{ await auth.createUserWithEmailAndPassword(e,p); closeAuth(); }catch(e){ alert(e.message); } }
     async function loginUser(){ const e=document.getElementById('authEmail').value, p=document.getElementById('authPass').value; if(!e||!p) return; try{ await auth.signInWithEmailAndPassword(e,p); closeAuth(); }catch(e){ alert(e.message); } }
     async function logout(){ await auth.signOut(); location.reload(); }
-    function showProfile(u){ document.getElementById('loginArea').style.display='none'; document.getElementById('profileArea').style.display='block'; document.getElementById('profileArea').innerHTML=`<div class="user-area"><div class="user-avatar">${(u.displayName||u.email)[0].toUpperCase()}</div><div><b>${u.displayName||u.email.split('@')[0]}</b></div><div class="logout" onclick="logout()">Déconnexion</div></div>`; document.getElementById('coachMsg').innerHTML=`🦊 Bienvenue ${u.displayName||u.email.split('@')[0]} !`; }
 
-    function setLang(l){ lang=l; document.querySelectorAll('#langBtns button').forEach(b=>b.classList.remove('active')); event.target.classList.add('active'); }
+    function showProfile(u){
+        document.getElementById('loginArea').style.display = 'none';
+        document.getElementById('profileArea').style.display = 'block';
+        document.getElementById('profileArea').innerHTML = `
+            <div class="user-area">
+                <div class="user-avatar">${(u.displayName||u.email)[0].toUpperCase()}</div>
+                <div><b>${u.displayName||u.email.split('@')[0]}</b></div>
+                <div class="logout" onclick="logout()">Déconnexion</div>
+            </div>
+        `;
+        document.getElementById('coachMsg').innerHTML = `🦊 Bienvenue ${u.displayName||u.email.split('@')[0]} !`;
+    }
 
-    auth.onAuthStateChanged(async u=>{ if(u){ currentUser=u; showProfile(u); await loadProgress(); } });
+    function setLang(l){
+        lang = l;
+        document.querySelectorAll('#langBtns button').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+
+    // ========== AUTH STATE LISTENER ==========
+    auth.onAuthStateChanged(async (user) => {
+        if(user){
+            currentUser = user;
+            showProfile(user);
+            await loadProgress();
+        } else {
+            currentUser = null;
+            document.getElementById('loginArea').style.display = 'block';
+            document.getElementById('profileArea').style.display = 'none';
+        }
+    });
 </script>
 </body>
 </html>
