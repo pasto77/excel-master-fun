@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excel Master Fun – Parcours complet (13 modules)</title>
+    <title>Excel Master Fun – Formation complète</title>
     <style>
         * {
             margin: 0;
@@ -74,6 +74,11 @@
             color: #0f172a;
             font-weight: bold;
         }
+        .module-btn.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #334155;
+        }
         .module-content {
             background: #0f172a;
             border-radius: 32px;
@@ -98,6 +103,63 @@
             background: #334155;
             color: white;
         }
+        .premium-btn {
+            background: #f97316;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        .payment-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .payment-modal.active {
+            display: flex;
+        }
+        .payment-card {
+            background: #1e293b;
+            padding: 32px;
+            border-radius: 32px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        .payment-card input {
+            width: 100%;
+            padding: 12px;
+            margin: 16px 0;
+            border-radius: 40px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+        .payment-card button {
+            margin: 8px;
+        }
+        .success {
+            border-left-color: #22c55e;
+            color: #bef264;
+        }
+        .premium-badge {
+            background: #f97316;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
         .feedback {
             background: #0f172a;
             padding: 16px;
@@ -105,25 +167,20 @@
             margin-top: 20px;
             border-left: 4px solid #fbbf24;
         }
-        .success {
-            border-left-color: #22c55e;
-            color: #bef264;
-        }
-        .certificate-link {
-            text-align: center;
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
 <div class="app-container">
     <div class="header">
         <h1>📘 Excel Master Fun</h1>
-        <div style="font-size: 0.8rem; color: #94a3b8;">Formation complète en 13 modules</div>
+        <div>
+            <span id="premiumStatus"></span>
+            <button id="premiumButton" class="premium-btn">⭐ Débloquer l’intégralité</button>
+        </div>
     </div>
     <div class="coach">
         <span style="font-size: 2rem;">🦊</span>
-        <span style="color:#cbd5e1;">Choisis un module ci-dessous. Ta progression est sauvegardée.</span>
+        <span style="color:#cbd5e1;">Choisis un module. Les modules avancés (10 à 13) sont accessibles après paiement.</span>
     </div>
 
     <div class="modules-nav" id="modulesNav"></div>
@@ -134,145 +191,112 @@
         <button id="nextBtn">Suivant ➡️</button>
         <button id="resetProgressBtn" class="reset-progress">🔄 Réinitialiser progression</button>
     </div>
-    <div class="certificate-link">
-        <button id="showCertBtn">🎓 Voir mon certificat</button>
+    <div class="feedback" id="globalFeedback" style="margin-top: 20px;">
+        🎓 13 modules pour maîtriser Excel.
+    </div>
+</div>
+
+<!-- Modal de paiement -->
+<div id="paymentModal" class="payment-modal">
+    <div class="payment-card">
+        <h3 style="color:#fbbf24;">🔓 Débloquer les modules avancés</h3>
+        <p style="margin: 16px 0;">Choisis ton moyen de paiement</p>
+        <div style="display: flex; gap: 12px; justify-content: center;">
+            <button id="orangeMoneyBtn" style="background:#f97316;">📱 Orange Money</button>
+            <button id="mtnMoneyBtn" style="background:#f97316;">📱 MTN Money</button>
+        </div>
+        <input type="text" id="phoneNumber" placeholder="Numéro de téléphone (ex: 677051062)" style="margin-top: 16px;">
+        <button id="confirmPaymentBtn" style="background:#fbbf24;">Confirmer le paiement (5000 FCFA)</button>
+        <button id="closePaymentBtn" style="background:#334155; margin-top: 8px;">Annuler</button>
+        <div id="paymentMessage" style="margin-top: 12px; font-size: 0.9rem;"></div>
     </div>
 </div>
 
 <script>
-    // ----- DÉFINITION DES 13 MODULES (contenu) -----
-    // On reprend les 9 premiers et on en ajoute 4 nouveaux pour arriver à 13
+    // ----- Contenus des modules (inchangés, mais on ajoute un message premium pour les modules 10-13) -----
     const modules = [
-        { id: 1, title: "🧭 Module 1 – L’interface", content: "module1_content" },
-        { id: 2, title: "➕ Module 2 – Premiers calculs", content: "module2_content" },
-        { id: 3, title: "🎨 Module 3 – Mise en forme", content: "module3_content" },
-        { id: 4, title: "📊 Module 4 – Graphique simple", content: "module4_content" },
-        { id: 5, title: "🧮 Module 5 – La fonction SOMME", content: "module5_content" },
-        { id: 6, title: "⚖️ Module 6 – La fonction SI", content: "module6_content" },
-        { id: 7, title: "🏁 Module 7 – Bilan", content: "module7_content" },
-        { id: 8, title: "🏆 Module 8 – Projet final", content: "module8_content" },
-        { id: 9, title: "🎓 Module 9 – Révision & certificat", content: "module9_content" },
-        { id: 10, title: "📋 Module 10 – Tableaux structurés", content: "module10_content" },
-        { id: 11, title: "🔍 Module 11 – Filtres et tris", content: "module11_content" },
-        { id: 12, title: "📈 Module 12 – Graphiques avancés", content: "module12_content" },
-        { id: 13, title: "✍️ Module 13 – Formules de texte", content: "module13_content" }
+        { id: 1, title: "🧭 Module 1 – L’interface", content: "module1" },
+        { id: 2, title: "➕ Module 2 – Premiers calculs", content: "module2" },
+        { id: 3, title: "🎨 Module 3 – Mise en forme", content: "module3" },
+        { id: 4, title: "📊 Module 4 – Graphique simple", content: "module4" },
+        { id: 5, title: "🧮 Module 5 – La fonction SOMME", content: "module5" },
+        { id: 6, title: "⚖️ Module 6 – La fonction SI", content: "module6" },
+        { id: 7, title: "🏁 Module 7 – Bilan", content: "module7" },
+        { id: 8, title: "🏆 Module 8 – Projet final", content: "module8" },
+        { id: 9, title: "🎓 Module 9 – Révision", content: "module9" },
+        { id: 10, title: "📋 Module 10 – Tableaux structurés", content: "module10" },
+        { id: 11, title: "🔍 Module 11 – Filtres et tris", content: "module11" },
+        { id: 12, title: "📈 Module 12 – Graphiques avancés", content: "module12" },
+        { id: 13, title: "✍️ Module 13 – Formules de texte", content: "module13" }
     ];
 
-    // Contenus simplifiés (pour les nouveaux modules, on crée des explications courtes mais pédagogiques)
+    // Contenus (seuls les 9 premiers sont détaillés, les suivants ont un placeholder)
     const contents = {
-        module1_content: `
-            <h3>🧭 Module 1 – L’interface</h3>
-            <div class="excel-simulator" style="margin: 16px 0;">
-                <div style="background:#0f172a; border-radius:16px; padding:12px; text-align:center; border:1px solid #334155;">
-                    <p style="color:#facc15;">A1, B2, C3... chaque case a une adresse.</p>
-                    <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:4px; margin-top:12px;">
-                        ${['A','B','C','D','E'].map(l => `<div style="background:#1e293b; padding:8px;">${l}1</div>`).join('')}
-                    </div>
-                </div>
-            </div>
-            <p><strong>📖 Explication :</strong> Excel est une grille. Les colonnes sont des lettres, les lignes des chiffres. La cellule active est celle entourée.</p>
-            <button onclick="markModuleCompleted(1)">✅ Marquer ce module comme terminé</button>
-        `,
-        module2_content: `
-            <h3>➕ Module 2 – Premiers calculs</h3>
-            <p>Dans Excel, pour additionner, on utilise le signe = . Exemple : =A1+B1</p>
-            <div style="background:#0f172a; padding:12px; border-radius:16px; margin:12px 0; text-align:center;">
-                <code style="color:#facc15;">=15+27 → 42</code>
-            </div>
-            <button onclick="markModuleCompleted(2)">✅ Marquer ce module comme terminé</button>
-        `,
-        module3_content: `
-            <h3>🎨 Module 3 – Mise en forme</h3>
-            <p>On peut changer la police, la couleur, ajouter des bordures. Un tableau bien présenté est plus lisible.</p>
-            <button onclick="markModuleCompleted(3)">✅ Marquer ce module comme terminé</button>
-        `,
-        module4_content: `
-            <h3>📊 Module 4 – Graphique simple</h3>
-            <p>Un graphique transforme des chiffres en image. Clique sur "Insérer graphique" dans Excel pour choisir un histogramme ou un camembert.</p>
-            <button onclick="markModuleCompleted(4)">✅ Marquer ce module comme terminé</button>
-        `,
-        module5_content: `
-            <h3>🧮 Module 5 – La fonction SOMME</h3>
-            <p><code style="color:#facc15;">=SOMME(A1:A5)</code> additionne toutes les cellules de A1 à A5.</p>
-            <button onclick="markModuleCompleted(5)">✅ Marquer ce module comme terminé</button>
-        `,
-        module6_content: `
-            <h3>⚖️ Module 6 – La fonction SI</h3>
-            <p><code style="color:#facc15;">=SI(A1>=10;"Réussi";"Échec")</code> → teste une condition et renvoie un résultat différent selon qu’elle est vraie ou fausse.</p>
-            <button onclick="markModuleCompleted(6)">✅ Marquer ce module comme terminé</button>
-        `,
-        module7_content: `
-            <h3>🏁 Module 7 – Bilan</h3>
-            <p>Tu as appris l’interface, les formules de base, la mise en forme, les graphiques, SOMME et SI. Continue ainsi !</p>
-            <button onclick="markModuleCompleted(7)">✅ Marquer ce module comme terminé</button>
-        `,
-        module8_content: `
-            <h3>🏆 Module 8 – Projet final</h3>
-            <p>Crée ton propre tableau de bord en combinant les formules apprises : somme, mise en forme, graphique. C’est ton premier projet Excel !</p>
-            <button onclick="markModuleCompleted(8)">✅ Marquer ce module comme terminé</button>
-        `,
-        module9_content: `
-            <h3>🎓 Module 9 – Révision & certificat</h3>
-            <p>Bravo ! Tu as parcouru les 8 premiers modules. Tu es prêt pour le certificat final.</p>
-            <button onclick="markModuleCompleted(9)">✅ Marquer ce module comme terminé</button>
-        `,
-        module10_content: `
-            <h3>📋 Module 10 – Tableaux structurés</h3>
-            <p>Un tableau structuré (CTRL+T) permet de gérer les données plus facilement : filtres, formules automatiques, mise en forme dynamique.</p>
-            <button onclick="markModuleCompleted(10)">✅ Marquer ce module comme terminé</button>
-        `,
-        module11_content: `
-            <h3>🔍 Module 11 – Filtres et tris</h3>
-            <p>Les filtres permettent de n’afficher que les lignes qui t’intéressent. Les tris organisent les données par ordre croissant ou décroissant.</p>
-            <button onclick="markModuleCompleted(11)">✅ Marquer ce module comme terminé</button>
-        `,
-        module12_content: `
-            <h3>📈 Module 12 – Graphiques avancés</h3>
-            <p>Au-delà de l’histogramme, Excel propose des graphiques en courbes, en secteurs, en radar… Choisis celui qui raconte le mieux ton histoire.</p>
-            <button onclick="markModuleCompleted(12)">✅ Marquer ce module comme terminé</button>
-        `,
-        module13_content: `
-            <h3>✍️ Module 13 – Formules de texte</h3>
-            <p>Concaténer (joindre) du texte, extraire des caractères, mettre en majuscules… Les formules de texte te rendent la vie plus facile.</p>
-            <button onclick="markModuleCompleted(13)">✅ Marquer ce module comme terminé</button>
-        `
+        module1: `<h3>🧭 Module 1 – L’interface</h3><p>Excel est une grille de cellules (A1, B2...). Les colonnes sont des lettres, les lignes des chiffres.</p><button onclick="markCompleted(1)">✅ Terminer ce module</button>`,
+        module2: `<h3>➕ Module 2 – Premiers calculs</h3><p>=A1+B1 permet d’additionner. Exemple : 15+27 = 42.</p><button onclick="markCompleted(2)">✅ Terminer ce module</button>`,
+        module3: `<h3>🎨 Module 3 – Mise en forme</h3><p>On peut changer la police, la couleur, ajouter des bordures.</p><button onclick="markCompleted(3)">✅ Terminer ce module</button>`,
+        module4: `<h3>📊 Module 4 – Graphique simple</h3><p>Un graphique transforme des chiffres en image.</p><button onclick="markCompleted(4)">✅ Terminer ce module</button>`,
+        module5: `<h3>🧮 Module 5 – La fonction SOMME</h3><p>=SOMME(A1:A5) additionne les cellules de A1 à A5.</p><button onclick="markCompleted(5)">✅ Terminer ce module</button>`,
+        module6: `<h3>⚖️ Module 6 – La fonction SI</h3><p>=SI(A1>=10;"Réussi";"Échec")</p><button onclick="markCompleted(6)">✅ Terminer ce module</button>`,
+        module7: `<h3>🏁 Module 7 – Bilan</h3><p>Tu as appris les bases d’Excel.</p><button onclick="markCompleted(7)">✅ Terminer ce module</button>`,
+        module8: `<h3>🏆 Module 8 – Projet final</h3><p>Construis ton propre tableau de bord.</p><button onclick="markCompleted(8)">✅ Terminer ce module</button>`,
+        module9: `<h3>🎓 Module 9 – Révision</h3><p>Révise les 8 premiers modules.</p><button onclick="markCompleted(9)">✅ Terminer ce module</button>`,
+        module10: `<h3>📋 Module 10 – Tableaux structurés</h3><p>Crée un tableau avec CTRL+T pour bénéficier de filtres automatiques.</p><button onclick="markCompleted(10)">✅ Terminer ce module</button>`,
+        module11: `<h3>🔍 Module 11 – Filtres et tris</h3><p>Les filtres permettent de n’afficher que certaines lignes.</p><button onclick="markCompleted(11)">✅ Terminer ce module</button>`,
+        module12: `<h3>📈 Module 12 – Graphiques avancés</h3><p>Histogramme, courbe, camembert… choisis celui qui raconte ton histoire.</p><button onclick="markCompleted(12)">✅ Terminer ce module</button>`,
+        module13: `<h3>✍️ Module 13 – Formules de texte</h3><p>Concaténer, extraire des caractères, mettre en majuscules.</p><button onclick="markCompleted(13)">✅ Terminer ce module</button>`
     };
 
-    // Gestion de la progression (localStorage)
+    // Progression et premium
     let completed = JSON.parse(localStorage.getItem('excelCompleted')) || [];
+    let isPremium = localStorage.getItem('excelPremium') === 'true';
     let currentModule = parseInt(localStorage.getItem('currentModule')) || 1;
 
     function saveProgress() {
         localStorage.setItem('excelCompleted', JSON.stringify(completed));
         localStorage.setItem('currentModule', currentModule);
+        localStorage.setItem('excelPremium', isPremium);
     }
 
-    function markModuleCompleted(id) {
+    function markCompleted(id) {
         if (!completed.includes(id)) {
             completed.push(id);
             saveProgress();
             alert(`🎉 Module ${id} terminé !`);
             renderNav();
-            if (id === currentModule) renderCurrentModule();
+            if (currentModule === id) renderCurrentModule();
         } else {
             alert(`✅ Module déjà terminé.`);
         }
+    }
+    window.markCompleted = markCompleted;
+
+    function isModuleLocked(id) {
+        if (id <= 9) return false;
+        return !isPremium;
     }
 
     function renderNav() {
         const nav = document.getElementById('modulesNav');
         nav.innerHTML = '';
         modules.forEach(m => {
-            const isCompleted = completed.includes(m.id);
+            const locked = isModuleLocked(m.id);
+            const completedFlag = completed.includes(m.id);
             const btn = document.createElement('button');
-            btn.className = `module-btn ${currentModule === m.id ? 'active' : ''}`;
-            btn.innerText = `${m.title} ${isCompleted ? '✓' : ''}`;
-            btn.onclick = () => {
-                currentModule = m.id;
-                saveProgress();
-                renderNav();
-                renderCurrentModule();
-            };
+            btn.className = `module-btn ${currentModule === m.id ? 'active' : ''} ${locked ? 'locked' : ''}`;
+            btn.innerText = `${m.title} ${completedFlag ? '✓' : ''} ${locked ? '🔒' : ''}`;
+            if (!locked) {
+                btn.onclick = () => {
+                    currentModule = m.id;
+                    saveProgress();
+                    renderNav();
+                    renderCurrentModule();
+                };
+            } else {
+                btn.onclick = () => {
+                    document.getElementById('globalFeedback').innerHTML = '🔒 Ces modules avancés sont accessibles après paiement. Clique sur "⭐ Débloquer l’intégralité".';
+                };
+            }
             nav.appendChild(btn);
         });
     }
@@ -280,25 +304,72 @@
     function renderCurrentModule() {
         const module = modules.find(m => m.id === currentModule);
         const contentDiv = document.getElementById('moduleContent');
-        if (module) {
-            contentDiv.innerHTML = contents[module.content] || `<p>Module ${module.id} en construction.</p>`;
-            // On ajoute un petit script pour que le bouton "marquer terminé" fonctionne
-            if (typeof window.markModuleCompleted === 'undefined') {
-                window.markModuleCompleted = markModuleCompleted;
-            }
+        if (module && !isModuleLocked(module.id)) {
+            contentDiv.innerHTML = contents[module.content] || `<p>Module ${module.id} en préparation.</p>`;
+        } else if (module && isModuleLocked(module.id)) {
+            contentDiv.innerHTML = `
+                <div style="text-align:center; padding: 40px;">
+                    <p style="color:#facc15;">🔒 Ce module fait partie des modules avancés.</p>
+                    <button id="premiumPopupBtn" style="margin-top: 20px;">⭐ Débloquer maintenant</button>
+                </div>
+            `;
+            document.getElementById('premiumPopupBtn')?.addEventListener('click', () => showPaymentModal());
         } else {
             contentDiv.innerHTML = '<p>Module introuvable.</p>';
         }
     }
 
+    function showPaymentModal() {
+        document.getElementById('paymentModal').classList.add('active');
+    }
+
+    function closePaymentModal() {
+        document.getElementById('paymentModal').classList.remove('active');
+        document.getElementById('paymentMessage').innerHTML = '';
+        document.getElementById('phoneNumber').value = '';
+    }
+
+    function simulatePayment(provider) {
+        const phone = document.getElementById('phoneNumber').value.trim();
+        if (!phone) {
+            document.getElementById('paymentMessage').innerHTML = '📱 Veuillez entrer votre numéro de téléphone.';
+            return;
+        }
+        document.getElementById('paymentMessage').innerHTML = '⏳ Traitement en cours...';
+        setTimeout(() => {
+            // Simuler un succès de paiement
+            isPremium = true;
+            saveProgress();
+            document.getElementById('paymentMessage').innerHTML = '✅ Paiement réussi ! Modules avancés débloqués.';
+            setTimeout(() => {
+                closePaymentModal();
+                document.getElementById('globalFeedback').innerHTML = '🎉 Félicitations ! Tu as maintenant accès à tous les modules.';
+                renderNav();
+                if (currentModule >= 10) renderCurrentModule();
+                updatePremiumStatus();
+            }, 1500);
+        }, 1000);
+    }
+
+    function updatePremiumStatus() {
+        const statusSpan = document.getElementById('premiumStatus');
+        if (isPremium) {
+            statusSpan.innerHTML = '<span class="premium-badge">⭐ Accès complet</span>';
+        } else {
+            statusSpan.innerHTML = '<span style="color:#f97316;">⭐ Modules avancés verrouillés</span>';
+        }
+    }
+
     function nextModule() {
-        if (currentModule < modules.length) {
-            currentModule++;
+        let next = currentModule + 1;
+        while (next <= modules.length && isModuleLocked(next)) next++;
+        if (next <= modules.length) {
+            currentModule = next;
             saveProgress();
             renderNav();
             renderCurrentModule();
         } else {
-            alert('🎉 Tu as terminé tous les modules ! Félicitations !');
+            alert('🎉 Tu as atteint le dernier module accessible !');
         }
     }
 
@@ -312,45 +383,26 @@
     }
 
     function resetProgress() {
-        if (confirm('Effacer toute ta progression ? Les modules redeviendront non-terminés.')) {
+        if (confirm('Effacer toute ta progression ? Les modules redeviendront non-terminés. Le statut premium reste actif.')) {
             completed = [];
-            currentModule = 1;
             saveProgress();
             renderNav();
             renderCurrentModule();
         }
     }
 
-    function showCertificate() {
-        let score = completed.length;
-        let mention = score === modules.length ? "EXCELLENT" : (score >= modules.length/2 ? "BIEN" : "EN COURS");
-        let date = new Date().toLocaleDateString('fr-FR');
-        let userName = prompt("Entre ton nom pour le certificat :", "Étudiant") || "Étudiant";
-        let certHTML = `
-            <div style="background: white; color: #0f172a; padding: 40px; border-radius: 32px; text-align: center; max-width: 600px; margin: 0 auto;">
-                <h1 style="color: #fbbf24;">🏆 CERTIFICAT DE RÉUSSITE 🏆</h1>
-                <p style="margin: 20px 0;">Ceci atteste que</p>
-                <h2 style="font-size: 2rem; margin: 10px 0;">${userName}</h2>
-                <p>a suivi avec succès le parcours Excel Master Fun</p>
-                <p>Modules terminés : ${score}/${modules.length}</p>
-                <p>Mention : <strong>${mention}</strong></p>
-                <p>Délivré le ${date}</p>
-                <button onclick="window.print();" style="margin-top: 30px; background: #fbbf24; border: none; padding: 10px 20px; border-radius: 30px;">🖨️ Imprimer</button>
-                <button onclick="window.location.reload();" style="margin-top: 30px; background: #334155; color: white; border: none; padding: 10px 20px; border-radius: 30px;">Fermer</button>
-            </div>
-        `;
-        const certWindow = window.open('', '_blank');
-        certWindow.document.write(certHTML);
-        certWindow.document.close();
-    }
-
     document.getElementById('prevBtn').addEventListener('click', prevModule);
     document.getElementById('nextBtn').addEventListener('click', nextModule);
     document.getElementById('resetProgressBtn').addEventListener('click', resetProgress);
-    document.getElementById('showCertBtn').addEventListener('click', showCertificate);
+    document.getElementById('premiumButton').addEventListener('click', showPaymentModal);
+    document.getElementById('orangeMoneyBtn').addEventListener('click', () => simulatePayment('orange'));
+    document.getElementById('mtnMoneyBtn').addEventListener('click', () => simulatePayment('mtn'));
+    document.getElementById('confirmPaymentBtn').addEventListener('click', () => simulatePayment('orange'));
+    document.getElementById('closePaymentBtn').addEventListener('click', closePaymentModal);
 
     renderNav();
     renderCurrentModule();
+    updatePremiumStatus();
 </script>
 </body>
 </html>
